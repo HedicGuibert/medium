@@ -15,7 +15,15 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('introduction');
+            $table->text('body');
+            $table->integer('like')->default(0);
+            $table->string('status')->nullable();
+            $table->text('slug');
+            $table->foreignId('user_id')->constrained("users")->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
