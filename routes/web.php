@@ -41,6 +41,10 @@ Route::middleware(['auth', 'can:isEditor'])->group(function () {
 
 Auth::routes();
 
+
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
+
+
