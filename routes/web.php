@@ -75,3 +75,4 @@ Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index']
 Route::get('/articles/{slug}',[App\Http\Controllers\ArticleController::class, 'publicArticle'])->name("public_article");
 
 Auth::routes();
+

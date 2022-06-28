@@ -106,5 +106,4 @@ class ArticleController extends Controller
       $article->update(["status" => "draft"]);
       return redirect()->route('articles');
     }
-
 }
