@@ -21,18 +21,15 @@ return new class extends Migration
             $table
                 ->string('facebookUrl')
                 ->nullable()
-                ->default(null)
-            ;
+                ->default(null);
             $table
                 ->string('linkedInUrl')
                 ->nullable()
-                ->default(null)
-            ;
+                ->default(null);
             $table
                 ->string('twitterUrl')
                 ->nullable()
-                ->default(null)
-            ;
+                ->default(null);
             $table->integer('role')->default(User::ROLE_USER);
             $table->string('password');
             $table->rememberToken();

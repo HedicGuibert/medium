@@ -12,8 +12,11 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public const ROLE_USER = 1;
+
     public const ROLE_AUTHOR = 2;
+
     public const ROLE_EDITOR = 3;
+
     public const ROLES = [
         'user' => self::ROLE_USER,
         'author' => self::ROLE_AUTHOR,
@@ -44,8 +47,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function articles() {
-      return $this->hasMany(Article::class);
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
     /**
