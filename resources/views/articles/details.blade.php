@@ -12,7 +12,7 @@
       </div >
       <div class="mb-3">
         <label for="introduction">Introduction</label>
-        <input id="introduction" class="form-control" type="text" placeholder="introduction" value="{{$article->introduction}}"" name="introduction">
+        <input id="introduction" class="form-control" type="text" placeholder="introduction" value="{{$article->introduction}}" name="introduction">
       </div >
       <div class="mb-3">
         <label for="introduction">slug</label>
@@ -23,9 +23,11 @@
         <textarea id="body" class="form-control" type="text" placeholder="content"  row="10" style="height:200px" name="body">
           {{$article->body}}
         </textarea>
- 
       </div >
-        <div class="mb-3"><input type="file" required name="image" accept="image/*"></div>
+      <div>
+        <img src="{{asset($article->image)}}" alt="image">
+      </div>
+        <div class="mb-3"><input type="file" name="image" accept="image/*"></div>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </div>
   </form>

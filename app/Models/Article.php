@@ -14,12 +14,17 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
-    /**
-     * Get author of the article.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+    protected $fillable = [
+      "title",
+      "introduction",
+      "body",
+      'image',
+      'slug',
+      "like"
+    ];
+
+    public function user(){
+      return $this->belongsTo(User::class);
     }
 
     /**
