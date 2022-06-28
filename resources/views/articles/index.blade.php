@@ -1,4 +1,5 @@
-@extends('/layouts/main') @section('content')
+@extends('/layouts/main')
+@section('content')
     <div class="component-example">
         <div class="container">
             <div><a href={{ route('create_article') }} class="btn btn-success">Ajouter un article</a></div>
@@ -44,6 +45,5 @@
                 {!! $articles->links() !!}
             </div>
         </div>
-    </div>
     </div>
 @endsection
