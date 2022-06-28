@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +10,18 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public const ROLE_USER = 1;
+
+    public const ROLE_AUTHOR = 2;
+
+    public const ROLE_EDITOR = 3;
+
+    public const ROLES = [
+        'user' => self::ROLE_USER,
+        'author' => self::ROLE_AUTHOR,
+        'editor' => self::ROLE_EDITOR,
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +32,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'facebookUrl',
+        'twitterUrl',
+        'linkedInUrl',
     ];
 
     /**
@@ -33,8 +47,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function articles() {
-      return $this->hasMany(Article::class);
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
     /**
@@ -45,4 +60,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRole(): string
+    {
+        return $this->role;
+    }
 }

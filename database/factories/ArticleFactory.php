@@ -17,15 +17,13 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
-
-      $user = $this->faker->randomElement(User::all());
         return [
-            "title" => $this->faker->sentence(6, true),
-            "introduction"=> $this->faker->paragraph(2,true),
-            "body"=> $this->faker->text(),
-            "like" => $this->faker->randomDigit(),
-            "slug" => $this->faker->word(),
-            "user_id" => $user->id
+            'title' => $this->faker->sentence(6, true),
+            'introduction'=> $this->faker->paragraph(2, true),
+            'body'=> $this->faker->text(),
+            'like' => $this->faker->randomDigit(),
+            'slug' => $this->faker->unique()->word(),
+            'user_id' => User::inRandomOrder()->limit(1)->get()[0]->id,
         ];
     }
 }
