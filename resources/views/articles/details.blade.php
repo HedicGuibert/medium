@@ -2,6 +2,7 @@
 @section('content')
     <form method="POST" action={{ route('update_article', [$article->id]) }} enctype="multipart/form-data" class="container"
         style="margin-top:10em; margin-bottom:10em">
+
         @csrf
         @method('PUT')
         <h1 class="text-center">Information sur l'article</h1>
@@ -56,7 +57,6 @@
                 <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
             </div>
     </form>
-
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
