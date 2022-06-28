@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
+=======
+use App\Models\Article;
+use Illuminate\Http\Request;
+
+>>>>>>> bd37664 (Page d'accueil)
 class HomeController extends Controller
 {
     /**
@@ -11,7 +17,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -21,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles = Article::all();
+        return view('landing', compact('articles'));
     }
 }
