@@ -48,3 +48,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
 
 
+Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('details_article');
+
