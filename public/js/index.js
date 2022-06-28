@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
+<<<<<<< HEAD
 /***/ }),
 
 /***/ "./resources/theme/css/style.css":
@@ -24,6 +25,8 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
+=======
+>>>>>>> 1c0374a (update all artisan seed)
 /***/ })
 
 /******/ 	});
@@ -113,7 +116,10 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/index": 0,
+<<<<<<< HEAD
 /******/ 			"css/style": 0,
+=======
+>>>>>>> 1c0374a (update all artisan seed)
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
@@ -164,8 +170,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+<<<<<<< HEAD
 /******/ 	__webpack_require__.O(undefined, ["css/style","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style","css/app"], () => (__webpack_require__("./resources/theme/css/style.css")))
+=======
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+>>>>>>> 1c0374a (update all artisan seed)
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+<<<<<<< HEAD
 var __webpack_exports__ = {};
 /*!***********************************!*\
   !*** ./resources/theme/js/app.js ***!
@@ -344,5 +345,10 @@ var __webpack_exports__ = {};
     fn.Launch();
   });
 })(jQuery);
+=======
+/******/ 	"use strict";
+/******/ 	
+/******/ 	
+>>>>>>> 1c0374a (update all artisan seed)
 /******/ })()
 ;
