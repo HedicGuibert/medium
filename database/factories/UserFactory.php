@@ -25,7 +25,9 @@ class UserFactory extends Factory
             'linkedInUrl' => $this->faker->unique()->url(),
             'twitterUrl' => $this->faker->unique()->url(),
             'role' => $this->faker->randomElement(User::ROLES),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            // We don't want to hash passwords for fixtures because this is slow, so we directly provide a hash
+            // All users password is "password"
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             'remember_token' => Str::random(10),
         ];
     }

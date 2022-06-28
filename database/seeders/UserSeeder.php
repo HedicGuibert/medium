@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,26 +15,26 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
 
         // Connect using these users if needed
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Simple User',
-            'password' => 'simpleuser',
+            'password' => Hash::make('simpleuser'),
             'email' => 'user@fixture.com',
             'role' => User::ROLE_USER,
         ]);
 
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Author User',
-            'password' => 'authoruser',
+            'password' => Hash::make('authoruser'),
             'email' => 'author@fixture.com',
             'role' => User::ROLE_AUTHOR,
         ]);
 
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Editor User',
-            'password' => 'editoruser',
+            'password' => Hash::make('editoruser'),
             'email' => 'editor@fixture.com',
             'role' => User::ROLE_EDITOR,
         ]);
