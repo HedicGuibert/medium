@@ -97,10 +97,10 @@ class ArticleController extends Controller
         if (Storage::exists("public/$article->image")) {
             Storage::delete("public/$article->image");
         }
-        $article->delete();
-        return redirect()->route('articles');
-      }
 
+      $article->delete();
+      return redirect()->route('articles');
+    }
     public function demande_post_in_group($id){
       $article = Article::find($id);
       $article->update(["status" => "draft"]);

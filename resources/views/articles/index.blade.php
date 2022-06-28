@@ -2,11 +2,13 @@
 
 @section('content')
     <div class="component-example mt-5">
+
         <div class="container">
             <div><a href={{ route('create_article') }} class="btn btn-success">Ajouter un article</a></div>
             <div class="row">
                 <div class="col">
                     <table class="table table-lined" dusk="table_list">
+
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -43,6 +45,7 @@
                                                 @method('PUT')
                                                 <button type="submit" class="btn btn-sm btn-success"><i
                                                         class="icon-mail"></i></button>
+
                                             </form>
                                         </div>
                                     </td>
@@ -50,10 +53,12 @@
                             @endforeach
                         </tbody>
                     </table>
+
                     <div class="d-flex justify-content-center">
                         {!! $articles->links() !!}
                     </div>
                 </div>
+
             </div>
 
         </div>
