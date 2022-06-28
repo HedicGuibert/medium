@@ -1,5 +1,4 @@
-@extends('/layouts/main')
-@section('content')
+@extends('/layouts/main') @section('content')
     <form method="POST" action={{ route('update_article', [$article->id]) }} enctype="multipart/form-data" class="container"
         style="margin-top:10em; margin-bottom:10em">
         @csrf
