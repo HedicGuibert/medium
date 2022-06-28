@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\ArticleGroup;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\ArticleSeeder;
