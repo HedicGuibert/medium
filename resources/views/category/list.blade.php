@@ -17,6 +17,14 @@
 @section('content')
 
 <section class="hero hero-with-header separator-bottom">
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Ok !</strong> {!! session('success') !!}.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col">
@@ -92,5 +100,10 @@
         </div>
     </div>
 </div>
+
+<form method="POST" data-link="{{ route('categories.delete', ['id' => '#']) }}" id="delete-form">
+    @method('DELETE')
+    @csrf
+</form>
 
 @endsection

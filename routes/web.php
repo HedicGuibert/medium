@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update-socials', [ProfileController::class, 'updateSocials'])->name('profile_update_socials');
 
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
 });
 
 // Routes that require author access
@@ -41,3 +42,4 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
