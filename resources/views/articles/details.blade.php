@@ -1,10 +1,9 @@
 @extends('/layouts/app');
 @section("content")
 
-  <form method="POST" action={{route("details_article", [$article->id])}} enctype="multipart/form-data" class="container">
+  <form method="POST" action={{route("update_article", [$article->id])}} enctype="multipart/form-data" class="container">
     @csrf
     @method('PUT')
-
     <h1 class="text-center">Information sur l'article</h1>
       <div>
       <div class="mb-3">
@@ -27,7 +26,7 @@
  
       </div >
         <div class="mb-3"><input type="file" required name="image" accept="image/*"></div>
-        <button class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
     </div>
   </form>
 

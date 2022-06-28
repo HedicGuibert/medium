@@ -49,4 +49,5 @@ Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index']
 
 
 Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('details_article');
+Route::put('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'update'])->name('update_article');
 

@@ -22,7 +22,7 @@ class ArticleFactory extends Factory
             'introduction'=> $this->faker->paragraph(2, true),
             'body'=> $this->faker->text(),
             'like' => $this->faker->randomDigit(),
-            'slug' => $this->faker->unique()->word(),
+            'slug' => $this->faker->unique()->slug(),
             'user_id' => User::inRandomOrder()->limit(1)->get()[0]->id,
         ];
     }
