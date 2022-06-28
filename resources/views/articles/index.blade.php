@@ -1,4 +1,8 @@
-<h1>hello</h1>
+@extends('/layouts/app')
+
+@section("content")
+
+
 <div class="component-example">
             <div class="container">
               <div class="row">
@@ -8,7 +12,7 @@
                       <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Titre</th>
-                        <th scope="col">Createur</th>
+                        <th scope="col">Créateur</th>
                         <th scope="col">Date</th>
                         <th scope="col">Action</th>
                       </tr>
@@ -29,3 +33,4 @@
               </div>
             </div>
           </div>
+@endsection
