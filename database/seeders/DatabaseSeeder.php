@@ -13,15 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(2)->create();
-        \App\Models\Article::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Order is very important : most dependant models last, least dependant ones first.
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
+            ArticleSeeder::class,
         ]);
     }
 }

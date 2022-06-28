@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
 
+        // Connect using these users if needed
         \App\Models\User::factory()->create([
             'name' => 'Simple User',
             'password' => 'simpleuser',
