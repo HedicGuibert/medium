@@ -23,8 +23,8 @@ class ArticleController extends Controller
         $article = Article::where('slug', $slug)->first();
 
         return view('articles.public_article', ['article' => $article]);
-    }
 
+    }
     public function show($id)
     {
         $article = Article::find($id);
