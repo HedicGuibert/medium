@@ -7,8 +7,6 @@ use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
-
 class ArticleController extends Controller
 {
     public function index()
@@ -97,5 +95,4 @@ class ArticleController extends Controller
 
         return redirect()->route('articles');
     }
-
 }
