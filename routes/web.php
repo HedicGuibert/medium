@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update-informations', [ProfileController::class, 'updateInformations'])->name('profile_update_informations');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile_update_password');
     Route::post('/profile/update-socials', [ProfileController::class, 'updateSocials'])->name('profile_update_socials');
+
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 });
 
 // Routes that require author access
