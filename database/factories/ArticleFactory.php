@@ -25,7 +25,6 @@ class ArticleFactory extends Factory
             "body"=> $this->faker->text(),
             "like" => $this->faker->randomDigit(),
             "slug" => $this->faker->word(),
-            "status"=>"pending",
             "user_id" => $user->id
         ];
     }
