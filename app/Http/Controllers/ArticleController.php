@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class ArticleController extends Controller
 {
@@ -95,4 +97,5 @@ class ArticleController extends Controller
 
         return redirect()->route('articles');
     }
+
 }
