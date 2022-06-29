@@ -51,7 +51,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <table class="table table-lined">
+                                    <table class="table table-lined" dusk="categoryList">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Nom</th>
