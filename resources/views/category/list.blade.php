@@ -87,7 +87,9 @@
                 </div>
             </div>
         </section>
-        {{ $categories->links() }}
+        <div class="d-flex justify-content-center">
+            {{ $categories->links() }}
+        </div>
     </div>
 </div>
 
