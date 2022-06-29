@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Hash;
 use Tests\DuskTestCase;
 
-class AbstractBaseTest extends DuskTestCase
+abstract class AbstractBaseTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
