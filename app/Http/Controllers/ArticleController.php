@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
     public function index() {
-      $articles = Article::simplePaginate(5);
+      $articles = Article::orderBy('created_at', 'DESC')->simplePaginate(5);
       return view('articles.index', ['articles' => $articles]);
+    }
+
+    public function publicArticle($slug) {
+      $article = Article::where('slug', $slug)->first(); 
+      return view('articles.public_article',['article' => $article]);
     }
 
     public function show($id) {
@@ -21,9 +27,7 @@ class ArticleController extends Controller
     public function update(ArticleStoreRequest $request, $id){
         $article = Article::find($id);
         $params = $request->validated();
-
         if ($request->hasFile('image')) {
-          dump("here");
           $params['image'] = sprintf(
                   '/images/%s_%d.%s',
                   \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
@@ -38,9 +42,10 @@ class ArticleController extends Controller
               $request->file('image')->storeAs('public', $params['image']);
               $request->image->move(public_path('images'), $params["image"]);
           }
+        $params['slug'] = urlencode($params["title"]);
         $article->update($params);
 
-        return redirect()->route('details_article', $id);
+        return redirect()->route('articles');
     }
 
     public function create(){
@@ -64,7 +69,8 @@ class ArticleController extends Controller
               $request->file('image')->storeAs('public', $params['image']);
               $request->image->move(public_path('images'), $params["image"]);
           }
-        // $params["user_id"] = 1;
+        $params['slug'] = urlencode($params["title"]);
+        $params["user_id"] = Auth::user()->id;
         Article::create($params);
         
         return redirect()->route('articles'); 

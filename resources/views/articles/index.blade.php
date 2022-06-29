@@ -1,4 +1,4 @@
-@extends('/layouts/app')
+@extends('/layouts/main')
 
 @section("content")
 
@@ -12,6 +12,7 @@
                       <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Titre</th>
+                        <th scope="col">Slug</th>
                         <th scope="col">Créateur</th>
                         <th scope="col">Date</th>
                         <th scope="col">Action</th>
@@ -22,15 +23,16 @@
                         <tr>
                         <th scope="row">{{$article->id}}</th>
                         <td>{{$article->title}}</td>
+                        <td>{{$article->slug}}</td>
                         <td>{{$article->user_id}}</td>
                         <td>{{$article->updated_at}}</td>
                         <td>
                           <div class="d-flex justify-content-between">
-                          <a class="btn btn-with-ico btn-primary" href={{route('details_article',[$article->id])}}>Afficher</a> 
+                          <a class="btn btn-sm btn-primary" href={{route('details_article',[$article->id])}}>Afficher</a> 
                           <form action="{{route('delete_article',$article->id)}}" method="post">
                               @csrf
                               @method('DELETE')
-                              <button type="submit" class="btn btn-danger">Supprimer</button>
+                              <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
                           </form>
                           </div>
                         </td>

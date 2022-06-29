@@ -1,4 +1,4 @@
-@extends('/layouts/app');
+@extends('/layouts/main');
 @section("content")
 
   <form method="POST" action={{route("store_article")}} enctype="multipart/form-data" class="container">
@@ -13,10 +13,6 @@
       <div class="mb-3">
         <label for="introduction">Introduction</label>
         <input id="introduction" class="form-control" type="text" placeholder="introduction" name="introduction">
-      </div >
-      <div class="mb-3">
-        <label for="introduction">slug</label>
-        <input id="introduction" class="form-control" type="text" placeholder="slug"  name="slug">
       </div >
       <div class="mb-3">
         <label for="body">Content</label>

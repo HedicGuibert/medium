@@ -20,7 +20,8 @@ class Article extends Model
       "body",
       'image',
       'slug',
-      "like"
+      "like",
+      "user_id"
     ];
 
     public function user(){

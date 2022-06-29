@@ -28,7 +28,6 @@ class ArticleStoreRequest extends FormRequest
             "introduction" => "required|string|min:10",
             "body"=>"required|string|min:10",
             "image"=>"required|image",
-            "slug"=>"required|string:min:2"
         ];
     }
 }
