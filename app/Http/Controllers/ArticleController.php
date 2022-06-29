@@ -44,13 +44,12 @@ class ArticleController extends Controller
     }
 
     public function create(){
-      return view('article_create');
+      return view('articles.create');
     }
 
     public function store(ArticleStoreRequest $request){
       $params = $request->validated();
       if ($request->hasFile('image')) {
-          dump("here");
           $params['image'] = sprintf(
                   '/images/%s_%d.%s',
                   \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
@@ -65,9 +64,18 @@ class ArticleController extends Controller
               $request->file('image')->storeAs('public', $params['image']);
               $request->image->move(public_path('images'), $params["image"]);
           }
-        $article = Article::create($params);
+        // $params["user_id"] = 1;
+        Article::create($params);
         
-        return redirect()->route('articles');
-        
+        return redirect()->route('articles'); 
+    }
+
+    public function delete($id) {
+      $article = Article::find($id);
+      if(Storage::exists("public/$article->image")){
+            Storage::delete("public/$article->image");
+        }
+      $article->delete();
+      return redirect()->route('articles'); 
     }
 }

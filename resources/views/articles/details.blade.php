@@ -8,7 +8,7 @@
       <div>
       <div class="mb-3">
         <label for="title">Titre</label>
-        <input id="title" class="form-control" type="text" placeholder="titre" value="{{$article->title}}"" name="title">
+        <input id="title" class="form-control" type="text" placeholder="titre" value="{{$article->title}}" name="title">
       </div >
       <div class="mb-3">
         <label for="introduction">Introduction</label>
