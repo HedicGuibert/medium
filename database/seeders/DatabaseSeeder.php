@@ -2,13 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ArticleGroup;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UserSeeder;
-use Database\Seeders\ArticleSeeder;
-use Database\Seeders\CommentSeeder;
-use Database\Seeders\CategorySeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ArticleSeeder::class,
             CommentSeeder::class,
-            CategorySeeder::class
+            CategorySeeder::class,
         ]);
     }
 }
