@@ -1,5 +1,4 @@
-@extends('/layouts/main')
-@section('content')
+@extends('/layouts/main') @section('content')
     <form method="POST" action={{ route('store_article') }} enctype="multipart/form-data" class="container "
         style="margin-top:10em; margin-bottom:10em">
         @csrf
@@ -30,7 +29,6 @@
                 <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image"
                     accept="image/*" id="inputfile">
                 <label for="inputfile" class="custom-file-label">Choisisez un fichier d'image...</label>
-
                 @error('image')
                     <small lass="text-danger">
                         {{ $message }}

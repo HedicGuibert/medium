@@ -1,4 +1,5 @@
 @extends('/layouts/main')
+
 @section('content')
 
     <section class="p-0 w-100">
