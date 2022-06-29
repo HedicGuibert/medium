@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-=======
 use App\Models\Article;
 use Illuminate\Http\Request;
 
->>>>>>> bd37664 (Page d'accueil)
 class HomeController extends Controller
 {
     /**

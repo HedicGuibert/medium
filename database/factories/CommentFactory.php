@@ -19,10 +19,9 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
-        $article = $this->faker->randomElement(Article::all());
+        $article = Article::all()->first();
         $user = $this->faker->randomElement(User::all());
         $comment = $this->faker->randomElement(Comment::all());
-
         return [
             'content' => $this->faker->sentence(10),
             "user_id" => $user->id,
