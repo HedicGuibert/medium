@@ -49,7 +49,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "cs": "./vendor/bin/pint"
+        "cs": "./vendor/bin/pint",
+        "tests": "php artisan dusk --log-junit tests/logs/junit.log"
     },
     "extra": {
         "laravel": {
