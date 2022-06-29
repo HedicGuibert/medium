@@ -1,7 +1,5 @@
 @extends('/layouts/main')
-
 @section('content')
-
     <section class="p-0 w-100">
 
         <div class="swiper-container text-white swiper-container-fade swiper-container-initialized swiper-container-horizontal skrollable skrollable-between"
@@ -48,8 +46,6 @@
                 <p class="lead">{{ $article->introduction }}</p>
                 <hr class="w-25">
                 <p>{!! $article->body !!}</p>
-
-                <p>{{ $article->body }}</p>
             </div>
         </div>
         <div class="row justify-content-center">
