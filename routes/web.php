@@ -56,6 +56,7 @@ Route::middleware(['auth', 'can:isEditor'])->group(function () {
     Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
 });
 
+
 // Routes that require admin access
 Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::get('/admin/users', [HandleUserController::class, 'list'])->name('users_list');
@@ -64,6 +65,7 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::post('/admin/user/{id}/password', [HandleUserController::class, 'editPassword'])->name('users_edit_password');
     Route::post('/admin/user/{id}/informations', [HandleUserController::class, 'editInformati'])->name('users_edit_informations');
 });
+
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
