@@ -15,6 +15,7 @@ class CommentController extends Controller
         $params['user_id'] = auth()->user()->id;
         $comment = new Comment($params);
         $comment->save();
+
         return back();
     }
 }
