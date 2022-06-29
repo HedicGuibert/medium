@@ -1,49 +1,127 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<section class="bg-red text-white skrollable skrollable-before" data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(200px);" style="transform: translateY(0px);">
-    <div class="container">
-    <div class="row align-items-center">
-        <div class="col-md-4">
-        <h2 class="fs-24 text-uppercase letter-spacing"><b>01.</b> skills</h2>
+<section class="pt-2 mt-5">
+
+      <div class="container">
+        <div class="tab-content" id="demo-2">
+
+          <div class="tab-pane active show" id="demo-2-4" role="tabpanel" aria-labelledby="demo-2-4">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-8">
+
+                <div class="row mb-4">
+                  <div class="col">
+                    <div class="boxed">
+                      <div class="row align-items-center justify-content-between p-3">
+                        <div class="col-md-2 pb-2 pb-md-0 text-center">
+                          <img src="https://www.placecage.com/300/300" alt="Avatar">
+                        </div>
+                        <div class="col-md-5 text-center text-md-left">
+                          <h4 class="mb-0"><b>{{ $user->name }}</b></h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col">
+                    <h5 class="mb-2 fs-20 font-weight-normal">Informations générales</h5>
+                    <form method="POST" action="{{ route('profile_update_informations') }}">
+                    @csrf
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="name" name="name" value="{{ $user->name }}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="email">Adresse email</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="email" name="email" value="{{ $user->email }}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row mt-1 align-items-center">
+                        <div class="col-3">
+                          <button class="btn btn-secondary">Sauvegarder</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col">
+                    <h5 class="mb-2 fs-20 font-weight-normal">Mot de passe</h5>
+                    <form method="POST" action="{{ route('profile_update_password') }}">
+                    @csrf
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" aria-describedby="password" name="password" value="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="password_confirmation">Confirmer le mot de passe</label>
+                            <input type="password" class="form-control" id="password_confirmation" aria-describedby="password_confirmation" name="password_confirmation" value="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row mt-1 align-items-center">
+                        <div class="col-3">
+                          <button class="btn btn-secondary">Sauvegarder</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <h5 class="mb-2 fs-20 font-weight-normal">Réseaux sociaux</h5>
+                    <form method="POST" action="{{ route('profile_update_socials') }}">
+                    @csrf
+                      <div class="form-row">
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="twitter">Twitter</label>
+                            <input type="text" class="form-control" id="twitter" aria-describedby="twitter" name="twitter" value="{{ $user->twitterUrl }}">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="facebook">Facebook</label>
+                            <input type="text" class="form-control" id="facebook" aria-describedby="facebook" name="facebook" value="{{ $user->facebookUrl }}">
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="linkedIn">LinkedIn</label>
+                            <input type="text" class="form-control" id="linkedIn" aria-describedby="linkedIn" name="linkedIn" value="{{ $user->linkedInUrl }}">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-3">
+                          <button class="btn btn-secondary">Sauvegarder</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-8">
-        <div class="row">
-            <div class="col-12">
-            <h4 class="progress-title">UI / UX Design</h4>
-            <div class="progress-item">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><span>40%</span></div>
-                </div>
-            </div>
-            </div>
-            <div class="col-12 mt-4">
-            <h4 class="progress-title">HTML / CSS / JS</h4>
-            <div class="progress-item">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span>90%</span></div>
-                </div>
-            </div>
-            </div>
-            <div class="col-12 mt-4">
-            <h4 class="progress-title">Adobe Creative Suite</h4>
-            <div class="progress-item">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><span>55%</span></div>
-                </div>
-            </div>
-            </div>
-            <div class="col-12 mt-4">
-            <h4 class="progress-title">Social Media Marketing</h4>
-            <div class="progress-item">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><span>65%</span></div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    </div>
-</section>
+      </div>
+    </section>
 @endsection
