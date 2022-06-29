@@ -10,4 +10,21 @@ class Category extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'slug'];
+
+    /**
+     * The articles that belong to the category.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(Article::class);
+    }
 }
