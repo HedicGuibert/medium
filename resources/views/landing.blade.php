@@ -25,7 +25,8 @@
                             </div>
 
                             <div class="form-group col-md-2">
-                                <button dusk="submit" type="submit" class="btn btn-lg btn-block btn-primary">Search</button>
+                                <button dusk="submit" type="submit"
+                                    class="btn btn-lg btn-block btn-primary">Search</button>
                             </div>
                         </div>
 
@@ -38,6 +39,9 @@
                                         <a href="" class="card-img-container">
                                             <img class="card-img-top" src="../images/demo/fitness/fitness-3.jpg"
                                                 alt="Image">
+                                            <img class="card-img-top" src="{{ asset($article->image) }}" alt="Image"
+                                                style="width:100%; height:300px; object-fit:cover">
+                                            >>>>>>> 2524ce1 (add shwoing created_date and user name at public article)
                                             <h5 class="card-footer card-title">Shaping</h5>
                                         </a>
                                         <div class="card-body">
@@ -48,7 +52,7 @@
                                                     <p class="card-text">{{ $article->introduction }}</p>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <a href=""
+                                                    <a href="{{ route('public_article', [$article->slug]) }}"
                                                         class="btn btn-outline-primary btn-rounded">Découvrir</a>
                                                     <small class="ml-3">3 mins à lire</small>
                                                 </div>

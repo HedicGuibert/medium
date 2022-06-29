@@ -19,7 +19,9 @@
                             <div class="row align-items-center vh-100">
                                 <div class="col-md-8" data-swiper-parallax-y="-250%"
                                     style="transform: translate3d(0px, 0%, 0px);">
+                                    <span class="eyebrow mb-2">{{ $article->created_at }}</span>
                                     <h1 class="display-2">{{ $article->title }}</h1>
+                                    <span class="eyebrow mb-2">Publié par {{ $article->user->name }}</span>
                                 </div>
                             </div>
                         </div>
@@ -39,9 +41,6 @@
         </div>
     </section>
     <section>
-        <div class="container">
-        </div>
-
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8">
                 <p class="lead">{{ $article->introduction }}</p>
@@ -62,5 +61,9 @@
                 </div>
             </div>
         </div>
+        <div class="container my-3">
+            @include('components.comment')
         </div>
+
+
     </section>
