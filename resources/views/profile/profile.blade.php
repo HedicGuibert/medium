@@ -28,20 +28,21 @@
                 <div class="row mb-4">
                   <div class="col">
                     <h5 class="mb-2 fs-20 font-weight-normal">Informations générales</h5>
-                    <form method="POST" action="{{ route('profile_update') }}">
+                    <form method="POST" action="{{ route('profile_update_informations') }}">
+                    @csrf
                       <div class="form-row">
                         <div class="col">
                           <div class="form-group">
-                            <label for="firstName">Nom</label>
-                            <input type="email" class="form-control" id="firstName" aria-describedby="firstName" value="{{ $user->name }}">
+                            <label for="name">Nom</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="name" name="name" value="{{ $user->name }}">
                           </div>
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="col">
                           <div class="form-group">
-                            <label for="userMail">Adresse email</label>
-                            <input type="email" class="form-control" id="userMail" aria-describedby="userMail" value="{{ $user->email }}">
+                            <label for="email">Adresse email</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="email" name="email" value="{{ $user->email }}">
                           </div>
                         </div>
                       </div>
@@ -57,20 +58,21 @@
                 <div class="row mb-4">
                   <div class="col">
                     <h5 class="mb-2 fs-20 font-weight-normal">Mot de passe</h5>
-                    <form method="POST" action="{{ route('profile_update') }}">
+                    <form method="POST" action="{{ route('profile_update_password') }}">
+                    @csrf
                       <div class="form-row">
                         <div class="col">
                           <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" aria-describedby="password" value="">
+                            <input type="password" class="form-control" id="password" aria-describedby="password" name="password" value="">
                           </div>
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="col">
                           <div class="form-group">
-                            <label for="confirm">Confirmer le mot de passe</label>
-                            <input type="password" class="form-control" id="confirm" aria-describedby="confirm" value="">
+                            <label for="password_confirmation">Confirmer le mot de passe</label>
+                            <input type="password" class="form-control" id="password_confirmation" aria-describedby="password_confirmation" name="password_confirmation" value="">
                           </div>
                         </div>
                       </div>
@@ -86,24 +88,25 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="mb-2 fs-20 font-weight-normal">Réseaux sociaux</h5>
-                    <form method="POST" action="{{ route('profile_update') }}">
+                    <form method="POST" action="{{ route('profile_update_socials') }}">
+                    @csrf
                       <div class="form-row">
                         <div class="col">
                           <div class="form-group">
                             <label for="twitter">Twitter</label>
-                            <input type="text" class="form-control" id="twitter" aria-describedby="twitter" value="{{ $user->twitterUrl }}">
+                            <input type="text" class="form-control" id="twitter" aria-describedby="twitter" name="twitter" value="{{ $user->twitterUrl }}">
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label for="facebook">Facebook</label>
-                            <input type="text" class="form-control" id="facebook" aria-describedby="facebook" value="{{ $user->facebookUrl }}">
+                            <input type="text" class="form-control" id="facebook" aria-describedby="facebook" name="facebook" value="{{ $user->facebookUrl }}">
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label for="linkedIn">LinkedIn</label>
-                            <input type="text" class="form-control" id="linkedIn" aria-describedby="linkedIn" value="{{ $user->linkedInUrl }}">
+                            <input type="text" class="form-control" id="linkedIn" aria-describedby="linkedIn" name="linkedIn" value="{{ $user->linkedInUrl }}">
                           </div>
                         </div>
                       </div>
