@@ -20,6 +20,7 @@ class ArticleTest extends AbstractBaseTest
         $browser->visit('/admin/articles')
                 ->assertSee('login');
       });
+
     }
 
     // public function test_edituser_can_now_see_list_article_after_login() {
