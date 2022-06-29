@@ -1,8 +1,8 @@
 @extends('/layouts/main')
-
 @section('content')
 
     <section class="p-0 w-100">
+
         <div class="swiper-container text-white swiper-container-fade swiper-container-initialized swiper-container-horizontal skrollable skrollable-between"
             data-top-top="transform: translateY(0px);" data-top-bottom="transform: translateY(250px);"
             style="transform: translateY(70.1596px);">
@@ -47,6 +47,9 @@
                 <p class="lead">{{ $article->introduction }}</p>
                 <hr class="w-25">
                 <p>{!! $article->body !!}</p>
+
+                <p>{{ $article->body }}</p>
+                >>>>>>> d6b88c5 (modified route to be protected)
             </div>
         </div>
         <div class="row justify-content-center">
@@ -65,6 +68,4 @@
         <div class="container my-3">
             @include('components.comment')
         </div>
-
-
     </section>

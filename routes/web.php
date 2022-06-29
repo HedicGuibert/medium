@@ -72,3 +72,4 @@ Route::get('/articles/{slug}', [App\Http\Controllers\ArticleController::class, '
 
 Auth::routes();
 
+
