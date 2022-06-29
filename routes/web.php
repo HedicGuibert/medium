@@ -52,4 +52,5 @@ Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'sh
 Route::put('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'update'])->name('update_article');
 Route::get('/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name("add_article");
 Route::post('/article/store', [App\Http\Controllers\ArticleController::class, 'store'])->name('store_article');
+Route::delete('articles/{id}', [App\Http\Controllers\ArticleController::class, 'delete'])->name('delete_article');
 

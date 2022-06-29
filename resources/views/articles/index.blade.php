@@ -24,7 +24,16 @@
                         <td>{{$article->title}}</td>
                         <td>{{$article->user_id}}</td>
                         <td>{{$article->updated_at}}</td>
-                        <td><a class="btn btn-with-ico btn-primary" href={{route('details_article',[$article->id])}}>Afficher</a></td>
+                        <td>
+                          <div class="d-flex justify-content-between">
+                          <a class="btn btn-with-ico btn-primary" href={{route('details_article',[$article->id])}}>Afficher</a> 
+                          <form action="{{route('delete_article',$article->id)}}" method="post">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-danger">Supprimer</button>
+                          </form>
+                          </div>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
