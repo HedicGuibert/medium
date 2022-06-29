@@ -8,29 +8,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
-    public function index()
-    {
-        $articles = Article::orderBy('created_at', 'DESC')->simplePaginate(5);
+    public function index() {
+      $articles = Article::where('user_id', '=', Auth::user()->id)->orderBy('created_at', 'DESC')->simplePaginate(5);
 
-        return view('articles.index', ['articles' => $articles]);
-
-    }
-
-    public function publicArticle($slug)
-    {
-        $article = Article::where('slug', $slug)->first();
-
-        return view('articles.public_article', ['article' => $article]);
-
-    }
-    public function show($id)
-    {
-        $article = Article::find($id);
-
-        return view('articles.details', ['article' => $article]);
-
+      return view('articles.index', ['articles' => $articles]);
     }
     
+    public function publicArticle($slug) {
+      $article = Article::where('slug', $slug)->first(); 
+      $categories = Category::all();
+      return view('articles.public_article',compact(['article', 'categories']));
+    }
+    public function show($id) {
+      $article = Article::find($id);  
+      $categories = Category::all();
+      return view('articles.details',compact(['article', 'categories']));
+
+    }
+
     public function update(ArticleStoreRequest $request, $id)
     {
         $article = Article::find($id);
