@@ -30,14 +30,16 @@ class ArticleController extends Controller
         $article = Article::find($id);
 
         return view('articles.details', ['article' => $article]);
-    }
 
+    }
+    
     public function update(ArticleStoreRequest $request, $id)
     {
         $article = Article::find($id);
         $params = $request->validated();
         if ($request->hasFile('image')) {
             $params['image'] = sprintf(
+
 
                   '/images/%s_%d.%s',
                   \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),

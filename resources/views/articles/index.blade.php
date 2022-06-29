@@ -1,12 +1,12 @@
 @extends('/layouts/main')
+
 @section('content')
     <div class="component-example">
         <div class="container">
             <div><a href={{ route('create_article') }} class="btn btn-success">Ajouter un article</a></div>
             <div class="row">
-
                 <div class="col">
-                    <<<<<<< HEAD <table class="table table-lined">
+                    <table class="table table-lined">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -39,10 +39,10 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        </table>
-                        <div class="d-flex justify-content-center">
-                            {!! $articles->links() !!}
-                        </div>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        {!! $articles->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

@@ -16,7 +16,6 @@
                 <input id="introduction" class="form-control" type="text" placeholder="introduction" name="introduction">
             </div>
             <div class="mb-3">
-
                 <label for="content">Content</label>
                 <textarea id="content" class="form-control @error('body') is-invalid @enderror" type="text" row="10"
                     style="height:200px" name="body">
