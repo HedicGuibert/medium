@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SearchRequest;
+use Illuminate\Http\Request;
 use App\Models\Article;
 
 class SearchController extends Controller
 {
-    public function index(SearchRequest $request)
+    public function index(Request $request)
     {
-        $params = $request->validated();
-        $input = $params['input'];
-        $articles = Article::where('title', 'like', "%$input%")->get();
-
+        $input = $request->get('input');
+        $articles = Article::where('title', 'like', "%$input%")->paginate(6);
         return view('landing', compact('articles'));
     }
 }

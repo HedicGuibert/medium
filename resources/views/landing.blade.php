@@ -16,7 +16,6 @@
                         </div>
                     </div>
                     <form method="GET" action="{{ route('search') }}" class="mb-3">
-                        @csrf
                         <div class="row gutter-1">
 
                             <div class="form-group col-md-5">
@@ -68,6 +67,9 @@
                         @endif
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                {{$articles->links()}}
             </div>
         </div>
     </section>
