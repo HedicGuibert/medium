@@ -34,7 +34,7 @@ class LoginTest extends DuskTestCase
                 // We need to hardcode the password because it will be hashed.
                 ->type('@password', 'simpleuser')
                 ->press('@submit')
-                ->assertRouteIs('home')
+                ->assertRouteIs('landing')
                 ->assertAuthenticatedAs($this->simpleUser);
         });
     }
@@ -67,7 +67,7 @@ class LoginTest extends DuskTestCase
                 ->type('@password', 'register')
                 ->type('@confirm', 'register')
                 ->press('@submit')
-                ->assertRouteIs('home');
+                ->assertRouteIs('landing');
 
             $this->assertCount($beforeRegisterUsersCount + 1, User::all());
         });
