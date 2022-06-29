@@ -9,6 +9,7 @@
                 <div class="col">
                     <table class="table table-lined" dusk="table_list">
 
+
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
