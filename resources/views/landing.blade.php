@@ -15,13 +15,29 @@
                                 incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
+                    <form method="GET" action="{{ route('search') }}" class="mb-3">
+                        @csrf
+                        <div class="row gutter-1">
+
+                            <div class="form-group col-md-5">
+                                <input dusk="search" type="text" class="form-control-lg form-control" name="input"
+                                    placeholder="Destination">
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <button dusk="submit" type="submit" class="btn btn-lg btn-block btn-primary">Search</button>
+                            </div>
+                        </div>
+
+                    </form>
                     <div class="row gutter-2">
-                        @if($articles->count() > 0)
-                            @foreach($articles as $article)
+                        @if ($articles->count() > 0)
+                            @foreach ($articles as $article)
                                 <div class="col-lg-4 col-md-6 col-sm-12 aos-init aos-animate" data-aos="fade-up">
                                     <div class="card rising h-100">
                                         <a href="" class="card-img-container">
-                                            <img class="card-img-top" src="../images/demo/fitness/fitness-3.jpg" alt="Image">
+                                            <img class="card-img-top" src="../images/demo/fitness/fitness-3.jpg"
+                                                alt="Image">
                                             <h5 class="card-footer card-title">Shaping</h5>
                                         </a>
                                         <div class="card-body">
@@ -32,7 +48,8 @@
                                                     <p class="card-text">{{ $article->introduction }}</p>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <a href="" class="btn btn-outline-primary btn-rounded">Découvrir</a>
+                                                    <a href=""
+                                                        class="btn btn-outline-primary btn-rounded">Découvrir</a>
                                                     <small class="ml-3">3 mins à lire</small>
                                                 </div>
                                             </div>

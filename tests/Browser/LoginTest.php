@@ -3,21 +3,10 @@
 namespace Tests\Browser;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Hash;
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
 
-class LoginTest extends DuskTestCase
+class LoginTest extends AbstractBaseTest
 {
-    use DatabaseMigrations;
-
-    private User $simpleUser;
-
-    private User $authorUser;
-
-    private User $editorUser;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -121,29 +110,5 @@ class LoginTest extends DuskTestCase
 
             $this->assertCount($beforeRegisterUsersCount, User::all());
         });
-    }
-
-    private function generateUsers()
-    {
-        $this->simpleUser = User::factory()->create([
-            'name' => 'Simple User',
-            'password' => Hash::make('simpleuser'),
-            'email' => 'user@fixture.com',
-            'role' => User::ROLE_USER,
-        ]);
-
-        $this->authorUser = User::factory()->create([
-            'name' => 'Author User',
-            'password' => Hash::make('authoruser'),
-            'email' => 'author@fixture.com',
-            'role' => User::ROLE_AUTHOR,
-        ]);
-
-        $this->editorUser = User::factory()->create([
-            'name' => 'Editor User',
-            'password' => Hash::make('editoruser'),
-            'email' => 'editor@fixture.com',
-            'role' => User::ROLE_EDITOR,
-        ]);
     }
 }
