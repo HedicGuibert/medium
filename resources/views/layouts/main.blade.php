@@ -9,17 +9,19 @@
     <title>@yield('title')</title>
     <script src="{{ asset('theme/js/vendor.js') }}" defer></script>
     <script src="{{ asset('theme/js/app.js') }}" defer></script>
-    <!-- Fonts -->
-    <!-- Styles -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href="{{ asset('theme/css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
     <header class="header-sticky header-light bg-white headroom headroom--not-bottom headroom--pinned headroom--top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="../index.html">
+                <a class="navbar-brand" href="/">
                     <img class="navbar-logo navbar-logo-light" src="../assets/images/demo/logo/logo-light.svg"
                         alt="Logo">
                     <img class="navbar-logo navbar-logo-dark" src="../assets/images/demo/logo/logo-dark.svg"
@@ -61,10 +63,14 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/">Profil</a>
-                                    <a class="dropdown-item" href="/">Déconnexion</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
                             </li>
                         </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     @endguest
                 </div>
             </nav>
@@ -103,5 +109,25 @@
         </div>
     </footer>
 </body>
+@if(session()->has('error'))
+    <script>$(function (){ warning('{{session()->get('error')}}')})</script>
+@endif
+@if($errors->any())
+    @foreach($errors->all() as $error)
+        <script>$(function (){ warning('{{$error}}')})</script>
+    @endforeach
+@endif
+@if(session()->has('success'))
+    <script>$(function (){ success('{{session()->get('success')}}')})</script>
+@endif
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
+    function warning(message) {
+        toastr.warning(message,'',{"positionClass":"toast-bottom-right"},{timeOut: 50000});
+    }
+    function success(message) {
+        toastr.success(message,'',{"positionClass":"toast-bottom-right"});
+    }
+</script>
 </html>
