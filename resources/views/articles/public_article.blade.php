@@ -45,7 +45,7 @@
             <div class="col-md-10 col-lg-8">
                 <p class="lead">{{ $article->introduction }}</p>
                 <hr class="w-25">
-                <p>{{ $article->body }}</p>
+                <p>{!! $article->body !!}</p>
             </div>
         </div>
         <div class="row justify-content-center">
