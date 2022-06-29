@@ -93,7 +93,7 @@ class ArticleController extends Controller
             Storage::delete("public/$article->image");
         }
         $article->delete();
-
         return redirect()->route('articles');
       }
+
 }

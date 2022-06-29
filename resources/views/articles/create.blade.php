@@ -1,6 +1,8 @@
-@extends('/layouts/main') @section('content')
+@extends('/layouts/main')
+@section('content')
     <form method="POST" action={{ route('store_article') }} enctype="multipart/form-data" class="container "
         style="margin-top:10em; margin-bottom:10em">
+
         @csrf
         @method('POST')
         <h1 class="text-center">Créer un nouveau article</h1>
@@ -14,6 +16,7 @@
                 <input id="introduction" class="form-control" type="text" placeholder="introduction" name="introduction">
             </div>
             <div class="mb-3">
+
                 <label for="content">Content</label>
                 <textarea id="content" class="form-control @error('body') is-invalid @enderror" type="text" row="10"
                     style="height:200px" name="body">
