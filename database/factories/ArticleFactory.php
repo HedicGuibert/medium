@@ -20,7 +20,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence(6, true),
             'introduction'=> $this->faker->paragraph(2, true),
-            'body'=> $this->faker->text(),
+            'body'=> $this->faker->text(1000),
             'like' => $this->faker->randomDigit(),
             'slug' => $this->faker->unique()->slug(),
             'user_id' => User::inRandomOrder()->limit(1)->get()[0]->id,

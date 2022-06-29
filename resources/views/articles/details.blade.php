@@ -26,8 +26,11 @@
       </div>
 
       @endif
-        <div class="mb-3"><input type="file" name="image" accept="image/*"></div>
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <div class="mb-3 custom-file">
+          <input type="file" class="custom-file-input" name="image" accept="image/*" id="inputfile">
+          <label for="inputfile" class="custom-file-label">Choisisez un fichier...</label>
+        </div>
+        <button type="submit" class="btn btn-primary" >Enregistrer</button>
     </div>
   </form>
 
