@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+
 class HomeController extends Controller
 {
     /**
@@ -11,7 +13,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -21,6 +22,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles = Article::all();
+
+        return view('landing', compact('articles'));
     }
 }
