@@ -15,6 +15,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
         "fakerphp/faker": "^1.9.1",
+        "laravel/dusk": "^6.24",
         "laravel/pint": "^0.2.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
@@ -48,7 +49,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "cs": "./vendor/bin/pint"
+        "cs": "./vendor/bin/pint",
+        "tests": "php artisan dusk --log-junit tests/logs/junit.log"
     },
     "extra": {
         "laravel": {

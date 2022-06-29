@@ -24,6 +24,6 @@ class UserAuthenticated
             return $next($request);
         }
 
-        throw new AccessDeniedHttpException('You must be logged to access your profile.');
+        throw new AccessDeniedHttpException('You must be logged in to access this page.');
     }
 }
