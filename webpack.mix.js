@@ -15,5 +15,7 @@ mix.sass("resources/sass/app.scss", "public/css")
     .css("resources/css/app.css", "public/css")
     .js("resources/js/app.js", "public/js");
 
-
-mix.js(["resources/js/categories-delete.js"], "public/js/categories.js");
+mix.js(
+    ["resources/js/categories-delete.js", "resources/js/categories-edit.js"],
+    "public/js/categories.js"
+);

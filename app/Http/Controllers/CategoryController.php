@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -32,5 +33,19 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('categories.index')->with('success', "Category $category->name created successfully");
+    }
+
+    public function update(UpdateCategoryRequest $request, string $slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+
+        $category->name = Str::headline($request->name);
+        $category->slug = Str::slug($request->name);
+        $category->save();
+
+        $request->session()->forget('category');
+        $request->session()->forget('action');
+
+        return redirect()->route('categories.index')->with('success', "Category '$category->name' updated successfully");
     }
 }
