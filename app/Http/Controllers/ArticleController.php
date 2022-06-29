@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
     public function index() {
-      $articles = Article::orderBy('updated_at', 'desc')->get();
+      $articles = Article::simplePaginate(5);
       return view('articles.index', ['articles' => $articles]);
     }
 

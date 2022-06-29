@@ -2,9 +2,9 @@
 
 @section("content")
 
-
 <div class="component-example">
             <div class="container">
+              <div><a href={{route('create_article')}} class="btn btn-success">Ajouter un article</a></div>
               <div class="row">
                 <div class="col">
                   <table class="table table-lined">
@@ -40,6 +40,9 @@
                   </table>
                 </div>
               </div>
+                  <div class="d-flex justify-content-center">
+                      {!! $articles->links() !!}
+                  </div>
             </div>
           </div>
 @endsection
