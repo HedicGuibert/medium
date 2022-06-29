@@ -76,7 +76,7 @@
             </nav>
         </div>
     </header>
-    <main class="py-4">
+    <main class="py-4 bg-light ">
         @yield('content')
     </main>
     <footer class="bg-dark text-white bottom">
