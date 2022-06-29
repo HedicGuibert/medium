@@ -38,7 +38,6 @@ class ArticleController extends Controller
         $params = $request->validated();
         if ($request->hasFile('image')) {
             $params['image'] = sprintf(
-
                   '/images/%s_%d.%s',
                   \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
                   \time(),
@@ -56,8 +55,6 @@ class ArticleController extends Controller
         $article->update($params);
 
         return redirect()->route('articles');
-
-
     }
 
     public function create()
