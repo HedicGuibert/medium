@@ -4,6 +4,7 @@
         <div class="container">
             <div><a href={{ route('create_article') }} class="btn btn-success">Ajouter un article</a></div>
             <div class="row">
+
                 <div class="col">
                     <<<<<<< HEAD <table class="table table-lined">
                         <thead>

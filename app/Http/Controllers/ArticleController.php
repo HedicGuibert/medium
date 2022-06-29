@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
+
     public function index()
     {
         $articles = Article::orderBy('created_at', 'DESC')->simplePaginate(5);
 
         return view('articles.index', ['articles' => $articles]);
+
     }
 
     public function publicArticle($slug)
@@ -95,5 +97,4 @@ class ArticleController extends Controller
         $article->delete();
         return redirect()->route('articles');
       }
-
 }
