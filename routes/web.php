@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/article-groups/{userId?}', [ArticleGroupController::class, 'index'])->name('article-groups.index');
     Route::delete('/article-groups/{group}/{userId?}', [ArticleGroupController::class, 'delete'])->name('article-groups.delete');
 });
-
 // Routes that require author access
 Route::middleware(['auth', 'can:isAuthor'])->group(function () {
     Route::get('/admin/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
