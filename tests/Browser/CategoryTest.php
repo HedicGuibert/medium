@@ -46,4 +46,20 @@ class CategoryTest extends AbstractBaseTest
                 ->logout();
         });
     }
+
+    public function testCategoryDelete()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit('/categories')
+                ->type('@email', $this->simpleUser->email)
+                ->type('@password', 'simpleuser')
+                ->press('@submit')
+                ->assertRouteIs('categories.index')
+                ->press('@delete-category-1')
+                ->assertRouteIs('categories.index')
+                ->assertDontSeeIn('@categoryList', 'Category 1')
+                ->logout();
+        });
+    }
 }

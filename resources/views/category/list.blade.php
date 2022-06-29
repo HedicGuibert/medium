@@ -1,13 +1,7 @@
 @extends('layouts.main')
 
 @section('styles')
-<style>
-    .pagination {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style>
+
 @endsection
 
 @section('scripts')
@@ -75,7 +69,8 @@
                                                         <i class="icon-pencil text-white"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-ico btn-danger"
-                                                        data-action="delete" data-slug="{{ $category->slug }}">
+                                                        dusk="delete-{{ $category->slug }}" data-action="delete"
+                                                        data-slug="{{ $category->slug }}">
                                                         <i class="icon-trash"></i>
                                                     </button>
                                                 </td>
@@ -91,13 +86,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            {{ $categories->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
+
         </section>
-        <div class="d-flex justify-content-center">
-            {{ $categories->links() }}
-        </div>
     </div>
 </div>
 

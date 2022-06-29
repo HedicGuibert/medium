@@ -7,22 +7,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-
+    <script src="{{ asset('theme/js/vendor.js') }}" defer></script>
+    <script src="{{ asset('theme/js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <link href="{{ asset('theme/css/vendor.css') }}" rel="stylesheet">
+    <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
         integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Fonts -->
-    <!-- Styles -->
-    <link href="{{ asset('theme/css/vendor.css') }}" rel="stylesheet">
-    <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
-    @yield('styles')
 </head>
 
-<body class="min-vh-100 bg-light d-flex flex-column justify-content-center align-content-stretch">
+<body class="bg-light">
     <header class="header-sticky header-light bg-white headroom headroom--not-bottom headroom--pinned headroom--top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -42,6 +40,14 @@
                                 Accueil
                             </a>
                         </li>
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categories.index') }}" role="button">
+                                Catégories
+                            </a>
+                        </li>
+                        @endauth
+
                     </ul>
                     @guest
                     <ul class="navbar-nav align-items-center mr-0">
@@ -59,15 +65,15 @@
                         @endif
                     </ul>
                     @else
-                        <ul class="navbar-nav align-items-center mr-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <ul class="navbar-nav align-items-center mr-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                             </div>
                         </li>
@@ -112,13 +118,13 @@
             </div>
         </div>
     </footer>
+    <script src="{{ asset('js/categories.js') }}"></script>
 </body>
 @if(session()->has('error'))
 <script>
     $(function (){ warning('{{session()->get('error')}}')})
 </script>
 @endif
-
 @if($errors->any())
 @foreach($errors->all() as $error)
 <script>
@@ -143,10 +149,5 @@
         toastr.success(message,'',{"positionClass":"toast-bottom-right"});
     }
 </script>
-<script src="{{ asset('theme/js/vendor.js') }}" defer></script>
-<script src="{{ asset('theme/js/app.js') }}" defer></script>
-<script src="{{ asset('js/app.js') }}" defer></script>
-@yield('scripts')
-</body>
 
 </html>
