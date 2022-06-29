@@ -9,6 +9,7 @@ class UpdateInformationsRequest extends FormRequest
     public function __construct()
     {
     }
+
     /**
      * Determine if the user is authorized to make this request.
      *
