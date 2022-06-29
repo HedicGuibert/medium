@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body class="min-vh-100 bg-light d-flex flex-column justify-content-center align-content-stretch">
     <header class="header-sticky header-light bg-white headroom headroom--not-bottom headroom--pinned headroom--top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -59,10 +59,10 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Username
+                                    {{ $user->name }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/">Profil</a>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
@@ -76,10 +76,10 @@
             </nav>
         </div>
     </header>
-    <main class="py-4 bg-light ">
+    <main class="my-auto">
         @yield('content')
     </main>
-    <footer class="bg-dark text-white bottom">
+    <footer class="bg-dark text-white w-100 mt-auto">
         <div class="container pb-5">
             <div class="row">
                 <div class="col">
