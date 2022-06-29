@@ -5,7 +5,7 @@
             <div><a href={{ route('create_article') }} class="btn btn-success">Ajouter un article</a></div>
             <div class="row">
                 <div class="col">
-                    <table class="table table-lined">
+                    <<<<<<< HEAD <table class="table table-lined">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -38,10 +38,10 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
-                    <div class="d-flex justify-content-center">
-                        {!! $articles->links() !!}
-                    </div>
+                        </table>
+                        <div class="d-flex justify-content-center">
+                            {!! $articles->links() !!}
+                        </div>
                 </div>
             </div>
         </div>
