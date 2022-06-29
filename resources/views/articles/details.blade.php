@@ -22,7 +22,20 @@
                     name="body">
           {{ $article->body }}
         </textarea>
+                <<<<<<< HEAD </div>
+                    @if (isset($article->image))
+                        <div>
+                            <img class="img-responsive" style="with:500px; height:500px"
+                                src="{{ asset($article->image) }}" alt="image">
+                        </div>
+                    @endif
+                    <div class="mb-3 custom-file">
+                        <input type="file" class="custom-file-input" name="image" accept="image/*" id="inputfile">
+                        <label for="inputfile" class="custom-file-label">Choisisez un fichier...</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
+
             @if (isset($article->image))
                 <div>
                     <img class="img-responsive mb-3" style="with:500px; height:500px" src="{{ asset($article->image) }}"
