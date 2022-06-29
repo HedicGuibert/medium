@@ -49,7 +49,6 @@
                 <p>{!! $article->body !!}</p>
 
                 <p>{{ $article->body }}</p>
-                >>>>>>> d6b88c5 (modified route to be protected)
             </div>
         </div>
         <div class="row justify-content-center">
