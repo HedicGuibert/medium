@@ -3,17 +3,19 @@
 namespace Tests\Browser;
 
 use App\Models\User;
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class LoginTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
     private User $simpleUser;
+
     private User $authorUser;
+
     private User $editorUser;
 
     protected function setUp(): void
@@ -65,8 +67,7 @@ class LoginTest extends DuskTestCase
                 ->type('@password', 'register')
                 ->type('@confirm', 'register')
                 ->press('@submit')
-                ->assertRouteIs('home')
-            ;
+                ->assertRouteIs('home');
 
             $this->assertCount($beforeRegisterUsersCount + 1, User::all());
         });
@@ -86,8 +87,7 @@ class LoginTest extends DuskTestCase
                 ->type('@password', 'register')
                 ->type('@confirm', 'register')
                 ->press('@submit')
-                ->assertRouteIs('register')
-            ;
+                ->assertRouteIs('register');
 
             // test empty fields does not work.
             $browser
@@ -96,32 +96,28 @@ class LoginTest extends DuskTestCase
                 ->type('@password', 'register')
                 ->type('@confirm', 'register')
                 ->press('@submit')
-                ->assertRouteIs('register')
-            ;
+                ->assertRouteIs('register');
             $browser
                 ->type('@name', 'register')
                 ->type('@email', '')
                 ->type('@password', 'register')
                 ->type('@confirm', 'register')
                 ->press('@submit')
-                ->assertRouteIs('register')
-            ;
+                ->assertRouteIs('register');
             $browser
                 ->type('@name', 'register')
                 ->type('@email', 'register@re.re')
                 ->type('@password', '')
                 ->type('@confirm', 'register')
                 ->press('@submit')
-                ->assertRouteIs('register')
-            ;
+                ->assertRouteIs('register');
             $browser
                 ->type('@name', 'register')
                 ->type('@email', 'register@re.re')
                 ->type('@password', 'register')
                 ->type('@confirm', '')
                 ->press('@submit')
-                ->assertRouteIs('register')
-            ;
+                ->assertRouteIs('register');
 
             $this->assertCount($beforeRegisterUsersCount, User::all());
         });
