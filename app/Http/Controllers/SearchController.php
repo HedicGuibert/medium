@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
 use App\Models\Article;
-use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -13,6 +12,7 @@ class SearchController extends Controller
         $params = $request->validated();
         $input = $params['input'];
         $articles = Article::where('title', 'like', "%$input%")->get();
+
         return view('landing', compact('articles'));
     }
 }

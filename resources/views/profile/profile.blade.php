@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<section class="pt-2 mt-5">
+<section class="mb-5 mt-10">
 
       <div class="container">
         <div class="tab-content" id="demo-2">

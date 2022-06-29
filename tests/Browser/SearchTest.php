@@ -28,6 +28,7 @@ class SearchTest extends AbstractBaseTest
                 ->assertDontSee('Article 2');
         });
     }
+
     public function testEmptySearch()
     {
         $this->browse(function (Browser $browser) {
