@@ -42,4 +42,32 @@ class ArticleController extends Controller
 
         return redirect()->route('details_article', $id);
     }
+
+    public function create(){
+      return view('article_create');
+    }
+
+    public function store(ArticleStoreRequest $request){
+      $params = $request->validated();
+      if ($request->hasFile('image')) {
+          dump("here");
+          $params['image'] = sprintf(
+                  '/images/%s_%d.%s',
+                  \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
+                  \time(),
+                  $request->file('image')->getClientOriginalExtension()
+              );
+
+              if (Storage::exists('public'.$params['image'])) {
+                  Storage::delete('public'.$params['image']);
+              }
+
+              $request->file('image')->storeAs('public', $params['image']);
+              $request->image->move(public_path('images'), $params["image"]);
+          }
+        $article = Article::create($params);
+        
+        return redirect()->route('articles');
+        
+    }
 }

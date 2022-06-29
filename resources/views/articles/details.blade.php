@@ -25,7 +25,7 @@
         </textarea>
       </div >
       <div>
-        <img src="{{asset($article->image)}}" alt="image">
+        <img class="img-responsive" style="with:500px; height:500px" src="{{asset($article->image)}}" alt="image">
       </div>
         <div class="mb-3"><input type="file" name="image" accept="image/*"></div>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
