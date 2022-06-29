@@ -30,6 +30,7 @@ class ArticleTest extends DuskTestCase
         //   "slug" => urlencode($article->title),
         //   "image" => "/images/testimage.png"
         // ]);
-      })
+      });
+
     }
 }

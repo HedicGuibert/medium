@@ -27,7 +27,8 @@
                 <a class="navbar-brand" href="/">
                     <img class="navbar-logo navbar-logo-light" src="../assets/images/demo/logo/logo-light.svg"
                         alt="Logo">
-                    <img class="navbar-logo navbar-logo-dark" src="../assets/images/demo/logo/logo-dark.svg" alt="Logo">
+                    <img class="navbar-logo navbar-logo-dark" src="../assets/images/demo/logo/logo-dark.svg"
+                        alt="Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -41,87 +42,90 @@
                             </a>
                         </li>
                         @guest
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ route('article-groups.index') }}">Tous les groupes
-                                d'articles</a>
-                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="{{ route('article-groups.index') }}">Tous les groupes
+                                    d'articles</a>
+                            </li>
                         @endguest
                         @auth
-                        @can('isEditor')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categories.index') }}" role="button">
-                                Catégories
-                            </a>
-                        </li>
-                        @endcan
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/favourite') }}" role="button">
-                                Favoris
-                            </a>
-                        </li>
+                            @can('isEditor')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('categories.index') }}" role="button">
+                                        Catégories
+                                    </a>
+                                </li>
+                            @endcan
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/favourite') }}" role="button">
+                                    Favoris
+                                </a>
+                            </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dusk="article-group-dropdown">
-                                Groupes d'articles
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('article-groups.index') }}" dusk="article-group-list">
-                                    <span>Tous les groupes d'articles</span>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    dusk="article-group-dropdown">
+                                    Groupes d'articles
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" dusk="user-article-group-dropdown"
-                                    href="{{ route('article-groups.index', ['userId' => Auth::id()]) }}">
-                                    <span>Mes groupes d'articles</span>
-                                </a>
-                                {{-- <div class="dropdown-divider"></div>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('article-groups.index') }}"
+                                        dusk="article-group-list">
+                                        <span>Tous les groupes d'articles</span>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" dusk="user-article-group-dropdown"
+                                        href="{{ route('article-groups.index', ['userId' => Auth::id()]) }}">
+                                        <span>Mes groupes d'articles</span>
+                                    </a>
+                                    {{-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="../app-pages.html">
                                     <span>App Pages</span>
                                     <p>Add functionality to your website.</p> --}}
-                                    {{--
-                                </a> --}}
-                            </div>
-                        </li>
-                        @can('isAdmin')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users_list') }}" role="button">
-                                Gérer les utilisateurs
-                            </a>
-                        </li>
-                        @endcan
+                                    {{-- </a> --}}
+                                </div>
+                            </li>
+                            @can('isAdmin')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('users_list') }}" role="button">
+                                        Gérer les utilisateurs
+                                    </a>
+                                </li>
+                            @endcan
+
                         @endauth
                     </ul>
                     @guest
-                    <ul class="navbar-nav align-items-center mr-0">
-                        @if (Route::has('login'))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ route('login') }}">Connexion</a>
-                        </li>
-                        @endif
+                        <ul class="navbar-nav align-items-center mr-0">
+                            @if (Route::has('login'))
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="{{ route('login') }}">Connexion</a>
+                                </li>
+                            @endif
 
-                        @if (Route::has('register'))
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ route('register') }}">Inscription</a>
-                        </li>
-                        @endif
-                    </ul>
+                            @if (Route::has('register'))
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="{{ route('register') }}">Inscription</a>
+                                </li>
+                            @endif
+                        </ul>
                     @else
-                    <ul class="navbar-nav align-items-center mr-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->name }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <ul class="navbar-nav align-items-center mr-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
+
+
                                     document.getElementById('logout-form').submit();">Déconnexion</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     @endguest
                 </div>
             </nav>
@@ -162,27 +166,27 @@
     <script src="{{ asset('js/categories.js') }}"></script>
 </body>
 @if (session()->has('error'))
-<script>
-    $(function() {
+    <script>
+        $(function() {
             warning('{{ session()->get('error') }}')
         })
-</script>
+    </script>
 @endif
 @if ($errors->any())
-@foreach ($errors->all() as $error)
-<script>
-    $(function() {
+    @foreach ($errors->all() as $error)
+        <script>
+            $(function() {
                 warning('{{ $error }}')
             })
-</script>
-@endforeach
+        </script>
+    @endforeach
 @endif
 @if (session()->has('success'))
-<script>
-    $(function() {
+    <script>
+        $(function() {
             success('{{ session()->get('success') }}')
         })
-</script>
+    </script>
 @endif
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
     integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="

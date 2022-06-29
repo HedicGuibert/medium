@@ -19,6 +19,7 @@
                 <textarea id="content" class="form-control @error('body') is-invalid @enderror" type="text" row="10"
                     style="height:200px" name="body">
                 </textarea>
+
                 @error('body')
                     <small lass="text-danger">
                         {{ $message }}
