@@ -6,26 +6,30 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class ArticleTest extends DuskTestCase
+class ArticleTest extends AbstractBaseTest
 {
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
-    public function testExample()
+     protected function setUp(): void
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
-        });
+        parent::setUp();
+        $this->generateUsers();
+        $this->generateArticles();
     }
 
     public function test_user_can_not_see_list_article_without_login() {
       $this->browse(function (Browser $browser) {
         $browser->visit('/admin/articles')
-                ->visit('/login');
+                ->assertSee('login');
       });
-
     }
+
+    // public function test_edituser_can_now_see_list_article_after_login() {
+    //   $this->browse(function (Browser $browser) {
+    //     $browser->loginAs($this->editorUser)
+    //             ->visit('/admin/articles')
+    //             ->scrollIntoView('')
+    //             ->assertSeeIn('@articleSlug', 'article-1');
+      
+    //   });
+    // }
 }
+
