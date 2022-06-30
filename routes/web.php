@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/article-groups/{userId?}', [ArticleGroupController::class, 'index'])->name('article-groups.index');
     Route::delete('/article-groups/{group}/{userId?}', [ArticleGroupController::class, 'delete'])->name('article-groups.delete');
+    Route::post('/article-groups/store', [ArticleGroupController::class, 'store'])->name('article-groups.store');
 });
 
 // Routes that require author access

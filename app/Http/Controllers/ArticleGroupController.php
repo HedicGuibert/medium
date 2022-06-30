@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleGroupRequest;
 use App\Models\ArticleGroup;
+use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleGroupController extends Controller
 {
@@ -17,6 +20,17 @@ class ArticleGroupController extends Controller
             : ArticleGroup::paginate(5);
 
         return view('article-group.list', compact('articleGroups', 'userSpecific'));
+    }
+
+    public function store(StoreArticleGroupRequest $request)
+    {
+        $articleGroup = new ArticleGroup();
+        $articleGroup->name = $request->name;
+        $articleGroup->slug = Str::slug($request->name);
+        $articleGroup->user_id = Auth::id();
+        $articleGroup->save();
+
+        return redirect()->route('article-groups.index')->with('success', "Article group '$articleGroup->name' created successfully");
     }
 
     public function delete(int $group, int $userId = null)

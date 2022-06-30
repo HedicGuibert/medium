@@ -31,9 +31,20 @@
                             <button dusk="submit" type="submit" class="btn btn-lg btn-block btn-primary">Search</button>
                         </div>
                     </div>
-
                 </form>
                 <div class="row gutter-2" dusk="article-groups-list">
+                    <div class="col-lg-4 col-md-6 col-sm-12 aos-init aos-animate" data-aos="fade-up">
+                        <div class="card rising h-100">
+                            <div class="card-body">
+                                <div class="d-flex row align-content-between h-100 my-2">
+                                    <div class="w-100">
+                                        <h3>Ajouter un groupe d'article</h3>
+                                    </div>
+                                    @include('article-group.create-form')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @forelse ($articleGroups as $articleGroup)
                     <div class="col-lg-4 col-md-6 col-sm-12 aos-init aos-animate" data-aos="fade-up">
                         <div class="card rising h-100">

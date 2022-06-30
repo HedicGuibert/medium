@@ -12,21 +12,18 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderBy('created_at', 'DESC')->simplePaginate(5);
-
         return view('articles.index', ['articles' => $articles]);
     }
 
     public function publicArticle($slug)
     {
         $article = Article::where('slug', $slug)->first();
-
         return view('articles.public_article', ['article' => $article]);
     }
 
     public function show($id)
     {
         $article = Article::find($id);
-
         return view('articles.details', ['article' => $article]);
     }
 
@@ -36,20 +33,20 @@ class ArticleController extends Controller
         $params = $request->validated();
         if ($request->hasFile('image')) {
             $params['image'] = sprintf(
-                  '/images/%s_%d.%s',
-                  \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
-                  \time(),
-                  $request->file('image')->getClientOriginalExtension()
-              );
+                '/images/%s_%d.%s',
+                \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
+                \time(),
+                $request->file('image')->getClientOriginalExtension()
+            );
 
-            if (Storage::exists('public'.$params['image'])) {
-                Storage::delete('public'.$params['image']);
+            if (Storage::exists('public' . $params['image'])) {
+                Storage::delete('public' . $params['image']);
             }
 
             $request->file('image')->storeAs('public', $params['image']);
-            $request->image->move(public_path('images'), $params['image']);
+            $request->image->move(public_path('images'), $params["image"]);
         }
-        $params['slug'] = urlencode($params['title']);
+        $params['slug'] = urlencode($params["title"]);
         $article->update($params);
 
         return redirect()->route('articles');
@@ -65,21 +62,21 @@ class ArticleController extends Controller
         $params = $request->validated();
         if ($request->hasFile('image')) {
             $params['image'] = sprintf(
-                  '/images/%s_%d.%s',
-                  \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
-                  \time(),
-                  $request->file('image')->getClientOriginalExtension()
-              );
+                '/images/%s_%d.%s',
+                \pathinfo($request->file('image')->getClientOriginalName(), PATHINFO_FILENAME),
+                \time(),
+                $request->file('image')->getClientOriginalExtension()
+            );
 
-            if (Storage::exists('public'.$params['image'])) {
-                Storage::delete('public'.$params['image']);
+            if (Storage::exists('public' . $params['image'])) {
+                Storage::delete('public' . $params['image']);
             }
 
             $request->file('image')->storeAs('public', $params['image']);
-            $request->image->move(public_path('images'), $params['image']);
+            $request->image->move(public_path('images'), $params["image"]);
         }
-        $params['slug'] = urlencode($params['title']);
-        $params['user_id'] = Auth::user()->id;
+        $params['slug'] = urlencode($params["title"]);
+        $params["user_id"] = Auth::user()->id;
         Article::create($params);
 
         return redirect()->route('articles');
@@ -92,7 +89,6 @@ class ArticleController extends Controller
             Storage::delete("public/$article->image");
         }
         $article->delete();
-
         return redirect()->route('articles');
     }
 }
