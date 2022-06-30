@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-    Route::put('/categories/{slug}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
 });
 
 // Routes that require author access

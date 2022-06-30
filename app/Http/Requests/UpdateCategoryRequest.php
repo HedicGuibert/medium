@@ -40,8 +40,20 @@ class UpdateCategoryRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        $this->merge([
-            'slug' => $this->segment(2),
-        ]);
+        if ($this->segment(2)) {
+            $this->merge(['slug' => $this->segment(2)]);
+        }
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'slug.required' => 'Choose a category to update',
+        ];
     }
 }

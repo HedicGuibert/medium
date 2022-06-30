@@ -96,4 +96,56 @@ class CategoryTest extends AbstractBaseTest
                 ->logout();
         });
     }
+
+    public function testCategoryUpdateWorks()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit('/categories')
+                ->type('@email', $this->simpleUser->email)
+                ->type('@password', 'simpleuser')
+                ->press('@submit')
+                ->press('@update-category-1')
+                ->type('@update-category-name', 'Test')
+                ->press('@update-category-submit')
+                ->assertRouteIs('categories.index')
+                ->assertDontSeeIn('@categoryList', 'Category-1')
+                ->assertSeeIn('@categoryList', 'Test')
+                ->logout();
+        });
+    }
+
+    public function testCategoryUpdateSecurityWorks()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit('/categories')
+                ->type('@email', $this->simpleUser->email)
+                ->type('@password', 'simpleuser')
+                ->press('@submit')
+                ->press('@update-category-1')
+                ->type('@update-category-name', 'Category 1')
+                ->press('@update-category-submit')
+                ->assertRouteIs('categories.index')
+                ->assertSee('The name has already been taken..')
+                ->logout();
+        });
+    }
+
+    public function testCategoryUpdateSecurityWorks2()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit('/categories')
+                ->type('@email', $this->simpleUser->email)
+                ->type('@password', 'simpleuser')
+                ->press('@submit')
+                ->press('@edit-form-pane')
+                ->type('@update-category-name', 'Category Test')
+                ->press('@update-category-submit')
+                ->assertRouteIs('categories.index')
+                ->assertSee('Choose a category to update.')
+                ->logout();
+        });
+    }
 }

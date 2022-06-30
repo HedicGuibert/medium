@@ -75,7 +75,8 @@
                                                 <td>{{ $category->slug }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-ico btn-warning"
-                                                        data-action="edit" data-name="{{ $category->name }}"
+                                                        dusk="update-{{ $category->slug }}" data-action="edit"
+                                                        data-name="{{ $category->name }}"
                                                         data-slug="{{ $category->slug }}">
                                                         <i class="icon-pencil text-white"></i>
                                                     </button>
@@ -123,7 +124,7 @@
                                             style="z-index: 5; position: relative;">Ajout
                                             categorie</a>
                                         <a class="nav-item nav-link lavalamp-item @if (session('action') == 'update') active @endif"
-                                            data-toggle="tab" href="#edit-form-pane"
+                                            data-toggle="tab" href="#edit-form-pane" dusk="edit-form-pane"
                                             style="z-index: 5; position: relative;">Edition
                                             categorie</a>
                                     </div>
@@ -134,7 +135,7 @@
                                         </div>
                                         <div class="tab-pane @if (session('action') == 'update') active @endif"
                                             id="edit-form-pane" role="tabpanel" aria-labelledby="edit-form-pane">
-                                            {{-- @include('category.edit-form') --}}
+                                            @include('category.edit-form')
                                         </div>
                                     </div>
                                 </div>
