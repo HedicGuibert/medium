@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -54,10 +55,7 @@ class CommentTest extends AbstractBaseTest
     public function testCreateComment()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                ->type('@email', $this->editorUser->email)
-                ->type('@password', 'editoruser')
-                ->press('@submit')
+            $browser->loginAs($this->getSimpleUser())
                 ->visit('/')
                 ->assertSee('Article 2')
                 ->click('@navigate_to_article_article_2')
@@ -72,14 +70,10 @@ class CommentTest extends AbstractBaseTest
     public function testModifyComment()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
-                ->press('@submit')
+            $browser->loginAs(User::find(1))
                 ->visit('/')
                 ->click('@navigate_to_article_article_2')
                 ->assertSee('Modifier')
-                ->scrollIntoView('@modify_comment_2')
                 ->click('@modify_comment_2')
                 ->assertAttributeContains("@textarea", "value", "Comment 2")
                 ->type('@textarea', "Comment 2 modified !")
