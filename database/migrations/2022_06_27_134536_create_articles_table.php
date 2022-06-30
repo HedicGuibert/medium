@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('introduction');
             $table->text('body');
             $table->integer('like')->default(0);
-            $table->enum('status',['pending']);
+            $table->enum('status',['published', 'draft'])->default('published');
             $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->foreignId('user_id')->constrained("users")->onDelete('cascade');
