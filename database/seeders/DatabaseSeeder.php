@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             ArticleSeeder::class,
             CommentSeeder::class,
             CategorySeeder::class,
-            FavouriteArticlesSeeder::class
+            FavouriteArticlesSeeder::class,
+            ArticleGroupSeeder::class,
+            ArticleGroupLinkSeeder::class,
         ]);
     }
 }

@@ -8,7 +8,11 @@
             <div class="col-lg-12">
                 <div class="row aos-init aos-animate" data-aos="fade-up">
                     <div class="col-md-8">
-                        <h2 class="text-uppercase font-weight-bold">Liste des Groupes d'articles</h2>
+                        <h2 class="text-uppercase font-weight-bold">@if ($userSpecific)
+                            Mes
+                            @else
+                            Liste des
+                            @endif Groupes d'articles</h2>
                         {{-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                             tempor
                             incididunt ut labore et dolore magna aliqua.</p> --}}
@@ -39,11 +43,27 @@
                                         <p>Mise à jour le: {{ $articleGroup->updated_at }}</p>
                                         <h3>{{ $articleGroup->name }}</h3>
                                     </div>
-                                    <div class="text-center">
-                                        <a href="" class="btn btn-outline-primary btn-rounded">Découvrir @if (
-                                            count($articleGroup->articles) > 0)
+                                    <div class="text-center d-flex justify-content-between w-100">
+                                        <a href="" class="btn btn-sm btn-primary btn-rounded">Découvrir @if (
+                                            count($articleGroup->articles) > 1)
                                             les {{ count($articleGroup->articles) }} articles
                                             @endif </a>
+
+                                        @can('isEditor')
+                                        @if ($articleGroup->isOwnedBy(Auth::id()))
+                                        <form class="d-inline" method="POST" @if ($userSpecific)
+                                            action="{{ route('article-groups.delete', ['group' => $articleGroup->id, 'userId' => Auth::id()]) }}"
+                                            @else
+                                            action="{{ route('article-groups.delete', ['group' => $articleGroup->id]) }}"
+                                            @endif>
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit"
+                                                class="btn btn-outline-danger btn-sm btn-rounded">Supprimer </button>
+                                        </form>
+                                        @endif
+
+                                        @endcan
                                     </div>
                                 </div>
 

@@ -31,7 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/favourite', [FavouriteController::class, 'index'])->name('favourite');
     Route::post('/favourite/add/{id}', [FavouriteController::class, 'add'])->name('favourite.add');
     Route::post('/favourite/remove/{id}', [FavouriteController::class, 'remove'])->name('favourite.remove');
+
     Route::get('/article-groups/{userId?}', [ArticleGroupController::class, 'index'])->name('article-groups.index');
+    Route::delete('/article-groups/{group}/{userId?}', [ArticleGroupController::class, 'delete'])->name('article-groups.delete');
 });
 
 // Routes that require author access

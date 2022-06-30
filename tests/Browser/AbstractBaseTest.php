@@ -107,18 +107,9 @@ abstract class AbstractBaseTest extends DuskTestCase
         }
 
         ArticleGroup::factory()->create([
-            'name' => "Group $i",
-            'slug' => "group-$i",
-            'user_id' => $this->getAuthorUser()
-        ]);
-    }
-
-    // Use this method onyl if you need dummy users that won't have to connect
-    // Passwords won't be hashed so users generated won't be able to login but tests will be (a lot) faster
-    protected function generateUsers(int $amount = 3)
-    {
-        User::factory($amount)->create([
-            'password' => 'password'
+            'name' => "Group 7",
+            'slug' => "group-7",
+            'user_id' => $this->authorUser->id
         ]);
     }
 }

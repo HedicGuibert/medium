@@ -15,6 +15,6 @@ class ArticleGroupSeeder extends Seeder
      */
     public function run()
     {
-        ArticleGroup::factory()->count(5)->create();
+        ArticleGroup::factory()->count(10)->create();
     }
 }

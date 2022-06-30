@@ -17,4 +17,9 @@ class ArticleGroup extends Model
     {
         return $this->belongsToMany(Article::class, 'article_group_links', "article_group_id", "article_id");
     }
+
+    public function isOwnedBy(int $userId)
+    {
+        return $this->user_id == $userId;
+    }
 }
