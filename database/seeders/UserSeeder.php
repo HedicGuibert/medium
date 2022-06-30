@@ -38,5 +38,12 @@ class UserSeeder extends Seeder
             'email' => 'editor@fixture.com',
             'role' => User::ROLE_EDITOR,
         ]);
+
+        User::factory()->create([
+            'name' => 'Admin User',
+            'password' => Hash::make('adminuser'),
+            'email' => 'admin@fixture.com',
+            'role' => User::ROLE_ADMIN,
+        ]);
     }
 }

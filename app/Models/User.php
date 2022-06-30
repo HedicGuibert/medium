@@ -17,10 +17,13 @@ class User extends Authenticatable
 
     public const ROLE_EDITOR = 3;
 
+    public const ROLE_ADMIN = 4;
+
     public const ROLES = [
         'user' => self::ROLE_USER,
         'author' => self::ROLE_AUTHOR,
         'editor' => self::ROLE_EDITOR,
+        'admin' => self::ROLE_ADMIN,
     ];
 
     /**

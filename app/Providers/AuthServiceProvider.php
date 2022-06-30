@@ -30,5 +30,6 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('isAuthor', [RolePolicy::class, 'isAuthor']);
         Gate::define('isEditor', [RolePolicy::class, 'isEditor']);
+        Gate::define('isAdmin', [RolePolicy::class, 'isAdmin']);
     }
 }

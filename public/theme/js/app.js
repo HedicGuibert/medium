@@ -45,7 +45,7 @@
               }
           });
       });
-      
+
       $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
         disableOn: 700,
         type: 'iframe',
@@ -216,7 +216,7 @@
             1200: { items: items[0] || 1}
           }
         };
-        
+
         a.owlCarousel(options);
       });
     },
@@ -261,8 +261,8 @@
       $('[data-toggle="tooltip"]').tooltip();
 
 
-      skrollr.init({  
-          forceHeight: false,        
+      skrollr.init({
+          forceHeight: false,
           mobileCheck: function() {
               //hack - forces mobile version to be off
               return false;
@@ -283,7 +283,24 @@
       $(function() {
         $('select').selectric({
           disableOnMobile: false,
-          nativeOnMobile: false
+          nativeOnMobile: false,
+        //   onChange: async function(element) {
+        //     if (element.classList.contains('send-on-change')) {
+        //         const body = JSON.stringify(element.value);
+
+        //         const response = await fetch(`/admin/user/${element.dataset.userId}/role`, {
+        //             method: 'POST',
+        //             credentials: "same-origin",
+        //             headers:{
+        //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //             body
+        //         })
+        //         const result = response.json();
+
+        //         console.log(await result);
+        //     }
+        //   }
         });
       });
 

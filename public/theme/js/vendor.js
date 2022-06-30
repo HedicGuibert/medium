@@ -10467,24 +10467,24 @@
 /*! Magnific Popup - v1.1.0 - 2016-02-20
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2016 Dmitry Semenov; */
-;(function (factory) { 
-if (typeof define === 'function' && define.amd) { 
- // AMD. Register as an anonymous module. 
- define(['jquery'], factory); 
- } else if (typeof exports === 'object') { 
- // Node/CommonJS 
- factory(require('jquery')); 
- } else { 
- // Browser globals 
- factory(window.jQuery || window.Zepto); 
- } 
- }(function($) { 
+;(function (factory) {
+if (typeof define === 'function' && define.amd) {
+ // AMD. Register as an anonymous module.
+ define(['jquery'], factory);
+ } else if (typeof exports === 'object') {
+ // Node/CommonJS
+ factory(require('jquery'));
+ } else {
+ // Browser globals
+ factory(window.jQuery || window.Zepto);
+ }
+ }(function($) {
 
 /*>>core*/
 /**
- * 
+ *
  * Magnific Popup Core JS file
- * 
+ *
  */
 
 
@@ -10506,7 +10506,7 @@ var CLOSE_EVENT = 'Close',
 
 
 /**
- * Private vars 
+ * Private vars
  */
 /*jshint -W079 */
 var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
@@ -10575,15 +10575,15 @@ var _mfpOn = function(name, f) {
 			v = ['ms','O','Moz','Webkit']; // 'v' for vendor
 
 		if( s['transition'] !== undefined ) {
-			return true; 
+			return true;
 		}
-			
+
 		while( v.length ) {
 			if( v.pop() + 'Transition' in s ) {
 				return true;
 			}
 		}
-				
+
 		return false;
 	};
 
@@ -10597,7 +10597,7 @@ MagnificPopup.prototype = {
 	constructor: MagnificPopup,
 
 	/**
-	 * Initializes Magnific Popup plugin. 
+	 * Initializes Magnific Popup plugin.
 	 * This function is triggered only once when $.fn.magnificPopup or $.magnificPopup is executed
 	 */
 	init: function() {
@@ -10623,7 +10623,7 @@ MagnificPopup.prototype = {
 
 		var i;
 
-		if(data.isObj === false) { 
+		if(data.isObj === false) {
 			// convert jQuery collection to array to avoid conflicts later
 			mfp.items = data.items.toArray();
 
@@ -10650,8 +10650,8 @@ MagnificPopup.prototype = {
 			mfp.updateItemHTML();
 			return;
 		}
-		
-		mfp.types = []; 
+
+		mfp.types = [];
 		_wrapClasses = '';
 		if(data.mainEl && data.mainEl.length) {
 			mfp.ev = data.mainEl.eq(0);
@@ -10670,7 +10670,7 @@ MagnificPopup.prototype = {
 
 
 
-		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data ); 
+		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data );
 		mfp.fixedContentPos = mfp.st.fixedContentPos === 'auto' ? !mfp.probablyMobile : mfp.st.fixedContentPos;
 
 		if(mfp.st.modal) {
@@ -10679,7 +10679,7 @@ MagnificPopup.prototype = {
 			mfp.st.showCloseBtn = false;
 			mfp.st.enableEscapeKey = false;
 		}
-		
+
 
 		// Building markup
 		// main containers are created only once
@@ -10731,7 +10731,7 @@ MagnificPopup.prototype = {
 			_wrapClasses += ' mfp-align-top';
 		}
 
-	
+
 
 		if(mfp.fixedContentPos) {
 			mfp.wrap.css({
@@ -10740,7 +10740,7 @@ MagnificPopup.prototype = {
 				overflowY: mfp.st.overflowY
 			});
 		} else {
-			mfp.wrap.css({ 
+			mfp.wrap.css({
 				top: _window.scrollTop(),
 				position: 'absolute'
 			});
@@ -10752,7 +10752,7 @@ MagnificPopup.prototype = {
 			});
 		}
 
-		
+
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
@@ -10771,7 +10771,7 @@ MagnificPopup.prototype = {
 		if(!mfp.st.closeOnContentClick) {
 			_wrapClasses += ' mfp-auto-cursor';
 		}
-		
+
 		if(_wrapClasses)
 			mfp.wrap.addClass(_wrapClasses);
 
@@ -10779,7 +10779,7 @@ MagnificPopup.prototype = {
 		// this triggers recalculation of layout, so we get it once to not to trigger twice
 		var windowHeight = mfp.wH = _window.height();
 
-		
+
 		var windowStyles = {};
 
 		if( mfp.fixedContentPos ) {
@@ -10800,8 +10800,8 @@ MagnificPopup.prototype = {
 			}
 		}
 
-		
-		
+
+
 		var classesToadd = mfp.st.mainClass;
 		if(mfp.isIE7) {
 			classesToadd += ' mfp-ie7';
@@ -10817,16 +10817,16 @@ MagnificPopup.prototype = {
 
 		// remove scrollbar, add margin e.t.c
 		$('html').css(windowStyles);
-		
+
 		// add everything to DOM
 		mfp.bgOverlay.add(mfp.wrap).prependTo( mfp.st.prependTo || $(document.body) );
 
 		// Save last focused element
 		mfp._lastFocusedEl = document.activeElement;
-		
+
 		// Wait for next cycle to allow CSS transition
 		setTimeout(function() {
-			
+
 			if(mfp.content) {
 				mfp._addClassToMFP(READY_CLASS);
 				mfp._setFocus();
@@ -10834,7 +10834,7 @@ MagnificPopup.prototype = {
 				// if content is not defined (not loaded e.t.c) we add class only for BG
 				mfp.bgOverlay.addClass(READY_CLASS);
 			}
-			
+
 			// Trap the focus in popup
 			_document.on('focusin' + EVENT_NS, mfp._onFocusIn);
 
@@ -10893,7 +10893,7 @@ MagnificPopup.prototype = {
 			}
 			$('html').css(windowStyles);
 		}
-		
+
 		_document.off('keyup' + EVENT_NS + ' focusin' + EVENT_NS);
 		mfp.ev.off(EVENT_NS);
 
@@ -10913,14 +10913,14 @@ MagnificPopup.prototype = {
 		if(mfp.st.autoFocusLast && mfp._lastFocusedEl) {
 			$(mfp._lastFocusedEl).focus(); // put tab focus back
 		}
-		mfp.currItem = null;	
+		mfp.currItem = null;
 		mfp.content = null;
 		mfp.currTemplate = null;
 		mfp.prevHeight = 0;
 
 		_mfpTrigger(AFTER_CLOSE_EVENT);
 	},
-	
+
 	updateSize: function(winHeight) {
 
 		if(mfp.isIOS) {
@@ -23365,9 +23365,9 @@ return ImagesLoaded;
  *
  * Version
  * 1.1.0
- * 
+ *
  * Copyright (c) 2014 Richard Hung.
- * 
+ *
  * License
  * Lava Lamp by Richard Hung is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.
  * http://creativecommons.org/licenses/by-nc/3.0/deed.en_US
@@ -23375,9 +23375,9 @@ return ImagesLoaded;
 
 
 (function($) {
-	
+
 	'use strict';
-	
+
 	var methods = {
 		init : function(settings) {
 
@@ -23394,14 +23394,14 @@ return ImagesLoaded;
 				delayOn:     0,         // Delay time on hover
 				delayOff:    0,         // Delay time off hover
 				enableFocus: false,     // Animate on keyboard focus
-				deepFocus:   false,     // Animate on decendant focus 
+				deepFocus:   false,     // Animate on decendant focus
 			}; // End options
-			
+
 			// Override default options
 			settings = $.extend({}, defaultSettings, settings);
-			
+
 			return this.each(function(){
-				
+
 				// Get the options
 				var margins     = settings.margins;
 				var setOnClick  = settings.setOnClick;
@@ -23415,28 +23415,28 @@ return ImagesLoaded;
 				var deepFocus   = settings.deepFocus;
 				var duration    = settings.duration;
 				var easing      = settings.easing;
-				
+
 				// Set variables
 				var list   = $(this);
 				var items  = list.children();
 				var active = list.children(activeObj);
-				
+
 				// Check if active element exists
 				if (active.length === 0) {
 					active = items.eq(0);
 				}
-				
+
 				// Set variables to object
 				list.addClass('lavalamp').data({
 					lavalampActive: active,
 					isAnim:         false,
 					settings:       settings
 				});
-				
+
 				// Create lavalamp object
 				var obj = $('<div class="lavalamp-object '+easing+'" />').prependTo(list);
 				items.addClass('lavalamp-item');
-				
+
 				// Check for CSS3 animations
 				obj.css({
 					WebkitTransitionDuration: duration / 1000 + 's',
@@ -23445,86 +23445,86 @@ return ImagesLoaded;
 					OTransitionDuration: duration / 1000 + 's',
 					transitionDuration: duration / 1000 + 's',
 				});
-				
+
 				var w  = active.outerWidth(margins);
 				var h  = active.outerHeight(margins);
 				var t  = active.position().top;
 				var l  = active.position().left;
 				var mt = active.css('marginTop');
 				var ml = active.css('marginLeft');
-				
+
 				// Add margins to calculations
 				if(!margins) {
 					ml = parseInt(ml);
 					mt = parseInt(mt);
-				
+
 					l = l + ml;
 					t = t + mt;
 				}
-				
+
 				obj.css({
 					width:     w,
 					height:    h,
 					transform: 'translate('+l+'px,'+t+'px)'
 				});
-				
+
 				var onHover = false; // check if item is still hovered after delay
 				var enAnim  = true; // temporarily disable animations when in focus
 				lavalampEnter = function() {
 					var des = $(this);
 					onHover = true;
-					
+
 					// delay and animate
 					setTimeout(function() {
 						if (onHover && enAnim) {
 							list.lavalamp('anim',des);
 						}
 					},delayOn);
-					
+
 				}; // end mousenter
 				lavalampLeave = function(des) {
 					des = list.data('lavalampActive');
 					onHover = false;
-					
+
 					// delay and animate
 					setTimeout(function() {
 						if (!onHover && enAnim) {
 							list.lavalamp('anim',des);
 						}
 					},delayOff);
-					
+
 				}; // end mouseleave
 
 				focusIn = function() {
 					var des = $(this);
-					
+
 					// Back out of deep decendents
 					if (!des.hasClass('lavalamp-item')) {
 						des = des.parents('.lavalamp-item');
 					}
-					
+
 					enAnim = false;
-					
+
 					// delay and animate
 					setTimeout(function() {
 						list.lavalamp('anim',des);
 					},delayOn);
-					
+
 				}; // end focus in
 				focusOut = function() {
 					enAnim = true;
-					
+
 					var des = list.data('lavalampActive');
-					
+
 					// delay and animate
 					setTimeout(function() {
 						list.lavalamp('anim',des);
 					},delayOff);
 				}; // end focus out
-				
+
 				// items.hover(enter, leave);
-					
-				
+
+
 				if (enableHover) {
 					list.on('mouseenter','.lavalamp-item',lavalampEnter);
 					list.on('mouseleave','.lavalamp-item',lavalampLeave);
@@ -23537,15 +23537,15 @@ return ImagesLoaded;
 					list.on('focusin','.lavalamp-item *',focusIn);
 					list.on('focusout','.lavalamp-item *',focusOut);
 				}
-								
-								
+
+
 				if (setOnClick) {
 					items.click(function() {
 						active = $(this);
 						list.data('lavalampActive',active).lavalamp('update');
 					});
 				} // End set on click
-				
+
 				if (autoUpdate) {
 					var updateInterval = setInterval(function() {
 						var isAnim = list.data('isAnim');
@@ -23553,11 +23553,11 @@ return ImagesLoaded;
 							list.lavalamp('update');
 						}
 					}, updateTime); // End setinterval
-					
+
 					list.data('updateInterval',updateInterval);
 				} // End auto update
 			}); // End object loop
-	
+
 		}, // End init
 		destroy : function() {
 			return this.each(function(){
@@ -23568,7 +23568,7 @@ return ImagesLoaded;
 				var enableFocus = settings.enableFocus;
 				var deepFocus   = settings.deepFocus;
 				var autoUpdate  = settings.autoUpdate;
-				
+
 				// Unbind the plugin effect
 				if (enableHover) {
 					list.off('mouseenter', '.lavalamp-item', lavalampEnter);
@@ -23582,23 +23582,23 @@ return ImagesLoaded;
 					list.off('focusin','.lavalamp-item *',focusIn);
 					list.off('focusout','.lavalamp-item *',focusOut);
 				}
-				
+
 				// Remove CSS
 				list.removeClass('lavalamp');
 				items.removeClass('lavalamp-item');
-				
+
 				// remove auto update
 				if (autoUpdate) {
 					var updateInterval = list.data('updateInterval');
 					clearInterval(updateInterval);
 				} // End auto update
-				
+
 				// Remove the lavalamp object
 				list.children('.lavalamp-object').remove();
-				
+
 				// Remove data from wrapper
 				list.removeData();
-				
+
 			});
 		}, // End destroy
 		update : function () {
@@ -23606,16 +23606,16 @@ return ImagesLoaded;
 				var list   = $(this);
 				var items  = list.children(':not(.lavalamp-object)');
 				var active = list.data('lavalampActive');
-				
+
 				// reset list objects
 				items.addClass('lavalamp-item').css({
 					zIndex:5,
 					position:'relative'
 				});
-				
+
 				// reset to active item
 				list.lavalamp('anim',active);
-				
+
 			});
 		}, // End update
 		anim : function(destination) {
@@ -23623,25 +23623,25 @@ return ImagesLoaded;
 			var settings = list.data('settings');
 			var duration = settings.duration;
 			var margins  = settings.margins;
-			
+
 			var obj = list.children('.lavalamp-object');
-			
+
 			var w  = destination.outerWidth(margins);
 			var h  = destination.outerHeight(margins);
 			var t  = destination.position().top;
 			var l  = destination.position().left;
 			var mt = destination.css('marginTop');
 			var ml = destination.css('marginLeft');
-			
+
 			// Add margins to calculations
 			if(!margins) {
 				ml = parseInt(ml);
 				mt = parseInt(mt);
-				
+
 				l = l + ml;
 				t = t + mt;
 			}
-			
+
 			list.data('isAnim',true);
 			obj.css({
 				width:     w,
@@ -23651,26 +23651,26 @@ return ImagesLoaded;
 			setTimeout(function() {
 				list.data('isAnim',false);
 			},duration);
-		} // End animate 
+		} // End animate
 	}; // End method
-    
-	
+
+
 	$.fn.lavalamp = function(method) {
-		
+
 		if ( methods[method] ) {
 			return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
 		} else if ( typeof method === 'object' || ! method ) {
 			return methods.init.apply( this, arguments );
 		} else {
 			$.error( 'Method ' +  method + ' does not exist on jQuery.lavalamp' );
-		}		
-		
+		}
+
 	}; // End plugin
-	
+
 	// Create outer variables
 	var lavalampEnter, lavalampLeave, focusIn, focusOut;
-		
-})(jQuery); 
+
+})(jQuery);
 
 
 // The MIT License (MIT)
@@ -23832,14 +23832,14 @@ return ImagesLoaded;
   'use strict';
 
   /* exported features */
-  
+
   var features = {
     bind : !!(function(){}.bind),
     classList : 'classList' in document.documentElement,
     rAF : !!(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame)
   };
   window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
-  
+
   /**
    * Handles debouncing of events via requestAnimationFrame
    * @see http://www.html5rocks.com/en/tutorials/speed/animations/
@@ -23851,7 +23851,7 @@ return ImagesLoaded;
   }
   Debouncer.prototype = {
     constructor : Debouncer,
-  
+
     /**
      * dispatches the event to the supplied callback
      * @private
@@ -23860,7 +23860,7 @@ return ImagesLoaded;
       this.callback && this.callback();
       this.ticking = false;
     },
-  
+
     /**
      * ensures events don't get stacked
      * @private
@@ -23871,7 +23871,7 @@ return ImagesLoaded;
         this.ticking = true;
       }
     },
-  
+
     /**
      * Attach this as the event listeners
      */
@@ -23887,7 +23887,7 @@ return ImagesLoaded;
   function isDOMElement(obj) {
     return obj && typeof window !== 'undefined' && (obj === window || obj.nodeType);
   }
-  
+
   /**
    * Helper function for extending objects
    */
@@ -23895,14 +23895,14 @@ return ImagesLoaded;
     if(arguments.length <= 0) {
       throw new Error('Missing arguments in extend function');
     }
-  
+
     var result = object || {},
         key,
         i;
-  
+
     for (i = 1; i < arguments.length; i++) {
       var replacement = arguments[i] || {};
-  
+
       for (key in replacement) {
         // Recurse into object except if the object is a DOM element
         if(typeof result[key] === 'object' && ! isDOMElement(result[key])) {
@@ -23913,17 +23913,17 @@ return ImagesLoaded;
         }
       }
     }
-  
+
     return result;
   }
-  
+
   /**
    * Helper function for normalizing tolerance option to object format
    */
   function normalizeTolerance (t) {
     return t === Object(t) ? t : { down : t, up : t };
   }
-  
+
   /**
    * UI enhancement for fixed headers.
    * Hides header when scrolling down
@@ -23934,7 +23934,7 @@ return ImagesLoaded;
    */
   function Headroom (elem, options) {
     options = extend(options, Headroom.options);
-  
+
     this.lastKnownScrollY = 0;
     this.elem             = elem;
     this.tolerance        = normalizeTolerance(options.tolerance);
@@ -23951,7 +23951,7 @@ return ImagesLoaded;
   }
   Headroom.prototype = {
     constructor : Headroom,
-  
+
     /**
      * Initialises the widget
      */
@@ -23959,34 +23959,34 @@ return ImagesLoaded;
       if(!Headroom.cutsTheMustard) {
         return;
       }
-  
+
       this.debouncer = new Debouncer(this.update.bind(this));
       this.elem.classList.add(this.classes.initial);
-  
+
       // defer event registration to handle browser
       // potentially restoring previous scroll position
       setTimeout(this.attachEvent.bind(this), 100);
-  
+
       return this;
     },
-  
+
     /**
      * Unattaches events and removes any classes that were added
      */
     destroy : function() {
       var classes = this.classes;
-  
+
       this.initialised = false;
-  
+
       for (var key in classes) {
         if(classes.hasOwnProperty(key)) {
           this.elem.classList.remove(classes[key]);
         }
       }
-  
+
       this.scroller.removeEventListener('scroll', this.debouncer, false);
     },
-  
+
     /**
      * Attaches the scroll event
      * @private
@@ -23996,92 +23996,92 @@ return ImagesLoaded;
         this.lastKnownScrollY = this.getScrollY();
         this.initialised = true;
         this.scroller.addEventListener('scroll', this.debouncer, false);
-  
+
         this.debouncer.handleEvent();
       }
     },
-  
+
     /**
      * Unpins the header if it's currently pinned
      */
     unpin : function() {
       var classList = this.elem.classList,
         classes = this.classes;
-  
+
       if(classList.contains(classes.pinned) || !classList.contains(classes.unpinned)) {
         classList.add(classes.unpinned);
         classList.remove(classes.pinned);
         this.onUnpin && this.onUnpin.call(this);
       }
     },
-  
+
     /**
      * Pins the header if it's currently unpinned
      */
     pin : function() {
       var classList = this.elem.classList,
         classes = this.classes;
-  
+
       if(classList.contains(classes.unpinned)) {
         classList.remove(classes.unpinned);
         classList.add(classes.pinned);
         this.onPin && this.onPin.call(this);
       }
     },
-  
+
     /**
      * Handles the top states
      */
     top : function() {
       var classList = this.elem.classList,
         classes = this.classes;
-  
+
       if(!classList.contains(classes.top)) {
         classList.add(classes.top);
         classList.remove(classes.notTop);
         this.onTop && this.onTop.call(this);
       }
     },
-  
+
     /**
      * Handles the not top state
      */
     notTop : function() {
       var classList = this.elem.classList,
         classes = this.classes;
-  
+
       if(!classList.contains(classes.notTop)) {
         classList.add(classes.notTop);
         classList.remove(classes.top);
         this.onNotTop && this.onNotTop.call(this);
       }
     },
-  
+
     bottom : function() {
       var classList = this.elem.classList,
         classes = this.classes;
-  
+
       if(!classList.contains(classes.bottom)) {
         classList.add(classes.bottom);
         classList.remove(classes.notBottom);
         this.onBottom && this.onBottom.call(this);
       }
     },
-  
+
     /**
      * Handles the not top state
      */
     notBottom : function() {
       var classList = this.elem.classList,
         classes = this.classes;
-  
+
       if(!classList.contains(classes.notBottom)) {
         classList.add(classes.notBottom);
         classList.remove(classes.bottom);
         this.onNotBottom && this.onNotBottom.call(this);
       }
     },
-  
+
     /**
      * Gets the Y scroll position
      * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollY
@@ -24094,7 +24094,7 @@ return ImagesLoaded;
           ? this.scroller.scrollTop
           : (document.documentElement || document.body.parentNode || document.body).scrollTop;
     },
-  
+
     /**
      * Gets the height of the viewport
      * @see http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript
@@ -24105,7 +24105,7 @@ return ImagesLoaded;
         || document.documentElement.clientHeight
         || document.body.clientHeight;
     },
-  
+
     /**
      * Gets the physical height of the DOM element
      * @param  {Object}  elm the element to calculate the physical height of which
@@ -24117,7 +24117,7 @@ return ImagesLoaded;
         elm.clientHeight
       );
     },
-  
+
     /**
      * Gets the physical height of the scroller element
      * @return {int} the physical height of the scroller element in pixels
@@ -24127,7 +24127,7 @@ return ImagesLoaded;
         ? this.getViewportHeight()
         : this.getElementPhysicalHeight(this.scroller);
     },
-  
+
     /**
      * Gets the height of the document
      * @see http://james.padolsey.com/javascript/get-document-height-cross-browser/
@@ -24136,14 +24136,14 @@ return ImagesLoaded;
     getDocumentHeight : function () {
       var body = document.body,
         documentElement = document.documentElement;
-  
+
       return Math.max(
         body.scrollHeight, documentElement.scrollHeight,
         body.offsetHeight, documentElement.offsetHeight,
         body.clientHeight, documentElement.clientHeight
       );
     },
-  
+
     /**
      * Gets the height of the DOM element
      * @param  {Object}  elm the element to calculate the height of which
@@ -24156,7 +24156,7 @@ return ImagesLoaded;
         elm.clientHeight
       );
     },
-  
+
     /**
      * Gets the height of the scroller element
      * @return {int} the height of the scroller element in pixels
@@ -24166,7 +24166,7 @@ return ImagesLoaded;
         ? this.getDocumentHeight()
         : this.getElementHeight(this.scroller);
     },
-  
+
     /**
      * determines if the scroll position is outside of document boundaries
      * @param  {int}  currentScrollY the current y scroll position
@@ -24175,10 +24175,10 @@ return ImagesLoaded;
     isOutOfBounds : function (currentScrollY) {
       var pastTop  = currentScrollY < 0,
         pastBottom = currentScrollY + this.getScrollerPhysicalHeight() > this.getScrollerHeight();
-  
+
       return pastTop || pastBottom;
     },
-  
+
     /**
      * determines if the tolerance has been exceeded
      * @param  {int} currentScrollY the current scroll y position
@@ -24187,7 +24187,7 @@ return ImagesLoaded;
     toleranceExceeded : function (currentScrollY, direction) {
       return Math.abs(currentScrollY-this.lastKnownScrollY) >= this.tolerance[direction];
     },
-  
+
     /**
      * determine if it is appropriate to unpin
      * @param  {int} currentScrollY the current y scroll position
@@ -24197,10 +24197,10 @@ return ImagesLoaded;
     shouldUnpin : function (currentScrollY, toleranceExceeded) {
       var scrollingDown = currentScrollY > this.lastKnownScrollY,
         pastOffset = currentScrollY >= this.offset;
-  
+
       return scrollingDown && pastOffset && toleranceExceeded;
     },
-  
+
     /**
      * determine if it is appropriate to pin
      * @param  {int} currentScrollY the current y scroll position
@@ -24210,10 +24210,10 @@ return ImagesLoaded;
     shouldPin : function (currentScrollY, toleranceExceeded) {
       var scrollingUp  = currentScrollY < this.lastKnownScrollY,
         pastOffset = currentScrollY <= this.offset;
-  
+
       return (scrollingUp && toleranceExceeded) || pastOffset;
     },
-  
+
     /**
      * Handles updating the state of the widget
      */
@@ -24221,31 +24221,31 @@ return ImagesLoaded;
       var currentScrollY  = this.getScrollY(),
         scrollDirection = currentScrollY > this.lastKnownScrollY ? 'down' : 'up',
         toleranceExceeded = this.toleranceExceeded(currentScrollY, scrollDirection);
-  
+
       if(this.isOutOfBounds(currentScrollY)) { // Ignore bouncy scrolling in OSX
         return;
       }
-  
+
       if (currentScrollY <= this.offset ) {
         this.top();
       } else {
         this.notTop();
       }
-  
+
       if(currentScrollY + this.getViewportHeight() >= this.getScrollerHeight()) {
         this.bottom();
       }
       else {
         this.notBottom();
       }
-  
+
       if(this.shouldUnpin(currentScrollY, toleranceExceeded)) {
         this.unpin();
       }
       else if(this.shouldPin(currentScrollY, toleranceExceeded)) {
         this.pin();
       }
-  
+
       this.lastKnownScrollY = currentScrollY;
     }
   };
@@ -25406,13 +25406,13 @@ return ImagesLoaded;
 });
 
 /*!
- * 
+ *
  *   typed.js - A JavaScript Typing Animation Library
  *   Author: Matt Boldt <me@mattboldt.com>
  *   Version: v2.0.9
  *   Url: https://github.com/mattboldt/typed.js
  *   License(s): MIT
- * 
+ *
  */
 (function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.Typed=e():t.Typed=e()})(this,function(){return function(t){function e(n){if(s[n])return s[n].exports;var i=s[n]={exports:{},id:n,loaded:!1};return t[n].call(i.exports,i,i.exports,e),i.loaded=!0,i.exports}var s={};return e.m=t,e.c=s,e.p="",e(0)}([function(t,e,s){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var i=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),r=s(1),o=s(3),a=function(){function t(e,s){n(this,t),r.initializer.load(this,s,e),this.begin()}return i(t,[{key:"toggle",value:function(){this.pause.status?this.start():this.stop()}},{key:"stop",value:function(){this.typingComplete||this.pause.status||(this.toggleBlinking(!0),this.pause.status=!0,this.options.onStop(this.arrayPos,this))}},{key:"start",value:function(){this.typingComplete||this.pause.status&&(this.pause.status=!1,this.pause.typewrite?this.typewrite(this.pause.curString,this.pause.curStrPos):this.backspace(this.pause.curString,this.pause.curStrPos),this.options.onStart(this.arrayPos,this))}},{key:"destroy",value:function(){this.reset(!1),this.options.onDestroy(this)}},{key:"reset",value:function(){var t=arguments.length<=0||void 0===arguments[0]||arguments[0];clearInterval(this.timeout),this.replaceText(""),this.cursor&&this.cursor.parentNode&&(this.cursor.parentNode.removeChild(this.cursor),this.cursor=null),this.strPos=0,this.arrayPos=0,this.curLoop=0,t&&(this.insertCursor(),this.options.onReset(this),this.begin())}},{key:"begin",value:function(){var t=this;this.typingComplete=!1,this.shuffleStringsIfNeeded(this),this.insertCursor(),this.bindInputFocusEvents&&this.bindFocusEvents(),this.timeout=setTimeout(function(){t.currentElContent&&0!==t.currentElContent.length?t.backspace(t.currentElContent,t.currentElContent.length):t.typewrite(t.strings[t.sequence[t.arrayPos]],t.strPos)},this.startDelay)}},{key:"typewrite",value:function(t,e){var s=this;this.fadeOut&&this.el.classList.contains(this.fadeOutClass)&&(this.el.classList.remove(this.fadeOutClass),this.cursor&&this.cursor.classList.remove(this.fadeOutClass));var n=this.humanizer(this.typeSpeed),i=1;return this.pause.status===!0?void this.setPauseStatus(t,e,!0):void(this.timeout=setTimeout(function(){e=o.htmlParser.typeHtmlChars(t,e,s);var n=0,r=t.substr(e);if("^"===r.charAt(0)&&/^\^\d+/.test(r)){var a=1;r=/\d+/.exec(r)[0],a+=r.length,n=parseInt(r),s.temporaryPause=!0,s.options.onTypingPaused(s.arrayPos,s),t=t.substring(0,e)+t.substring(e+a),s.toggleBlinking(!0)}if("`"===r.charAt(0)){for(;"`"!==t.substr(e+i).charAt(0)&&(i++,!(e+i>t.length)););var u=t.substring(0,e),l=t.substring(u.length+1,e+i),c=t.substring(e+i+1);t=u+l+c,i--}s.timeout=setTimeout(function(){s.toggleBlinking(!1),e>=t.length?s.doneTyping(t,e):s.keepTyping(t,e,i),s.temporaryPause&&(s.temporaryPause=!1,s.options.onTypingResumed(s.arrayPos,s))},n)},n))}},{key:"keepTyping",value:function(t,e,s){0===e&&(this.toggleBlinking(!1),this.options.preStringTyped(this.arrayPos,this)),e+=s;var n=t.substr(0,e);this.replaceText(n),this.typewrite(t,e)}},{key:"doneTyping",value:function(t,e){var s=this;this.options.onStringTyped(this.arrayPos,this),this.toggleBlinking(!0),this.arrayPos===this.strings.length-1&&(this.complete(),this.loop===!1||this.curLoop===this.loopCount)||(this.timeout=setTimeout(function(){s.backspace(t,e)},this.backDelay))}},{key:"backspace",value:function(t,e){var s=this;if(this.pause.status===!0)return void this.setPauseStatus(t,e,!0);if(this.fadeOut)return this.initFadeOut();this.toggleBlinking(!1);var n=this.humanizer(this.backSpeed);this.timeout=setTimeout(function(){e=o.htmlParser.backSpaceHtmlChars(t,e,s);var n=t.substr(0,e);if(s.replaceText(n),s.smartBackspace){var i=s.strings[s.arrayPos+1];i&&n===i.substr(0,e)?s.stopNum=e:s.stopNum=0}e>s.stopNum?(e--,s.backspace(t,e)):e<=s.stopNum&&(s.arrayPos++,s.arrayPos===s.strings.length?(s.arrayPos=0,s.options.onLastStringBackspaced(),s.shuffleStringsIfNeeded(),s.begin()):s.typewrite(s.strings[s.sequence[s.arrayPos]],e))},n)}},{key:"complete",value:function(){this.options.onComplete(this),this.loop?this.curLoop++:this.typingComplete=!0}},{key:"setPauseStatus",value:function(t,e,s){this.pause.typewrite=s,this.pause.curString=t,this.pause.curStrPos=e}},{key:"toggleBlinking",value:function(t){this.cursor&&(this.pause.status||this.cursorBlinking!==t&&(this.cursorBlinking=t,t?this.cursor.classList.add("typed-cursor--blink"):this.cursor.classList.remove("typed-cursor--blink")))}},{key:"humanizer",value:function(t){return Math.round(Math.random()*t/2)+t}},{key:"shuffleStringsIfNeeded",value:function(){this.shuffle&&(this.sequence=this.sequence.sort(function(){return Math.random()-.5}))}},{key:"initFadeOut",value:function(){var t=this;return this.el.className+=" "+this.fadeOutClass,this.cursor&&(this.cursor.className+=" "+this.fadeOutClass),setTimeout(function(){t.arrayPos++,t.replaceText(""),t.strings.length>t.arrayPos?t.typewrite(t.strings[t.sequence[t.arrayPos]],0):(t.typewrite(t.strings[0],0),t.arrayPos=0)},this.fadeOutDelay)}},{key:"replaceText",value:function(t){this.attr?this.el.setAttribute(this.attr,t):this.isInput?this.el.value=t:"html"===this.contentType?this.el.innerHTML=t:this.el.textContent=t}},{key:"bindFocusEvents",value:function(){var t=this;this.isInput&&(this.el.addEventListener("focus",function(e){t.stop()}),this.el.addEventListener("blur",function(e){t.el.value&&0!==t.el.value.length||t.start()}))}},{key:"insertCursor",value:function(){this.showCursor&&(this.cursor||(this.cursor=document.createElement("span"),this.cursor.className="typed-cursor",this.cursor.innerHTML=this.cursorChar,this.el.parentNode&&this.el.parentNode.insertBefore(this.cursor,this.el.nextSibling)))}}]),t}();e["default"]=a,t.exports=e["default"]},function(t,e,s){"use strict";function n(t){return t&&t.__esModule?t:{"default":t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var r=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var s=arguments[e];for(var n in s)Object.prototype.hasOwnProperty.call(s,n)&&(t[n]=s[n])}return t},o=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),a=s(2),u=n(a),l=function(){function t(){i(this,t)}return o(t,[{key:"load",value:function(t,e,s){if("string"==typeof s?t.el=document.querySelector(s):t.el=s,t.options=r({},u["default"],e),t.isInput="input"===t.el.tagName.toLowerCase(),t.attr=t.options.attr,t.bindInputFocusEvents=t.options.bindInputFocusEvents,t.showCursor=!t.isInput&&t.options.showCursor,t.cursorChar=t.options.cursorChar,t.cursorBlinking=!0,t.elContent=t.attr?t.el.getAttribute(t.attr):t.el.textContent,t.contentType=t.options.contentType,t.typeSpeed=t.options.typeSpeed,t.startDelay=t.options.startDelay,t.backSpeed=t.options.backSpeed,t.smartBackspace=t.options.smartBackspace,t.backDelay=t.options.backDelay,t.fadeOut=t.options.fadeOut,t.fadeOutClass=t.options.fadeOutClass,t.fadeOutDelay=t.options.fadeOutDelay,t.isPaused=!1,t.strings=t.options.strings.map(function(t){return t.trim()}),"string"==typeof t.options.stringsElement?t.stringsElement=document.querySelector(t.options.stringsElement):t.stringsElement=t.options.stringsElement,t.stringsElement){t.strings=[],t.stringsElement.style.display="none";var n=Array.prototype.slice.apply(t.stringsElement.children),i=n.length;if(i)for(var o=0;o<i;o+=1){var a=n[o];t.strings.push(a.innerHTML.trim())}}t.strPos=0,t.arrayPos=0,t.stopNum=0,t.loop=t.options.loop,t.loopCount=t.options.loopCount,t.curLoop=0,t.shuffle=t.options.shuffle,t.sequence=[],t.pause={status:!1,typewrite:!0,curString:"",curStrPos:0},t.typingComplete=!1;for(var o in t.strings)t.sequence[o]=o;t.currentElContent=this.getCurrentElContent(t),t.autoInsertCss=t.options.autoInsertCss,this.appendAnimationCss(t)}},{key:"getCurrentElContent",value:function(t){var e="";return e=t.attr?t.el.getAttribute(t.attr):t.isInput?t.el.value:"html"===t.contentType?t.el.innerHTML:t.el.textContent}},{key:"appendAnimationCss",value:function(t){var e="data-typed-js-css";if(t.autoInsertCss&&(t.showCursor||t.fadeOut)&&!document.querySelector("["+e+"]")){var s=document.createElement("style");s.type="text/css",s.setAttribute(e,!0);var n="";t.showCursor&&(n+="\n        .typed-cursor{\n          opacity: 1;\n        }\n        .typed-cursor.typed-cursor--blink{\n          animation: typedjsBlink 0.7s infinite;\n          -webkit-animation: typedjsBlink 0.7s infinite;\n                  animation: typedjsBlink 0.7s infinite;\n        }\n        @keyframes typedjsBlink{\n          50% { opacity: 0.0; }\n        }\n        @-webkit-keyframes typedjsBlink{\n          0% { opacity: 1; }\n          50% { opacity: 0.0; }\n          100% { opacity: 1; }\n        }\n      "),t.fadeOut&&(n+="\n        .typed-fade-out{\n          opacity: 0;\n          transition: opacity .25s;\n        }\n        .typed-cursor.typed-cursor--blink.typed-fade-out{\n          -webkit-animation: 0;\n          animation: 0;\n        }\n      "),0!==s.length&&(s.innerHTML=n,document.body.appendChild(s))}}}]),t}();e["default"]=l;var c=new l;e.initializer=c},function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var s={strings:["These are the default values...","You know what you should do?","Use your own!","Have a great day!"],stringsElement:null,typeSpeed:0,startDelay:0,backSpeed:0,smartBackspace:!0,shuffle:!1,backDelay:700,fadeOut:!1,fadeOutClass:"typed-fade-out",fadeOutDelay:500,loop:!1,loopCount:1/0,showCursor:!0,cursorChar:"|",autoInsertCss:!0,attr:null,bindInputFocusEvents:!1,contentType:"html",onComplete:function(t){},preStringTyped:function(t,e){},onStringTyped:function(t,e){},onLastStringBackspaced:function(t){},onTypingPaused:function(t,e){},onTypingResumed:function(t,e){},onReset:function(t){},onStop:function(t,e){},onStart:function(t,e){},onDestroy:function(t){}};e["default"]=s,t.exports=e["default"]},function(t,e){"use strict";function s(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var n=function(){function t(t,e){for(var s=0;s<e.length;s++){var n=e[s];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,s,n){return s&&t(e.prototype,s),n&&t(e,n),e}}(),i=function(){function t(){s(this,t)}return n(t,[{key:"typeHtmlChars",value:function(t,e,s){if("html"!==s.contentType)return e;var n=t.substr(e).charAt(0);if("<"===n||"&"===n){var i="";for(i="<"===n?">":";";t.substr(e+1).charAt(0)!==i&&(e++,!(e+1>t.length)););e++}return e}},{key:"backSpaceHtmlChars",value:function(t,e,s){if("html"!==s.contentType)return e;var n=t.substr(e).charAt(0);if(">"===n||";"===n){var i="";for(i=">"===n?"<":"&";t.substr(e-1).charAt(0)!==i&&(e--,!(e<0)););e--}return e}}]),t}();e["default"]=i;var r=new i;e.htmlParser=r}])});
 //# sourceMappingURL=typed.min.js.map
@@ -27352,7 +27352,7 @@ return ImagesLoaded;
 
         function closeAccordion($accordion, $content) {
             $accordion.trigger('accordion.close');
-            
+
             if(CSStransitions) {
                 if(accordionHasParent) {
                     var $parentAccordions = $accordion.parents('[data-accordion]');
@@ -27435,15 +27435,15 @@ return ImagesLoaded;
 
         function addEventListeners() {
             $controls.on('click', toggleAccordion);
-            
+
             $controls.on('accordion.toggle', function() {
                 if(opts.singleOpen && $controls.length > 1) {
                     return false;
                 }
-                
+
                 toggleAccordion();
             });
-            
+
             $controls.on('accordion.refresh', function() {
                 refreshHeight($accordion);
             });

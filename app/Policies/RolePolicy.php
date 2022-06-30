@@ -16,6 +16,11 @@ class RolePolicy
 
     public function isEditor(User $user): bool
     {
-        return $user->role === User::ROLE_EDITOR;
+        return $user->role >= User::ROLE_EDITOR;
+    }
+
+    public function isAdmin(User $user): bool
+    {
+        return $user->role >= User::ROLE_ADMIN;
     }
 }
