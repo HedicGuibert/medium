@@ -21,6 +21,7 @@ class FavouriteTest extends AbstractBaseTest
                 ->assertNotPresent('.icon-heart2');
         });
     }
+
     public function testFavoritesExist()
     {
         $this->browse(function (Browser $browser) {
@@ -46,7 +47,7 @@ class FavouriteTest extends AbstractBaseTest
         });
     }
 
-    public function testFavoritesRemote()
+    public function testFavoritesRemove()
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -61,4 +62,3 @@ class FavouriteTest extends AbstractBaseTest
         });
     }
 }
-

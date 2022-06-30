@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\ArticleGroup;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ArticleGroupSeeder extends Seeder
@@ -15,6 +14,6 @@ class ArticleGroupSeeder extends Seeder
      */
     public function run()
     {
-        ArticleGroup::factory()->count(5)->create();
+        ArticleGroup::factory()->count(10)->create();
     }
 }

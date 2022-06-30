@@ -15,6 +15,7 @@ class StoreCategoryRequest extends FormRequest
     public function authorize()
     {
         $this->session()->flash('action', 'store');
+
         return App::environment('local') ? true : Auth::check();
     }
 

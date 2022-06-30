@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Support\Facades\Auth;
 use Laravel\Dusk\Browser;
 
 class CategoryTest extends AbstractBaseTest
@@ -9,6 +10,7 @@ class CategoryTest extends AbstractBaseTest
     protected function setUp(): void
     {
         parent::setUp();
+        Auth::logout();
         $this->generateCategories();
     }
 
