@@ -10,16 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class FavouriteController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $articles = User::find(Auth::id())->favourites()->paginate(6);
         return view('favourite', compact('articles'));
     }
 
-    public function add($id){
+    public function add($id)
+    {
 
         $favourite = new FavouriteArticles(['article_id' => $id, 'user_id' => Auth::id()]);
 
-        if($favourite === null){
+        if ($favourite == null) {
             return response()->json(
                 [
                     'error' => true,
@@ -35,12 +37,12 @@ class FavouriteController extends Controller
                 'message' => 'Article ajouté à vos favoris'
             ]
         );
-
     }
-    public function remove($id){
-        $favourite = FavouriteArticles::where([ 'article_id' => $id ,'user_id' => Auth::id()])->first();
+    public function remove($id)
+    {
+        $favourite = FavouriteArticles::where(['article_id' => $id, 'user_id' => Auth::id()])->first();
 
-        if($favourite === null){
+        if ($favourite == null) {
             return response()->json(
                 [
                     'error' => true,
@@ -56,8 +58,5 @@ class FavouriteController extends Controller
                 'message' => "L'article à été supprimé de vos favoris"
             ]
         );
-
-
     }
-
 }

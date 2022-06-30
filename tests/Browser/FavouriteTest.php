@@ -36,29 +36,24 @@ class FavouriteTest extends AbstractBaseTest
     {
         $this->browse(function (Browser $browser) {
             $browser
-                ->loginAs($this->getEditorUser())
                 ->visit('/favourite')
                 ->assertSee("Aucun article n'a été trouvé")
                 ->visit('/')
                 ->press('@add_to_favorite_article_2')
+                ->pause(5000)
                 ->visit('/favourite')
                 ->assertSee('Article 2');
         });
     }
 
-    public function testFavoritesRemote()
+    public function testFavoritesRemove()
     {
         $this->browse(function (Browser $browser) {
             $browser
-                ->loginAs($this->getEditorUser())
-                ->visit('/')
-                ->press('@add_to_favorite_article_2')
-                ->visit('/favourite')
-                ->assertSee("Article 2")
+                ->pause(5000)
                 ->press('@add_to_favorite_article_2')
                 ->visit('/favourite')
                 ->assertSee("Aucun article n'a été trouvé");
         });
     }
 }
-

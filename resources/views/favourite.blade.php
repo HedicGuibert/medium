@@ -33,7 +33,6 @@
                     article.remove();
 
                     if(articles.length == 1){
-                        console.log(articles)
                         const mainContent = document.querySelector("#fav_main_content");
                         mainContent.innerHTML = `<div class="col-lg-12"><h3>Aucun article n'a été trouvé</h3></div>`;
                     }

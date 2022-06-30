@@ -77,6 +77,7 @@ class UpdateProfileTest extends AbstractBaseTest
                 ->type('@twitter', 'cocotwi.com')
                 ->type('@linkedIn', 'cocoIn.com')
                 ->type('@facebook', 'cocobook.com')
+                ->scrollIntoView('@submit-socials')
                 ->press('@submit-socials');
         });
 

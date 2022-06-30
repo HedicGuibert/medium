@@ -33,7 +33,7 @@
                     </div>
 
                 </form>
-                <div class="row gutter-2">
+                <div class="row gutter-2" dusk="article-groups-list">
                     @forelse ($articleGroups as $articleGroup)
                     <div class="col-lg-4 col-md-6 col-sm-12 aos-init aos-animate" data-aos="fade-up">
                         <div class="card rising h-100">
@@ -58,7 +58,7 @@
                                             @endif>
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit"
+                                            <button type="submit" dusk="delete-article-group-{{ $articleGroup->slug }}"
                                                 class="btn btn-outline-danger btn-sm btn-rounded">Supprimer </button>
                                         </form>
                                         @endif

@@ -65,7 +65,7 @@ abstract class AbstractBaseTest extends DuskTestCase
 
     protected function generateArticles()
     {
-        $this->generateUsers(1);
+        // $this->generateUsers(1);
 
         Article::factory()->create([
             'title' => 'Article 1',
@@ -73,7 +73,7 @@ abstract class AbstractBaseTest extends DuskTestCase
             'body' => 'Text body 1',
             'like' => 0,
             'slug' => 'article-1',
-            'user_id' => 1,
+            'user_id' => $this->getSimpleUser()->id,
         ]);
 
         Article::factory()->create([
@@ -82,7 +82,7 @@ abstract class AbstractBaseTest extends DuskTestCase
             'body' => 'Text body 2',
             'like' => 0,
             'slug' => 'article_2',
-            'user_id' => 1,
+            'user_id' =>  $this->getSimpleUser()->id,
         ]);
     }
 
@@ -98,7 +98,7 @@ abstract class AbstractBaseTest extends DuskTestCase
 
     protected function generateArticleGroups()
     {
-        for ($i = 1; $i < 6; $i++) {
+        for ($i = 1; $i < 7; $i++) {
             ArticleGroup::factory()->create([
                 'name' => "Group $i",
                 'slug' => "group-$i",
@@ -107,9 +107,18 @@ abstract class AbstractBaseTest extends DuskTestCase
         }
 
         ArticleGroup::factory()->create([
-            'name' => "Group 7",
-            'slug' => "group-7",
-            'user_id' => $this->authorUser->id
+            'name' => "Group $i",
+            'slug' => "group-$i",
+            'user_id' => $this->getAuthorUser()
+        ]);
+    }
+
+    // Use this method onyl if you need dummy users that won't have to connect
+    // Passwords won't be hashed so users generated won't be able to login but tests will be (a lot) faster
+    protected function generateUsers(int $amount = 3)
+    {
+        User::factory($amount)->create([
+            'password' => 'password'
         ]);
     }
 }
