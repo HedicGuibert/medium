@@ -12,6 +12,19 @@ class ArticleGroupTest extends AbstractBaseTest
         $this->generateArticleGroups();
     }
 
+    public function testArticleGroupsListWorksForGuestuser()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->logout()
+                ->visit('/')
+                ->click("@article-group-list")
+                ->assertRouteIs('article-groups.index')
+                ->assertSee('Group 2')
+                ->assertDontSee('Group 6');
+        });
+    }
+
     public function testArticleGroupsListWorks()
     {
         $this->browse(function (Browser $browser) {
@@ -44,9 +57,9 @@ class ArticleGroupTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->click('@article-group-dropdown')
-                ->waitFor('@user-article-group-dropdown')
-                ->click('@user-article-group-dropdown')
-                ->assertRouteIs('article-groups.index', ['userId' => $this->getEditorUser()->id])
+                ->waitFor('@user-article-group-list')
+                ->click('@user-article-group-list')
+                ->assertRouteIs('article-groups.user.index', ['userId' => $this->getEditorUser()->id])
                 ->assertDontSee('Group 6')
                 ->assertSee('Group 2');
         });
@@ -57,7 +70,7 @@ class ArticleGroupTest extends AbstractBaseTest
     {
         $this->browse(function (Browser $browser) {
             $browser
-                ->assertRouteIs('article-groups.index', ['userId' => $this->getEditorUser()->id])
+                ->assertRouteIs('article-groups.user.index', ['userId' => $this->getEditorUser()->id])
                 ->type('@create-article-group-name', 'Group Test')
                 ->press('@create-article-group-submit')
                 ->scrollIntoView('a.page-link[rel="next"]')
@@ -71,8 +84,8 @@ class ArticleGroupTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->click('@article-group-dropdown')
-                ->waitFor('@user-article-group-dropdown')
-                ->click("@user-article-group-dropdown")
+                ->waitFor('@article-group-list')
+                ->click("@article-group-list")
                 ->assertSee('Group 2')
                 ->scrollIntoView('@delete-article-group-group-2')
                 ->click('@delete-article-group-group-2')
@@ -88,9 +101,9 @@ class ArticleGroupTest extends AbstractBaseTest
                 ->loginAs($this->getAuthorUser())
                 ->visit('/')
                 ->click('@article-group-dropdown')
-                ->waitFor('@user-article-group-dropdown')
-                ->click('@user-article-group-dropdown')
-                ->assertRouteIs('article-groups.index', ['userId' => $this->getAuthorUser()->id])
+                ->waitFor('@user-article-group-list')
+                ->click("@user-article-group-list")
+                ->assertRouteIs('article-groups.user.index', ['userId' => $this->getAuthorUser()->id])
                 ->assertSee('Group 7')
                 ->assertDontSee('Group 2');
         });
@@ -101,9 +114,9 @@ class ArticleGroupTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->click('@article-group-dropdown')
-                ->waitFor('@user-article-group-dropdown')
-                ->click('@user-article-group-dropdown')
-                ->assertRouteIs('article-groups.index', ['userId' => $this->getAuthorUser()->id])
+                ->waitFor('@user-article-group-list')
+                ->click("@user-article-group-list")
+                ->assertRouteIs('article-groups.user.index', ['userId' => $this->getAuthorUser()->id])
                 ->assertSee('Group 7')
                 ->assertDontSeeIn('@article-groups-list', 'Supprimer');
         });
@@ -114,9 +127,9 @@ class ArticleGroupTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->click('@article-group-dropdown')
-                ->waitFor('@user-article-group-dropdown')
-                ->click("@user-article-group-dropdown")
-                ->assertRouteIs('article-groups.index', ['userId' => $this->getAuthorUser()->id])
+                ->waitFor('@user-article-group-list')
+                ->click("@user-article-group-list")
+                ->assertRouteIs('article-groups.user.index', ['userId' => $this->getAuthorUser()->id])
                 ->assertDontSee('create-article-group-submit');
         });
     }

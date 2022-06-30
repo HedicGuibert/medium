@@ -32,9 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/favourite/add/{id}', [FavouriteController::class, 'add'])->name('favourite.add');
     Route::post('/favourite/remove/{id}', [FavouriteController::class, 'remove'])->name('favourite.remove');
 
-    Route::get('/article-groups/{userId?}', [ArticleGroupController::class, 'index'])->name('article-groups.index');
-    Route::delete('/article-groups/{group}/{userId?}', [ArticleGroupController::class, 'delete'])->name('article-groups.delete');
-    Route::post('/article-groups/store', [ArticleGroupController::class, 'store'])->name('article-groups.store');
+    Route::get('/article-groups/user/{userId}', [ArticleGroupController::class, 'index'])->name('article-groups.user.index');
 });
 
 // Routes that require author access
@@ -53,6 +51,9 @@ Route::middleware(['auth', 'can:isEditor'])->group(function () {
     Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
+
+    Route::post('/article-groups/store', [ArticleGroupController::class, 'store'])->name('article-groups.store');
+    Route::delete('/article-groups/{group}/{userId?}', [ArticleGroupController::class, 'delete'])->name('article-groups.delete');
 });
 
 // Routes that require admin access
@@ -63,6 +64,8 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::post('/admin/user/{id}/password', [HandleUserController::class, 'editPassword'])->name('users_edit_password');
     Route::post('/admin/user/{id}/informations', [HandleUserController::class, 'editInformati'])->name('users_edit_informations');
 });
+Route::get('/article-groups', [ArticleGroupController::class, 'index'])->name('article-groups.index');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 

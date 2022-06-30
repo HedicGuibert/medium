@@ -42,7 +42,8 @@
                         </li>
                         @guest
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ route('article-groups.index') }}">Tous les groupes
+                            <a class="nav-link" dusk="article-group-list"
+                                href="{{ route('article-groups.index') }}">Tous les groupes
                                 d'articles</a>
                         </li>
                         @endguest
@@ -72,8 +73,8 @@
                                     <span>Tous les groupes d'articles</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" dusk="user-article-group-dropdown"
-                                    href="{{ route('article-groups.index', ['userId' => Auth::id()]) }}">
+                                <a class="dropdown-item" dusk="user-article-group-list"
+                                    href="{{ route('article-groups.user.index', ['userId' => Auth::id()]) }}">
                                     <span>Mes groupes d'articles</span>
                                 </a>
                                 {{-- <div class="dropdown-divider"></div>
