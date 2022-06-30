@@ -6,7 +6,7 @@
             <div><a href={{ route('create_article') }} class="btn btn-success">Ajouter un article</a></div>
             <div class="row">
                 <div class="col">
-                    <table class="table table-lined">
+                    <table class="table table-lined" dusk="table_list">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -22,7 +22,7 @@
                                 <tr>
                                     <th scope="row">{{ $article->id }}</th>
                                     <td>{{ $article->title }}</td>
-                                    <td style="word-wrap: break-word">{{ $article->slug }}</td>
+                                    <td style="word-wrap: break-word" dusk="articleSlug">{{ $article->slug }}</td>
                                     <td>{{ $article->user_id }}</td>
                                     <td>{{ $article->updated_at }}</td>
                                     <td>
