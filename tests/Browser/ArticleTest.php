@@ -31,5 +31,19 @@ class ArticleTest extends AbstractBaseTest
       
     //   });
     // }
+
+    //Les testes suivantes éditeur ont déjà connectés
+    public function test_edituser_can_add_new_article(){
+      $this->browse(function (Browser $browser) {
+        $browser->loginAs($this->editorUser)
+                ->visit('/admin/article/create')
+                ->type('title', 'This is a new title')
+                ->type('introduction', "This is a new introduction for this test specification")
+                ->value('selector', "category 1")
+                ->value('selector', "category 3")
+                ->visit("/admin/articles")
+                ->assertSeeIn("@title", "this is a new title");
+      });
+    }
 }
 

@@ -37,12 +37,15 @@ Route::middleware('auth')->group(function () {
 });
 // Routes that require author access
 Route::middleware(['auth', 'can:isAuthor'])->group(function () {
-    Route::get('/admin/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
-    Route::get('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('details_article');
-    Route::put('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'update'])->name('update_article');
-    Route::get('/admin/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('create_article');
-    Route::post('/admin/article/store', [App\Http\Controllers\ArticleController::class, 'store'])->name('store_article');
-    Route::delete('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'delete'])->name('delete_article');
+
+
+  Route::get('/admin/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
+  Route::get('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('details_article');
+  Route::put('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'update'])->name('update_article');
+  Route::get('/admin/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name("create_article");
+  Route::post('/admin/article/store', [App\Http\Controllers\ArticleController::class, 'store'])->name('store_article');
+  Route::delete('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'delete'])->name('delete_article');
+  Route::put('/admin/article/send', [App\Http\Controllers\ArticleController::class, 'demande_post_in_group'])->name('send_demande');
 });
 
 // Routes that require editor access
