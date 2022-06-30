@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
+use App\Models\ArticleGroup;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -96,9 +97,16 @@ class ArticleController extends Controller
       $article->delete();
       return redirect()->route('articles');
     }
-    public function demande_post_in_group($id){
+
+    public function write_demande($id){
       $article = Article::find($id);
-      $article->update(["status" => "draft"]);
+      $article_group = ArticleGroup::all();
+      return view('articles.write_demande', ["article" => $article, "article_group" => $article_group]);
+    }
+    
+    public function demande_post_in_group($article_id, $group_id) {
+      $article = Article::find($article_id, $group_id);
+      $article->update(["status" => "en attente"]);
       return redirect()->route('articles');
     }
 
