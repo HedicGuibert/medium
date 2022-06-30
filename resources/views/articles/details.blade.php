@@ -2,7 +2,6 @@
 @section('content')
     <form method="POST" action={{ route('update_article', [$article->id]) }} enctype="multipart/form-data" class="container"
         style="margin-top:10em; margin-bottom:10em">
-
         @csrf
         @method('PUT')
         <h1 class="text-center">Information sur l'article</h1>
@@ -42,7 +41,6 @@
     <script>
         tinymce.init({
             selector: '#body',
-
             plugins: 'code table lists',
             toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
         });

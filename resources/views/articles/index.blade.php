@@ -26,13 +26,15 @@
                                     <td>{{ $article->user_id }}</td>
                                     <td>{{ $article->updated_at }}</td>
                                     <td>
-                                        <div class="d-flex justify-content-between">
+                                        <div class="d-flex" style="gap:2em">
                                             <a class="btn btn-sm btn-primary"
-                                                href={{ route('details_article', [$article->id]) }}>Afficher</a>
+                                                href={{ route('details_article', [$article->id]) }}><i
+                                                    class="icon-eye"></i></a>
                                             <form action="{{ route('delete_article', $article->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                                <button type="submit" class="btn btn-sm btn-danger"><i
+                                                        class="icon-trash"></i></button>
 
                                             </form>
                                         </div>
