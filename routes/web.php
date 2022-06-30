@@ -25,11 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update-informations', [ProfileController::class, 'updateInformations'])->name('profile_update_informations');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile_update_password');
     Route::post('/profile/update-socials', [ProfileController::class, 'updateSocials'])->name('profile_update_socials');
-
-    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-    Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
-    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-    Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
 });
 
 // Routes that require author access
@@ -38,6 +33,10 @@ Route::middleware(['auth', 'can:isAuthor'])->group(function () {
 
 // Routes that require editor access
 Route::middleware(['auth', 'can:isEditor'])->group(function () {
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
 });
 
 Auth::routes();

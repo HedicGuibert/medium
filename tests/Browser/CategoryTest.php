@@ -20,9 +20,9 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
+                ->type('@email', $this->editorUser->email)
                 // We need to hardcode the password because it will be hashed.
-                ->type('@password', 'simpleuser')
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->assertRouteIs('categories.index')
                 ->assertSee('Category 1')
@@ -36,8 +36,8 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
+                ->type('@email', $this->editorUser->email)
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->scrollIntoView('a.page-link[rel="next"]')
                 ->click('a.page-link[rel="next"]')
@@ -52,11 +52,11 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
+                ->type('@email', $this->editorUser->email)
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->assertRouteIs('categories.index')
-                ->press('@delete-category-1')
+                ->clickAndWaitForReload('@delete-category-1')
                 ->assertRouteIs('categories.index')
                 ->assertDontSeeIn('@categoryList', 'Category 1')
                 ->logout();
@@ -68,8 +68,8 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
+                ->type('@email', $this->editorUser->email)
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->type('@create-category-name', 'Test')
                 ->press('@create-category-submit')
@@ -86,8 +86,8 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
+                ->type('@email', $this->editorUser->email)
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->type('@create-category-name', 'Category 1')
                 ->press('@create-category-submit')
@@ -102,8 +102,8 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
+                ->type('@email', $this->editorUser->email)
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->press('@update-category-1')
                 ->type('@update-category-name', 'Test')
@@ -120,8 +120,8 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
+                ->type('@email', $this->editorUser->email)
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->press('@update-category-1')
                 ->type('@update-category-name', 'Category 1')
@@ -137,8 +137,8 @@ class CategoryTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->visit('/categories')
-                ->type('@email', $this->simpleUser->email)
-                ->type('@password', 'simpleuser')
+                ->type('@email', $this->editorUser->email)
+                ->type('@password', 'editoruser')
                 ->press('@submit')
                 ->press('@edit-form-pane')
                 ->type('@update-category-name', 'Category Test')
