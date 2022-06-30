@@ -20,7 +20,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence(6, true),
             'introduction'=> $this->faker->paragraph(2, true),
-            'status'=> 'published',
+            'status'=>'published',
             'body'=> $this->faker->text(1000),
             'like' => $this->faker->randomDigit(),
             'slug' => $this->faker->unique()->slug(),
