@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleGroupController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\HandleUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -42,12 +43,22 @@ Route::middleware(['auth', 'can:isAuthor'])->group(function () {
     Route::post('/admin/article/store', [App\Http\Controllers\ArticleController::class, 'store'])->name('store_article');
     Route::delete('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'delete'])->name('delete_article');
 });
+
 // Routes that require editor access
 Route::middleware(['auth', 'can:isEditor'])->group(function () {
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
+});
+
+// Routes that require admin access
+Route::middleware(['auth', 'can:isAdmin'])->group(function () {
+    Route::get('/admin/users', [HandleUserController::class, 'list'])->name('users_list');
+    Route::get('/admin/user/{id}', [HandleUserController::class, 'show'])->name('users_show');
+    Route::post('/admin/user/{id}/role', [HandleUserController::class, 'editRole'])->name('users_edit_role');
+    Route::post('/admin/user/{id}/password', [HandleUserController::class, 'editPassword'])->name('users_edit_password');
+    Route::post('/admin/user/{id}/informations', [HandleUserController::class, 'editInformati'])->name('users_edit_informations');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');

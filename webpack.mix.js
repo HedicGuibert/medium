@@ -14,5 +14,5 @@ const mix = require("laravel-mix");
 mix.sass("resources/sass/app.scss", "public/css")
     .css("resources/css/app.css", "public/css")
     .js("resources/js/app.js", "public/js")
-    .js(["resources/js/categories-edit.js"], "public/js/categories.js")
+    .js("resources/js/categories-edit.js", "public/js/categories.js")
     .copyDirectory("vendor/tinymce/tinymce", "public/js/tinymce");

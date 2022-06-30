@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/categories.js": "/js/categories.js",
     "/css/app.css": "/css/app.css",
     "/js/tinymce/CHANGELOG.md": "/js/tinymce/CHANGELOG.md",
     "/js/tinymce/README.md": "/js/tinymce/README.md",

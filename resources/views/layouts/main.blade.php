@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="bg-light">
+<body class="min-vh-100 bg-light d-flex flex-column justify-content-center align-content-stretch">
     <header class="header-sticky header-light bg-white headroom headroom--not-bottom headroom--pinned headroom--top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -82,6 +82,13 @@
                                 </a> --}}
                             </div>
                         </li>
+                        @can('isAdmin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users_list') }}" role="button">
+                                Gérer les utilisateurs
+                            </a>
+                        </li>
+                        @endcan
                         @endauth
                     </ul>
                     @guest
@@ -120,10 +127,10 @@
             </nav>
         </div>
     </header>
-    <main class="my-auto">
+    <main class="my-auto w-100">
         @yield('content')
     </main>
-    <footer class="bg-dark text-white w-100 mt-auto">
+    <footer class="bg-dark text-white w-100 mt-auto mt-auto">
         <div class="container pb-5">
             <div class="row">
                 <div class="col">

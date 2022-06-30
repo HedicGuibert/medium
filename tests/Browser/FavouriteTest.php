@@ -27,6 +27,7 @@ class FavouriteTest extends AbstractBaseTest
             $browser
                 ->loginAs($this->getSimpleUser())
                 ->visit('/')
+                ->screenshot('favs')
                 ->assertPresent('.icon-heart2');
         });
     }
