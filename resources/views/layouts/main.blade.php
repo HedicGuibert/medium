@@ -41,13 +41,13 @@
                             </a>
                         </li>
                         @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categories.index') }}" role="button">
-                                Catégories
-                            </a>
-                        </li>
-                        @endauth
-
+                            @can('isEditor')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('categories.index') }}" role="button">
+                                        Catégories
+                                    </a>
+                                </li>
+                            @endcan
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/favourite') }}" role="button">
                                     Favoris
