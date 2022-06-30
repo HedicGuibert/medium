@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
 use App\Models\Category;
@@ -55,6 +53,7 @@ class ArticleController extends Controller
             $request->image->move(public_path('images'), $params['image']);
         }
         $params['slug'] = urlencode($params['title']);
+
         $article->update($params);
 
         return redirect()->route('articles');
@@ -63,6 +62,7 @@ class ArticleController extends Controller
     public function create()
     {
         return view('articles.create');
+
     }
 
     public function store(ArticleStoreRequest $request)
@@ -88,6 +88,7 @@ class ArticleController extends Controller
         Article::create($params);
 
         return redirect()->route('articles');
+
     }
 
     public function delete($id)
@@ -99,4 +100,5 @@ class ArticleController extends Controller
         $article->delete();
         return redirect()->route('articles');
       }
+
 }

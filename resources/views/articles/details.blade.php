@@ -29,15 +29,32 @@
                         alt="image">
                 </div>
             @endif
-            @foreach ($article->categories as $category)
-                <p>{{ $category->name }}</p>
-            @endforeach
+
             <div class="mb-3 custom-file">
                 <input type="file" class="custom-file-input" name="image" accept="image/*" id="inputfile">
                 <label for="inputfile" class="custom-file-label">Choisisez un fichier...</label>
             </div>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
-        </div>
+            <div>
+                <label> Categories : </label>
+
+                @foreach ($article->categories as $category)
+                    <div class="tag-cloud">
+                        <a>{{ $category->name }}</a>
+                    </div>
+                @endforeach
+                <br>
+                <hr>
+                @foreach ($categories as $category)
+                    <div class="form-control">
+                        <input type="checkbox" value="{{ $category->id }}" id="check-{{ $category->id }}"
+                            name="checkboxCategories[{{ $category->id }}]">
+                        <label for="check-{{ $category->id }}">{{ $category->name }}</label>
+                    </div>
+                @endforeach
+
+
+                <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
+            </div>
     </form>
 
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
