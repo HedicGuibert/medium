@@ -34,7 +34,7 @@ class Article extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, "article_categories", "article_id", "category_id");
     }
 
     /**
@@ -50,6 +50,5 @@ class Article extends Model
         return FavouriteArticles::where('user_id', auth()->id())
             ->where('article_id', $this->id)
             ->exists();
-        // return $this->hasMany(::class,'formation_id','id');
     }
 }

@@ -29,6 +29,9 @@
                         alt="image">
                 </div>
             @endif
+            @foreach ($article->categories as $category)
+                <p>{{ $category->name }}</p>
+            @endforeach
             <div class="mb-3 custom-file">
                 <input type="file" class="custom-file-input" name="image" accept="image/*" id="inputfile">
                 <label for="inputfile" class="custom-file-label">Choisisez un fichier...</label>
