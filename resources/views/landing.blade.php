@@ -41,7 +41,6 @@
                                                 alt="Image">
                                             <img class="card-img-top" src="{{ asset($article->image) }}" alt="Image"
                                                 style="width:100%; height:300px; object-fit:cover">
-                                            >>>>>>> 2524ce1 (add shwoing created_date and user name at public article)
                                             <h5 class="card-footer card-title">Shaping</h5>
                                         </a>
                                         <div class="card-body">
