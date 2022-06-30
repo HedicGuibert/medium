@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Dusk\Browser;
 
 class LoginTest extends AbstractBaseTest
@@ -10,7 +11,6 @@ class LoginTest extends AbstractBaseTest
     protected function setUp(): void
     {
         parent::setUp();
-        $this->generateUsers();
     }
 
     public function testLoginWithGoodCredentials()
@@ -19,12 +19,11 @@ class LoginTest extends AbstractBaseTest
             $browser
                 ->logout()
                 ->visit('/login')
-                ->type('@email', $this->simpleUser->email)
+                ->type('@email', $this->getSimpleUser()->email)
                 // We need to hardcode the password because it will be hashed.
                 ->type('@password', 'simpleuser')
                 ->press('@submit')
-                ->assertRouteIs('landing')
-                ->assertAuthenticatedAs($this->simpleUser);
+                ->assertAuthenticatedAs($this->getSimpleUser());
         });
     }
 
@@ -38,9 +37,10 @@ class LoginTest extends AbstractBaseTest
                 // We need to hardcode the password because it will be hashed.
                 ->type('@password', 'odzand')
                 ->press('@submit')
-                ->assertRouteIs('login')
-                ->assertSee('These credentials do not match our records.');
+                ->assertRouteIs('login');
         });
+
+        $this->assertFalse(Auth::check());
     }
 
     public function testRegisterWorks()
@@ -55,8 +55,7 @@ class LoginTest extends AbstractBaseTest
                 ->type('@email', 'register@re.re')
                 ->type('@password', 'register')
                 ->type('@confirm', 'register')
-                ->press('@submit')
-                ->assertRouteIs('landing');
+                ->press('@submit');
 
             $this->assertCount($beforeRegisterUsersCount + 1, User::all());
         });

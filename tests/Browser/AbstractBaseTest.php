@@ -14,38 +14,59 @@ abstract class AbstractBaseTest extends DuskTestCase
 {
     use DatabaseMigrations;
 
-    protected User $simpleUser;
+    private ?User $simpleUser = null;
 
-    protected User $authorUser;
+    private ?User $authorUser = null;
 
-    protected User $editorUser;
+    private ?User $editorUser = null;
 
-    protected function generateUsers()
+
+    protected function getSimpleUser(): User
     {
-        $this->simpleUser = User::factory()->create([
-            'name' => 'Simple User',
-            'password' => Hash::make('simpleuser'),
-            'email' => 'user@fixture.com',
-            'role' => User::ROLE_USER,
-        ]);
+        if (!$this->simpleUser) {
+            $this->simpleUser = User::factory()->create([
+                'name' => 'Simple User',
+                'password' => Hash::make('simpleuser'),
+                'email' => 'user@fixture.com',
+                'role' => User::ROLE_USER,
+            ]);
+        }
 
-        $this->authorUser = User::factory()->create([
-            'name' => 'Author User',
-            'password' => Hash::make('authoruser'),
-            'email' => 'author@fixture.com',
-            'role' => User::ROLE_AUTHOR,
-        ]);
+        return $this->simpleUser;
+    }
 
-        $this->editorUser = User::factory()->create([
-            'name' => 'Editor User',
-            'password' => Hash::make('editoruser'),
-            'email' => 'editor@fixture.com',
-            'role' => User::ROLE_EDITOR,
-        ]);
+    protected function getAuthorUser(): User
+    {
+        if (!$this->authorUser) {
+            $this->authorUser = User::factory()->create([
+                'name' => 'Author User',
+                'password' => Hash::make('authoruser'),
+                'email' => 'author@fixture.com',
+                'role' => User::ROLE_AUTHOR,
+            ]);
+        }
+
+        return $this->authorUser;
+    }
+
+    protected function getEditorUser(): User
+    {
+        if (!$this->editorUser) {
+            $this->editorUser = User::factory()->create([
+                'name' => 'Editor User',
+                'password' => Hash::make('editoruser'),
+                'email' => 'editor@fixture.com',
+                'role' => User::ROLE_EDITOR,
+            ]);
+        }
+
+        return $this->editorUser;
     }
 
     protected function generateArticles()
     {
+        $this->generateUsers(1);
+
         Article::factory()->create([
             'title' => 'Article 1',
             'introduction' => 'Introduction 1',
@@ -54,6 +75,7 @@ abstract class AbstractBaseTest extends DuskTestCase
             'slug' => 'article-1',
             'user_id' => 1,
         ]);
+
         Article::factory()->create([
             'title' => 'Article 2',
             'introduction' => 'Introduction 2',
@@ -80,14 +102,23 @@ abstract class AbstractBaseTest extends DuskTestCase
             ArticleGroup::factory()->create([
                 'name' => "Group $i",
                 'slug' => "group-$i",
-                'user_id' => $this->editorUser->id
+                'user_id' => $this->getEditorUser()
             ]);
         }
 
         ArticleGroup::factory()->create([
             'name' => "Group $i",
             'slug' => "group-$i",
-            'user_id' => $this->authorUser->id
+            'user_id' => $this->getAuthorUser()
+        ]);
+    }
+
+    // Use this method onyl if you need dummy users that won't have to connect
+    // Passwords won't be hashed so users generated won't be able to login but tests will be (a lot) faster
+    protected function generateUsers(int $amount = 3)
+    {
+        User::factory($amount)->create([
+            'password' => 'password'
         ]);
     }
 }

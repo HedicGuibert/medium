@@ -2,16 +2,13 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
 
 class ArticleGroupTest extends AbstractBaseTest
 {
     protected function setUp(): void
     {
         parent::setUp();
-        $this->generateUsers();
         $this->generateArticleGroups();
     }
 
@@ -20,7 +17,7 @@ class ArticleGroupTest extends AbstractBaseTest
         $this->browse(function (Browser $browser) {
             $browser
                 ->logout()
-                ->loginAs($this->editorUser)
+                ->loginAs($this->getEditorUser())
                 ->visit('/')
                 ->click('@article-group-dropdown')
                 ->waitFor('@article-group-list')
@@ -49,7 +46,7 @@ class ArticleGroupTest extends AbstractBaseTest
                 ->click('@article-group-dropdown')
                 ->waitFor('@user-article-group-dropdown')
                 ->click("@user-article-group-dropdown")
-                ->assertRouteIs('article-groups.index', ['userId' => $this->editorUser->id])
+                ->assertRouteIs('article-groups.index', ['userId' => $this->getEditorUser()->id])
                 ->assertDontSee('Group 6')
                 ->assertSee('Group 2')
                 ->logout();
