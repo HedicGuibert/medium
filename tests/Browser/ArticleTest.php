@@ -21,15 +21,10 @@ class ArticleTest extends DuskTestCase
         });
     }
 
-    public function testShowArticle() {
+    public function test_user_can_not_see_list_article_without_login() {
       $this->browse(function (Browser $browser) {
-        // $article = Article::factory()->create([
-        //   "title"=> 'test title', 
-        //   "introduction" => 'test introduction',
-        //   "body" => "test content in body",
-        //   "slug" => urlencode($article->title),
-        //   "image" => "/images/testimage.png"
-        // ]);
+        $browser->visit('/admin/articles')
+                ->visit('/login');
       });
 
     }

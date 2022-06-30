@@ -1,7 +1,7 @@
 @extends('/layouts/main')
 
 @section('content')
-    <div class="component-example">
+    <div class="component-example mt-5">
         <div class="container">
             <div><a href={{ route('create_article') }} class="btn btn-success">Ajouter un article</a></div>
             <div class="row">
@@ -22,7 +22,7 @@
                                 <tr>
                                     <th scope="row">{{ $article->id }}</th>
                                     <td>{{ $article->title }}</td>
-                                    <td>{{ $article->slug }}</td>
+                                    <td style="word-wrap: break-word">{{ $article->slug }}</td>
                                     <td>{{ $article->user_id }}</td>
                                     <td>{{ $article->updated_at }}</td>
                                     <td>
