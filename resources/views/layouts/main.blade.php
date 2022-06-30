@@ -50,6 +50,11 @@
                         @auth
                             @can('isEditor')
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('articles') }}" role="button">
+                                        Articles
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('categories.index') }}" role="button">
                                         Catégories
                                     </a>
@@ -101,6 +106,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">Connexion</a>
                                 </li>
                             @endif
+
 
                             @if (Route::has('register'))
                                 <li class="nav-item dropdown">

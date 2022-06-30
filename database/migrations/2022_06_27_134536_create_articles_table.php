@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('body');
             $table->integer('like')->default(0);
             $table->enum('status', ['pending']);
+            $table->enum('status',['draft', "accepted"]);
+
             $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
