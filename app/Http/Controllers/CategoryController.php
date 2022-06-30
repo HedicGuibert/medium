@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeleteCategoryRequest;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -23,6 +23,7 @@ class CategoryController extends Controller
         $category = Category::where('slug', $slug)->first();
         $categoryName = $category->name;
         $category->delete();
+
         return redirect()->route('categories.index')->with('success', "Category '$categoryName' successfully deleted");
     }
 

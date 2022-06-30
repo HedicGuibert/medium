@@ -21,6 +21,7 @@ class FavouriteTest extends AbstractBaseTest
                 ->assertNotPresent('.icon-heart2');
         });
     }
+
     public function testFavoritesExist()
     {
         $this->browse(function (Browser $browser) {
@@ -36,11 +37,11 @@ class FavouriteTest extends AbstractBaseTest
     {
         $this->browse(function (Browser $browser) {
             $browser
+                ->loginAs($this->getEditorUser())
                 ->visit('/favourite')
                 ->assertSee("Aucun article n'a été trouvé")
                 ->visit('/')
                 ->press('@add_to_favorite_article_2')
-                ->pause(5000)
                 ->visit('/favourite')
                 ->assertSee('Article 2');
         });
@@ -50,7 +51,11 @@ class FavouriteTest extends AbstractBaseTest
     {
         $this->browse(function (Browser $browser) {
             $browser
-                ->pause(5000)
+                ->loginAs($this->getEditorUser())
+                ->visit('/')
+                ->press('@add_to_favorite_article_2')
+                ->visit('/favourite')
+                ->assertSee("Article 2")
                 ->press('@add_to_favorite_article_2')
                 ->visit('/favourite')
                 ->assertSee("Aucun article n'a été trouvé");

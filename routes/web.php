@@ -41,7 +41,7 @@ Route::middleware(['auth', 'can:isAuthor'])->group(function () {
     Route::get('/admin/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
     Route::get('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show'])->name('details_article');
     Route::put('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'update'])->name('update_article');
-    Route::get('/admin/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name("create_article");
+    Route::get('/admin/article/create', [App\Http\Controllers\ArticleController::class, 'create'])->name('create_article');
     Route::post('/admin/article/store', [App\Http\Controllers\ArticleController::class, 'store'])->name('store_article');
     Route::delete('/admin/articles/{id}', [App\Http\Controllers\ArticleController::class, 'delete'])->name('delete_article');
 });
@@ -68,6 +68,6 @@ Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
-Route::get('/articles/{slug}', [App\Http\Controllers\ArticleController::class, 'publicArticle'])->name("public_article");
+Route::get('/articles/{slug}', [App\Http\Controllers\ArticleController::class, 'publicArticle'])->name('public_article');
 
 Auth::routes();

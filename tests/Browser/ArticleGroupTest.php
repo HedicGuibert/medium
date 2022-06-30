@@ -21,7 +21,7 @@ class ArticleGroupTest extends AbstractBaseTest
                 ->visit('/')
                 ->click('@article-group-dropdown')
                 ->waitFor('@article-group-list')
-                ->click("@article-group-list")
+                ->click('@article-group-list')
                 ->assertRouteIs('article-groups.index')
                 ->assertSee('Group 2')
                 ->assertDontSee('Group 6');
@@ -45,7 +45,7 @@ class ArticleGroupTest extends AbstractBaseTest
             $browser
                 ->click('@article-group-dropdown')
                 ->waitFor('@user-article-group-dropdown')
-                ->click("@user-article-group-dropdown")
+                ->click('@user-article-group-dropdown')
                 ->assertRouteIs('article-groups.index', ['userId' => $this->getEditorUser()->id])
                 ->assertDontSee('Group 6')
                 ->assertSee('Group 2');
@@ -72,7 +72,7 @@ class ArticleGroupTest extends AbstractBaseTest
                 ->visit('/')
                 ->click('@article-group-dropdown')
                 ->waitFor('@user-article-group-dropdown')
-                ->click("@user-article-group-dropdown")
+                ->click('@user-article-group-dropdown')
                 ->assertRouteIs('article-groups.index', ['userId' => $this->getAuthorUser()->id])
                 ->assertSee('Group 7')
                 ->assertDontSee('Group 2');
@@ -85,7 +85,7 @@ class ArticleGroupTest extends AbstractBaseTest
             $browser
                 ->click('@article-group-dropdown')
                 ->waitFor('@user-article-group-dropdown')
-                ->click("@user-article-group-dropdown")
+                ->click('@user-article-group-dropdown')
                 ->assertRouteIs('article-groups.index', ['userId' => $this->getAuthorUser()->id])
                 ->assertSee('Group 7')
                 ->assertDontSeeIn('@article-groups-list', 'Supprimer');

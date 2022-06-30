@@ -20,10 +20,9 @@ abstract class AbstractBaseTest extends DuskTestCase
 
     private ?User $editorUser = null;
 
-
     protected function getSimpleUser(): User
     {
-        if (!$this->simpleUser) {
+        if (! $this->simpleUser) {
             $this->simpleUser = User::factory()->create([
                 'name' => 'Simple User',
                 'password' => Hash::make('simpleuser'),
@@ -37,7 +36,7 @@ abstract class AbstractBaseTest extends DuskTestCase
 
     protected function getAuthorUser(): User
     {
-        if (!$this->authorUser) {
+        if (! $this->authorUser) {
             $this->authorUser = User::factory()->create([
                 'name' => 'Author User',
                 'password' => Hash::make('authoruser'),
@@ -51,7 +50,7 @@ abstract class AbstractBaseTest extends DuskTestCase
 
     protected function getEditorUser(): User
     {
-        if (!$this->editorUser) {
+        if (! $this->editorUser) {
             $this->editorUser = User::factory()->create([
                 'name' => 'Editor User',
                 'password' => Hash::make('editoruser'),
@@ -65,7 +64,7 @@ abstract class AbstractBaseTest extends DuskTestCase
 
     protected function generateArticles()
     {
-        // $this->generateUsers(1);
+        $this->generateUsers(1);
 
         Article::factory()->create([
             'title' => 'Article 1',
@@ -73,7 +72,7 @@ abstract class AbstractBaseTest extends DuskTestCase
             'body' => 'Text body 1',
             'like' => 0,
             'slug' => 'article-1',
-            'user_id' => $this->getSimpleUser()->id,
+            'user_id' => 1,
         ]);
 
         Article::factory()->create([
@@ -82,7 +81,7 @@ abstract class AbstractBaseTest extends DuskTestCase
             'body' => 'Text body 2',
             'like' => 0,
             'slug' => 'article_2',
-            'user_id' =>  $this->getSimpleUser()->id,
+            'user_id' =>  1,
         ]);
     }
 
@@ -102,14 +101,14 @@ abstract class AbstractBaseTest extends DuskTestCase
             ArticleGroup::factory()->create([
                 'name' => "Group $i",
                 'slug' => "group-$i",
-                'user_id' => $this->getEditorUser()
+                'user_id' => $this->getEditorUser(),
             ]);
         }
 
         ArticleGroup::factory()->create([
             'name' => "Group $i",
             'slug' => "group-$i",
-            'user_id' => $this->getAuthorUser()
+            'user_id' => $this->getAuthorUser(),
         ]);
     }
 
@@ -118,7 +117,7 @@ abstract class AbstractBaseTest extends DuskTestCase
     protected function generateUsers(int $amount = 3)
     {
         User::factory($amount)->create([
-            'password' => 'password'
+            'password' => 'password',
         ]);
     }
 }

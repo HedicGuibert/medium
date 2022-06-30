@@ -16,7 +16,6 @@ class ArticleGroupController extends Controller
             ? ArticleGroup::where('user_id', $userId)->paginate(5)
             : ArticleGroup::paginate(5);
 
-
         return view('article-group.list', compact('articleGroups', 'userSpecific'));
     }
 
@@ -26,6 +25,7 @@ class ArticleGroupController extends Controller
         $articleGroupName = $articleGroup->name;
 
         $articleGroup->delete();
+
         return redirect()->route('article-groups.index', ['userId' => $userId])
             ->with('success', "Article Group '$articleGroupName' successfully deleted");
     }

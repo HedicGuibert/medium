@@ -50,7 +50,6 @@ Accueil
                             console.log(heart.parentElement)
                             heart.parentElement.removeAttribute('onclick');
                             heart.parentElement.setAttribute('onclick', `addRemoveFavourite(false, ${id})`);
-                            alert('ok')
                         }
                         else{
                             heart.classList.remove('icon-heart2');

@@ -26,7 +26,7 @@ class DeleteCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'exists:categories,slug'
+            'slug' => 'exists:categories,slug',
         ];
     }
 

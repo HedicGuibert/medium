@@ -15,17 +15,18 @@ class Article extends Model
     }
 
     protected $fillable = [
-      "title",
-      "introduction",
-      "body",
-      'image',
-      'slug',
-      "like",
-      "user_id"
+        'title',
+        'introduction',
+        'body',
+        'image',
+        'slug',
+        'like',
+        'user_id',
     ];
 
-    public function user(){
-      return $this->belongsTo(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -51,5 +52,4 @@ class Article extends Model
             ->exists();
         // return $this->hasMany(::class,'formation_id','id');
     }
-
 }
