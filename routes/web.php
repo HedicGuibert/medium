@@ -54,6 +54,7 @@ Route::middleware(['auth', 'can:isEditor'])->group(function () {
 });
 
 
+
 // Routes that require admin access
 Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::get('/admin/users', [HandleUserController::class, 'list'])->name('users_list');
@@ -63,7 +64,6 @@ Route::middleware(['auth', 'can:isAdmin'])->group(function () {
     Route::post('/admin/user/{id}/informations', [HandleUserController::class, 'editInformati'])->name('users_edit_informations');
 });
 
-
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -71,5 +71,6 @@ Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index']
 Route::get('/articles/{slug}', [App\Http\Controllers\ArticleController::class, 'publicArticle'])->name('public_article');
 
 Auth::routes();
+
 
 

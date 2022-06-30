@@ -37,7 +37,17 @@
                     </small>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <label> Categories : </label>
+            <br>
+            <hr>
+            @foreach ($categories as $category)
+                <div class="form-control">
+                    <input type="checkbox" value="{{ $category->id }}" id="check-{{ $category->id }}"
+                        name="checkboxCategories[{{ $category->id }}]">
+                    <label for="check-{{ $category->id }}">{{ $category->name }}</label>
+                </div>
+            @endforeach
+            <button type="submit" class="btn btn-primary mt-3">Enregistrer</button>
         </div>
     </form>
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
