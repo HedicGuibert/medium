@@ -51,6 +51,7 @@
             "@php artisan key:generate --ansi"
         ],
         "cs": "./vendor/bin/pint",
+        "dry-cs": "./vendor/bin/pint --test",
         "tests": "php artisan dusk --log-junit tests/logs/junit.log"
     },
     "extra": {
