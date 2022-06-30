@@ -58,7 +58,7 @@ abstract class AbstractBaseTest extends DuskTestCase
             'introduction' => 'Introduction 2',
             'body' => 'Text body 2',
             'like' => 0,
-            'slug' => 'article-2',
+            'slug' => 'article_2',
             'user_id' => 1,
         ]);
     }

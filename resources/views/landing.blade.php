@@ -3,7 +3,6 @@
     Accueil
 @endsection
 @section('content')
-
     <section class="bg-light hero hero-with-header pb-3">
         <div class="container">
             <div class="row justify-content-center">
@@ -16,7 +15,6 @@
                         </div>
                     </div>
                     <form method="GET" action="{{ route('search') }}" class="mb-3">
-                        @csrf
                         <div class="row gutter-1">
 
                             <div class="form-group col-md-5">
@@ -31,45 +29,44 @@
                         </div>
 
                     </form>
-                    <div class="row gutter-2">
-                        @if ($articles->count() > 0)
-                            @foreach ($articles as $article)
-                                <div class="col-lg-4 col-md-6 col-sm-12 aos-init aos-animate" data-aos="fade-up">
-                                    <div class="card rising h-100">
-                                        <a href="" class="card-img-container">
-                                            <img class="card-img-top" src="../images/demo/fitness/fitness-3.jpg"
-                                                alt="Image">
-                                            <img class="card-img-top" src="{{ asset($article->image) }}" alt="Image"
-                                                style="width:100%; height:300px; object-fit:cover">
-                                            <h5 class="card-footer card-title">Shaping</h5>
-                                        </a>
-                                        <div class="card-body">
-                                            <div class="d-flex row align-content-between h-100 ">
-                                                <div>
-                                                    <p>20/06/2018</p>
-                                                    <h3>{{ $article->title }}</h3>
-                                                    <p class="card-text">{{ $article->introduction }}</p>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <a href="{{ route('public_article', [$article->slug]) }}"
-                                                        class="btn btn-outline-primary btn-rounded">Découvrir</a>
-                                                    <small class="ml-3">3 mins à lire</small>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @else
-                            <div class="col-lg-12">
-                                <h3>Aucun article n'a été trouvé</h3>
-                            </div>
-                        @endif
-                    </div>
+                    @include('components.list_articles')
                 </div>
             </div>
         </div>
     </section>
+    <script>
+        const addRemoveFavourite = async (state, id) => {
+            fetch(`/favourite/${state ? 'remove' : 'add'}/${id}`, {
+                method: 'POST',
+                credentials: "same-origin",
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+            }).then((response) => response.json())
+                .then(function(json){
+                    if(json.success){
+                        const heart = document.getElementById(id);
+                        toastr.success(json.message,'',{"positionClass":"toast-bottom-right"});
+                        if(state) {
+                            heart.classList.remove('icon-heart');
+                            heart.classList.add('icon-heart2');
+                            console.log(heart.parentElement)
+                            heart.parentElement.removeAttribute('onclick');
+                            heart.parentElement.setAttribute('onclick', `addRemoveFavourite(false, ${id})`);
+                        }
+                        else{
+                            heart.classList.remove('icon-heart2');
+                            heart.classList.add('icon-heart');
+                            heart.parentElement.removeAttribute('onclick');
+                            heart.parentElement.setAttribute('onclick', `addRemoveFavourite(true, ${id})`);
+
+                        }
+                    }else{
+                        toastr.warning(json.message,'',{"positionClass":"toast-bottom-right"});
+                    }
+            }).catch(function(error){
+                console.log(error);
+                toastr.warning("Une erreur s'est produite",'',{"positionClass":"toast-bottom-right"});
+            });
+        }
+    </script>
 
 @endsection

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -25,6 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update-informations', [ProfileController::class, 'updateInformations'])->name('profile_update_informations');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile_update_password');
     Route::post('/profile/update-socials', [ProfileController::class, 'updateSocials'])->name('profile_update_socials');
+    Route::get('/favourite', [FavouriteController::class, 'index'])->name('favourite');
+    Route::post('/favourite/add/{id}', [FavouriteController::class, 'add'])->name('favourite.add');
+    Route::post('/favourite/remove/{id}', [FavouriteController::class, 'remove'])->name('favourite.remove');
 });
 
 // Routes that require author access
