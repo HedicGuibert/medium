@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleGroupController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavouriteController;
@@ -46,6 +47,8 @@ Route::middleware(['auth', 'can:isEditor'])->group(function () {
     Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
+
+    Route::get('/article-groups/{userId?}', [ArticleGroupController::class, 'index'])->name('article-groups.index');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');

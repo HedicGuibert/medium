@@ -41,7 +41,7 @@ class Article extends Model
      */
     public function groups()
     {
-        return $this->belongsToMany(ArticleGroup::class);
+        return $this->belongsToMany(ArticleGroup::class, 'article_group_links', 'article_id');
     }
 
     public function isFavourite()
