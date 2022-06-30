@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Hash;
@@ -60,5 +61,15 @@ abstract class AbstractBaseTest extends DuskTestCase
             'slug' => 'article-2',
             'user_id' => 1,
         ]);
+    }
+
+    protected function generateCategories()
+    {
+        for ($i = 1; $i < 7; $i++) {
+            Category::factory()->create([
+                'name' => "Category $i",
+                'slug' => "category-$i",
+            ]);
+        }
     }
 }

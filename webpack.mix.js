@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.sass('resources/sass/app.scss', 'public/css')
-    .css('resources/css/app.css', 'public/css')
-    .js('resources/js/app.js', 'public/js')
+mix.sass("resources/sass/app.scss", "public/css")
+    .css("resources/css/app.css", "public/css")
+    .js("resources/js/app.js", "public/js");
+
+mix.js(["resources/js/categories-edit.js"], "public/js/categories.js");

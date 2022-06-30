@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -32,9 +33,14 @@ Route::middleware(['auth', 'can:isAuthor'])->group(function () {
 
 // Routes that require editor access
 Route::middleware(['auth', 'can:isEditor'])->group(function () {
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
 });
 
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
 Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
