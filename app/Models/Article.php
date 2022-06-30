@@ -43,4 +43,13 @@ class Article extends Model
     {
         return $this->belongsToMany(ArticleGroup::class);
     }
+
+    public function isFavourite()
+    {
+        return FavouriteArticles::where('user_id', auth()->id())
+            ->where('article_id', $this->id)
+            ->exists();
+        // return $this->hasMany(::class,'formation_id','id');
+    }
+
 }

@@ -48,6 +48,12 @@
                         </li>
                         @endauth
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/favourite') }}" role="button">
+                                    Favoris
+                                </a>
+                            </li>
+                        @endauth
                     </ul>
                     @guest
                     <ul class="navbar-nav align-items-center mr-0">
