@@ -47,6 +47,7 @@
                 </div>
             @endforeach
             <button type="submit" class="btn btn-primary mt-3" dusk="submit-create">Enregistrer</button>
+
         </div>
     </form>
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
