@@ -13,6 +13,7 @@
                                 <th scope="col">Titre</th>
                                 <th scope="col">Slug</th>
                                 <th scope="col">Créateur</th>
+                                <th scope="col">État</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -21,9 +22,10 @@
                             @foreach ($articles as $article)
                                 <tr>
                                     <th scope="row">{{ $article->id }}</th>
-                                    <td>{{ $article->title }}</td>
+                                    <td dusk="title">{{ $article->title }}</td>
                                     <td style="word-wrap: break-word" dusk="articleSlug">{{ $article->slug }}</td>
                                     <td>{{ $article->user_id }}</td>
+                                    <td>{{ $article->status }}</td>
                                     <td>{{ $article->updated_at }}</td>
                                     <td>
                                         <div class="d-flex" style="gap:2em">
@@ -35,7 +37,12 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger"><i
                                                         class="icon-trash"></i></button>
-
+                                            </form>
+                                            <form method="post" action="{{ route('send_demande', $article->id) }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-sm btn-success"><i
+                                                        class="icon-mail"></i></button>
                                             </form>
                                         </div>
                                     </td>

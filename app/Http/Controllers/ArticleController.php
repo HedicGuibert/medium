@@ -101,4 +101,10 @@ class ArticleController extends Controller
         return redirect()->route('articles');
       }
 
+    public function demande_post_in_group($id){
+      $article = Article::find($id);
+      $article->update(["status" => "draft"]);
+      return redirect()->route('articles');
+    }
+
 }
