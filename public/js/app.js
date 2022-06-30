@@ -7,33 +7,7 @@
   \*****************************/
 /***/ (() => {
 
-var anchors = document.querySelectorAll("#anchor");
-var badge = document.getElementById("badge");
-var accordion = document.querySelectorAll(".respond");
-var textArea = document.getElementById("textArea");
-var form = document.getElementById("form");
-accordion.forEach(function (item) {
-  return item.addEventListener("click", function (e) {
-    e.stopPropagation();
-  });
-}); //When user click on respond button to comment move viewport to the comment section
 
-anchors.forEach(function (item) {
-  return item.addEventListener("click", function () {
-    document.getElementById('comment').scrollIntoView({
-      behavior: 'smooth'
-    });
-    badge.innerHTML = "<button type=\"button\" class=\"btn btn-outline-primary btn-rounded\" onclick=\"deleteBadge(this)\" id=\"button_response\" value=\"".concat(item.getAttribute("data-id"), "\">").concat(item.getAttribute("data-name"), " <i style=\"vertical-align: middle;\" class=\"icon-times-circle\"></i></button>");
-    form.innerHTML = "<input hidden id=\"comment_id\" name=\"comment_id\" value=\"".concat(item.getAttribute("data-id"), "\">");
-    textArea.placeholder = "Vous r\xE9pondez \xE0 ".concat(item.getAttribute("data-name"));
-  });
-});
-
-function deleteBadge(e) {
-  e.remove();
-  textArea.placeholder = "Votre message";
-  document.getElementById("comment_id").remove();
-}
 
 /***/ }),
 

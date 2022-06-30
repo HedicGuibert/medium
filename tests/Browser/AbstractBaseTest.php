@@ -5,6 +5,7 @@ namespace Tests\Browser;
 use App\Models\Article;
 use App\Models\ArticleGroup;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Hash;
@@ -73,7 +74,7 @@ abstract class AbstractBaseTest extends DuskTestCase
             'body' => 'Text body 1',
             'like' => 0,
             'slug' => 'article-1',
-            'user_id' => 1,
+            'user_id' => 2,
         ]);
 
         Article::factory()->create([
@@ -82,10 +83,35 @@ abstract class AbstractBaseTest extends DuskTestCase
             'body' => 'Text body 2',
             'like' => 0,
             'slug' => 'article_2',
-            'user_id' => 1,
+            'user_id' => 2,
         ]);
     }
+    protected function generateComments()
+    {
+        Comment::factory()->create([
+            'content' => 'Comment 1',
+            'user_id' => 2,
+            'like' => 0,
+            'article_id' => 2,
+            'comment_id' => null,
 
+        ]);
+        Comment::factory()->create([
+            'content' => 'Comment 2',
+            'user_id' => 1,
+            'like' => 5,
+            'article_id' => 2,
+            'comment_id' => null,
+
+        ]);
+        Comment::factory()->create([
+            'content' => 'Response comment 1',
+            'user_id' => 1,
+            'like' => 10,
+            'article_id' => 2,
+            'comment_id' => 1,
+        ]);
+    }
     protected function generateCategories()
     {
         for ($i = 1; $i < 7; $i++) {
