@@ -14,7 +14,6 @@ class SearchTest extends AbstractBaseTest
     protected function setUp(): void
     {
         parent::setUp();
-        $this->generateUsers();
         $this->generateArticles();
     }
 

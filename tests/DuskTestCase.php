@@ -37,8 +37,9 @@ abstract class DuskTestCase extends BaseTestCase
         ])->unless($this->hasHeadlessDisabled(), function ($items) {
             return $items->merge([
                 '--disable-gpu',
-                '--no-headless',
+                'headless',
                 '--no-sandbox',
+                '--window-size=1920,1080',
             ]);
         })->all());
 
