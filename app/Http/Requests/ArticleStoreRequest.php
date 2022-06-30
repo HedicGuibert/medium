@@ -24,10 +24,11 @@ class ArticleStoreRequest extends FormRequest
     public function rules()
     {
         return [
+
             'title' => 'required|string',
             'introduction' => 'required|string|min:10',
             'body'=>'required|string|min:10',
-            'image'=>'required|image',
+
         ];
     }
 }
