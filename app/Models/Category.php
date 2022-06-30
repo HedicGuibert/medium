@@ -23,8 +23,8 @@ class Category extends Model
     /**
      * The articles that belong to the category.
      */
-    public function users()
+    public function articles()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->hasMany(Article::class);
     }
 }
