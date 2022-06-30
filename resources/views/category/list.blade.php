@@ -34,17 +34,6 @@
                 <h1 class="font-weight-bold">Catégories</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-custom">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/components/">Components</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Tables</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -80,11 +69,18 @@
                                                         data-slug="{{ $category->slug }}">
                                                         <i class="icon-pencil text-white"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-ico btn-danger"
-                                                        dusk="delete-{{ $category->slug }}" data-action="delete"
-                                                        data-slug="{{ $category->slug }}">
-                                                        <i class="icon-trash"></i>
-                                                    </button>
+
+                                                    <form method="POST" class="d-inline"
+                                                        action="{{ route('categories.delete', ['id' => $category->slug]) }}"
+                                                        id="delete-form">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-ico btn-danger"
+                                                            dusk="delete-{{ $category->slug }}" data-action="delete"
+                                                            data-slug="{{ $category->slug }}">
+                                                            <i class="icon-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @empty
@@ -149,10 +145,4 @@
     </div>
 
 </div>
-
-<form method="POST" data-link="{{ route('categories.delete', ['id' => '#']) }}" id="delete-form">
-    @method('DELETE')
-    @csrf
-</form>
-
 @endsection
