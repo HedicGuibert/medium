@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ArticleGroup;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,8 +21,10 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             CategorySeeder::class,
             FavouriteArticlesSeeder::class,
+            ArticleCategorySeeder::class,
             ArticleGroupSeeder::class,
-            ArticleGroupLinkSeeder::class,
+            ArticleGroupArticleSeeder::class,
+        ]);
 
     }
 }
