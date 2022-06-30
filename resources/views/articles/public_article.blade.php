@@ -67,3 +67,54 @@
 
 
     </section>
+    <script>
+
+    const anchors = document.querySelectorAll("#anchor");
+    const badge = document.getElementById("badge");
+    const accordion = document.querySelectorAll(".accord");
+    const textArea = document.querySelector("#textArea");
+    const form = document.querySelector('#commentForm')
+    const hiddenInput = document.querySelector('#hiddenInput')
+    const modifyButtons = document.querySelectorAll("#modify");
+
+    accordion.forEach(item => item.addEventListener("click", function (e){
+        e.stopPropagation()
+    }))
+    //When user click on respond button to comment move viewport to the comment section
+    anchors.forEach(item => item.addEventListener("click", function(){
+        document.getElementById('comment').scrollIntoView({
+            behavior: 'smooth'
+        });
+        resetForm();
+        badge.innerHTML =`<button type="button" class="btn btn-outline-primary btn-rounded" onclick="deleteBadge(this)" id="button_response" value="${item.getAttribute("data-id")}">${item.getAttribute("data-name")} <i style="vertical-align: middle;" class="icon-times-circle"></i></button>`;
+        hiddenInput.innerHTML = `<input hidden id="comment_id" name="comment_id" value="${ item.getAttribute("data-id") }">`;
+        textArea.placeholder = `Vous répondez à ${ item.getAttribute("data-name") }`
+    }))
+
+    //When user click on modify button to comment move viewport to the comment section
+    modifyButtons.forEach(item => item.addEventListener("click", function(){
+        document.getElementById('comment').scrollIntoView({
+            behavior: 'smooth'
+        });
+        badge.innerHTML =`<button type="button" class="btn btn-outline-primary btn-rounded" onclick="deleteBadge(this, true)" id="button_response">Modifier <i style="vertical-align: middle;" class="icon-times-circle"></i></button>`;
+        const url = "{{route("modify_comment",["id"=>$article->slug, "comment_id" => 100])}}"
+
+        form.action = url.replace('100', item.getAttribute("data-id"))
+        console.log(item)
+        textArea.value = item.getAttribute("data-body");
+    }))
+    function deleteBadge (el, bool = false){
+        if(bool){
+            resetForm();
+        }
+        el.remove();
+        textArea.placeholder = "Votre message";
+        document.getElementById("comment_id").remove();
+    }
+    function resetForm(){
+        form.action = "{{route("create_comment",["id"=>$article->slug])}}";
+        textArea.value = "";
+    }
+
+    </script>
+@endsection

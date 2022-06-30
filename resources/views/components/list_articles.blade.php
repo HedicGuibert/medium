@@ -21,7 +21,7 @@
                                 <p class="card-text">{{ $article->introduction }}</p>
                             </div>
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('public_article', [$article->slug]) }}"
+                                <a dusk="navigate_to_article_{{ $article->slug }}" href="{{ route('public_article', [$article->slug]) }}"
                                     class="btn btn-outline-primary btn-rounded">Découvrir</a>
                                 <small class="ml-3">3 mins à lire</small>
                             </div>
