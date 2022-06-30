@@ -15,7 +15,7 @@ class CategoryTest extends AbstractBaseTest
         $this->generateCategories();
     }
 
-    public function testCategoriesList()
+    public function testCategoriesListWorks()
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -31,7 +31,7 @@ class CategoryTest extends AbstractBaseTest
         });
     }
 
-    public function testCategoriesListPagination()
+    public function testCategoriesListPaginationWorks()
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -47,7 +47,7 @@ class CategoryTest extends AbstractBaseTest
         });
     }
 
-    public function testCategoryDelete()
+    public function testCategoryDeleteWorks()
     {
         $this->browse(function (Browser $browser) {
             $browser
@@ -59,6 +59,40 @@ class CategoryTest extends AbstractBaseTest
                 ->press('@delete-category-1')
                 ->assertRouteIs('categories.index')
                 ->assertDontSeeIn('@categoryList', 'Category 1')
+                ->logout();
+        });
+    }
+
+    public function testCategoryCreateWorks()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit('/categories')
+                ->type('@email', $this->simpleUser->email)
+                ->type('@password', 'simpleuser')
+                ->press('@submit')
+                ->type('@create-category-name', 'Test')
+                ->press('@create-category-submit')
+                ->assertRouteIs('categories.index')
+                ->scrollIntoView('a.page-link[rel="next"]')
+                ->click('a.page-link[rel="next"]')
+                ->assertSeeIn('@categoryList', 'Test')
+                ->logout();
+        });
+    }
+
+    public function testCategoryCreateSecurityWorks()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->visit('/categories')
+                ->type('@email', $this->simpleUser->email)
+                ->type('@password', 'simpleuser')
+                ->press('@submit')
+                ->type('@create-category-name', 'Category 1')
+                ->press('@create-category-submit')
+                ->assertRouteIs('categories.index')
+                ->assertSee('Action non exécutée.')
                 ->logout();
         });
     }

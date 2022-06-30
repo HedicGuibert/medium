@@ -134,7 +134,7 @@
                                         </div>
                                         <div class="tab-pane @if (session('action') == 'update') active @endif"
                                             id="edit-form-pane" role="tabpanel" aria-labelledby="edit-form-pane">
-                                            @include('category.edit-form')
+                                            {{-- @include('category.edit-form') --}}
                                         </div>
                                     </div>
                                 </div>
