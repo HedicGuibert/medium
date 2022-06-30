@@ -34,7 +34,8 @@ class NewCommentNotification extends Mailable
             ->with([
                 'user_name' => $this->data['user_name'],
                 'article_slug' => $this->data['article_slug'],
-                'article_name' => $this->data['article_name']
+                'article_name' => $this->data['article_name'],
+                'article_url' => env('APP_URL').'public_article/'.$this->data['article_slug']
             ]);
     }
 }

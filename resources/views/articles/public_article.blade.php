@@ -1,4 +1,7 @@
 @extends('/layouts/main')
+@section('title')
+   {{ $article->title }}
+@endsection
 @section('content')
 
     <section class="p-0">
