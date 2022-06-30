@@ -64,7 +64,6 @@
                     </small>
                 @enderror
             </div>
-            <div class="mb-3"><input type="file" name="image" accept="image/*"></div>
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
     </form>
