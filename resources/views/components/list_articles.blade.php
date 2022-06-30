@@ -4,7 +4,7 @@
             <div id="article_{{ $article->id }}" class="col-lg-4 col-md-6 col-sm-12 aos-init aos-animate" data-aos="fade-up">
                 <div class="card rising h-100">
                     <a href="" class="card-img-container">
-                        <img class="card-img-top" src="{{ asset($article->image) }}"
+                        <img class="card-img-top" src="{{ asset("images/$article->image") }}"
                             alt="Image">
                         <h5 class="card-footer card-title">Shaping</h5>
                     </a>

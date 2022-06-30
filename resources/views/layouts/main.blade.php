@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="bg-light">
+<body data-aos-easing="ease" data-aos-duration="800" data-aos-delay="0">
     <header class="header-sticky header-light bg-white headroom headroom--not-bottom headroom--pinned headroom--top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
