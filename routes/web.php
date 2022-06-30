@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::post('/article/{id}/create_comment', [CommentController::class, 'create'])->name('create_comment');
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
-<<<<<<< HEAD
     Route::post('/profile/update-informations', [ProfileController::class, 'updateInformations'])->name('profile_update_informations');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile_update_password');
     Route::post('/profile/update-socials', [ProfileController::class, 'updateSocials'])->name('profile_update_socials');
@@ -49,11 +48,6 @@ Route::middleware(['auth', 'can:isEditor'])->group(function () {
     Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/categories/{slug?}', [CategoryController::class, 'update'])->name('categories.update');
-=======
-    Route::get('/favourite', [FavouriteController::class, 'index'])->name('favourite');
-    Route::post('/favourite/add/{id}', [FavouriteController::class, 'add'])->name('favourite.add');
-    Route::post('/favourite/remove/{id}', [FavouriteController::class, 'remove'])->name('favourite.remove');
->>>>>>> a07a9a2 (Favourite feature with tests)
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('landing');
