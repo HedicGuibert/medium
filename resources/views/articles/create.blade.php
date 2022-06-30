@@ -28,7 +28,8 @@
 =======
 @extends('/layouts/main')
 @section('content')
-    <form method="POST" action={{ route('store_article') }} enctype="multipart/form-data" class="container mt-5">
+    <form method="POST" action={{ route('store_article') }} enctype="multipart/form-data" class="container "
+        style="margin-top:10em; margin-bottom:10em">
         @csrf
         @method('POST')
         <h1 class="text-center">Créer un nouveau article</h1>
