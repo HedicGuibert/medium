@@ -56,6 +56,9 @@
                     </div>
                     @endforelse
                 </div>
+                <div class="d-flex justify-content-center">
+                    {{ $articleGroups->links() }}
+                </div>
             </div>
         </div>
     </div>

@@ -62,15 +62,15 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dusk="article-group-dropdown">
                                 Groupes d'articles
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('article-groups.index') }}">
+                                <a class="dropdown-item" href="{{ route('article-groups.index') }}" dusk="article-group-list">
                                     <span>Tous les groupes d'articles</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item" dusk="user-article-group-dropdown"
                                     href="{{ route('article-groups.index', ['userId' => Auth::id()]) }}">
                                     <span>Mes groupes d'articles</span>
                                 </a>

@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Models\Article;
+use App\Models\ArticleGroup;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -71,5 +72,22 @@ abstract class AbstractBaseTest extends DuskTestCase
                 'slug' => "category-$i",
             ]);
         }
+    }
+
+    protected function generateArticleGroups()
+    {
+        for ($i = 1; $i < 6; $i++) {
+            ArticleGroup::factory()->create([
+                'name' => "Group $i",
+                'slug' => "group-$i",
+                'user_id' => $this->editorUser->id
+            ]);
+        }
+
+        ArticleGroup::factory()->create([
+            'name' => "Group $i",
+            'slug' => "group-$i",
+            'user_id' => $this->authorUser->id
+        ]);
     }
 }
