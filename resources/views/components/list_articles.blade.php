@@ -4,7 +4,7 @@
             <div id="article_{{ $article->id }}" class="col-lg-4 col-md-6 col-sm-12 aos-init aos-animate" data-aos="fade-up">
                 <div class="card rising h-100">
                     <a href="" class="card-img-container">
-                        <img class="card-img-top" src="../images/demo/fitness/fitness-3.jpg"
+                        <img class="card-img-top" src="{{ asset($article->image) }}"
                             alt="Image">
                         <h5 class="card-footer card-title">Shaping</h5>
                     </a>
@@ -21,7 +21,7 @@
                                 <p class="card-text">{{ $article->introduction }}</p>
                             </div>
                             <div class="d-flex align-items-center">
-                                <a href=""
+                                <a href="{{ route('public_article', [$article->slug]) }}"
                                     class="btn btn-outline-primary btn-rounded">Découvrir</a>
                                 <small class="ml-3">3 mins à lire</small>
                             </div>
