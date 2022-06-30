@@ -52,13 +52,30 @@ class ArticleGroupTest extends AbstractBaseTest
         });
     }
 
+
+    public function testArticleGroupCreateWorks()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->assertRouteIs('article-groups.index', ['userId' => $this->getEditorUser()->id])
+                ->type('@create-article-group-name', 'Group Test')
+                ->press('@create-article-group-submit')
+                ->scrollIntoView('a.page-link[rel="next"]')
+                ->click('a.page-link[rel="next"]')
+                ->assertSee('Group Test');
+        });
+    }
+
     public function testEditorUserCanDelete()
     {
         $this->browse(function (Browser $browser) {
             $browser
+                ->click('@article-group-dropdown')
+                ->waitFor('@user-article-group-dropdown')
+                ->click("@user-article-group-dropdown")
                 ->assertSee('Group 2')
+                ->scrollIntoView('@delete-article-group-group-2')
                 ->click('@delete-article-group-group-2')
-                ->waitFor('@article-group-dropdown')
                 ->assertDontSeeIn('@article-groups-list', 'Group 2');
         });
     }
@@ -89,6 +106,18 @@ class ArticleGroupTest extends AbstractBaseTest
                 ->assertRouteIs('article-groups.index', ['userId' => $this->getAuthorUser()->id])
                 ->assertSee('Group 7')
                 ->assertDontSeeIn('@article-groups-list', 'Supprimer');
+        });
+    }
+
+    public function testAuthUserCantCreate()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser
+                ->click('@article-group-dropdown')
+                ->waitFor('@user-article-group-dropdown')
+                ->click("@user-article-group-dropdown")
+                ->assertRouteIs('article-groups.index', ['userId' => $this->getAuthorUser()->id])
+                ->assertDontSee('create-article-group-submit');
         });
     }
 }
