@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -65,15 +65,16 @@
                         @endif
                     </ul>
                     @else
-                    <ul class="navbar-nav align-items-center mr-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->name }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <ul class="navbar-nav align-items-center mr-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-2" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                             </div>
                         </li>
@@ -120,22 +121,28 @@
     </footer>
     <script src="{{ asset('js/categories.js') }}"></script>
 </body>
-@if(session()->has('error'))
-<script>
-    $(function (){ warning('{{session()->get('error')}}')})
-</script>
+@if (session()->has('error'))
+    <script>
+        $(function() {
+            warning('{{ session()->get('error') }}')
+        })
+    </script>
 @endif
-@if($errors->any())
-@foreach($errors->all() as $error)
-<script>
-    $(function (){ warning('{{$error}}')})
-</script>
-@endforeach
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <script>
+            $(function() {
+                warning('{{ $error }}')
+            })
+        </script>
+    @endforeach
 @endif
-@if(session()->has('success'))
-<script>
-    $(function (){ success('{{session()->get('success')}}')})
-</script>
+@if (session()->has('success'))
+    <script>
+        $(function() {
+            success('{{ session()->get('success') }}')
+        })
+    </script>
 @endif
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
     integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
@@ -143,10 +150,17 @@
 
 <script>
     function warning(message) {
-        toastr.warning(message,'',{"positionClass":"toast-bottom-right"},{timeOut: 50000});
+        toastr.warning(message, '', {
+            "positionClass": "toast-bottom-right"
+        }, {
+            timeOut: 50000
+        });
     }
+
     function success(message) {
-        toastr.success(message,'',{"positionClass":"toast-bottom-right"});
+        toastr.success(message, '', {
+            "positionClass": "toast-bottom-right"
+        });
     }
 </script>
 
