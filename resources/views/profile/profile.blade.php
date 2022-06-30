@@ -34,7 +34,7 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="name">Nom</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="name" name="name" value="{{ $user->name }}">
+                            <input type="text" class="form-control" dusk="name" id="name" aria-describedby="name" name="name" value="{{ $user->name }}">
                           </div>
                         </div>
                       </div>
@@ -42,13 +42,13 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="email">Adresse email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="email" name="email" value="{{ $user->email }}">
+                            <input type="email" class="form-control" dusk="email" id="email" aria-describedby="email" name="email" value="{{ $user->email }}">
                           </div>
                         </div>
                       </div>
                       <div class="form-row mt-1 align-items-center">
                         <div class="col-3">
-                          <button class="btn btn-secondary">Sauvegarder</button>
+                          <button class="btn btn-secondary" dusk="submit-informations">Sauvegarder</button>
                         </div>
                       </div>
                     </form>
@@ -64,7 +64,7 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" aria-describedby="password" name="password" value="">
+                            <input type="password" class="form-control" dusk="password" id="password" aria-describedby="password" name="password" value="">
                           </div>
                         </div>
                       </div>
@@ -72,13 +72,13 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="password_confirmation">Confirmer le mot de passe</label>
-                            <input type="password" class="form-control" id="password_confirmation" aria-describedby="password_confirmation" name="password_confirmation" value="">
+                            <input type="password" class="form-control" dusk="confirm" id="password_confirmation" aria-describedby="password_confirmation" name="password_confirmation" value="">
                           </div>
                         </div>
                       </div>
                       <div class="form-row mt-1 align-items-center">
                         <div class="col-3">
-                          <button class="btn btn-secondary">Sauvegarder</button>
+                          <button class="btn btn-secondary" dusk="submit-password">Sauvegarder</button>
                         </div>
                       </div>
                     </form>
@@ -94,25 +94,25 @@
                         <div class="col">
                           <div class="form-group">
                             <label for="twitter">Twitter</label>
-                            <input type="text" class="form-control" id="twitter" aria-describedby="twitter" name="twitter" value="{{ $user->twitterUrl }}">
+                            <input type="text" class="form-control" dusk="twitter" id="twitter" aria-describedby="twitter" name="twitter" value="{{ $user->twitterUrl }}">
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label for="facebook">Facebook</label>
-                            <input type="text" class="form-control" id="facebook" aria-describedby="facebook" name="facebook" value="{{ $user->facebookUrl }}">
+                            <input type="text" class="form-control" dusk="facebook" id="facebook" aria-describedby="facebook" name="facebook" value="{{ $user->facebookUrl }}">
                           </div>
                         </div>
                         <div class="col">
                           <div class="form-group">
                             <label for="linkedIn">LinkedIn</label>
-                            <input type="text" class="form-control" id="linkedIn" aria-describedby="linkedIn" name="linkedIn" value="{{ $user->linkedInUrl }}">
+                            <input type="text" class="form-control" dusk="linkedIn" id="linkedIn" aria-describedby="linkedIn" name="linkedIn" value="{{ $user->linkedInUrl }}">
                           </div>
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="col-3">
-                          <button class="btn btn-secondary">Sauvegarder</button>
+                          <button class="btn btn-secondary" dusk="submit-socials">Sauvegarder</button>
                         </div>
                       </div>
                     </form>
