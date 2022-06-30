@@ -41,13 +41,9 @@
                                                 <button type="submit" class="btn btn-sm btn-danger"><i
                                                         class="icon-trash"></i></button>
                                             </form>
-                                            <form method="post" action="{{ route('send_demande', $article->id) }}">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-sm btn-success"><i
-                                                        class="icon-mail"></i></button>
-
-                                            </form>
+                                            <a class="btn btn-sm btn-primary"
+                                                href={{ route('write_demande', [$article->id]) }}><i
+                                                    class="icon-mail"></i></a>
                                         </div>
                                     </td>
                                 </tr>
