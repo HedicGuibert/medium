@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
             FavouriteArticlesSeeder::class,
             ArticleGroupSeeder::class,
             ArticleGroupLinkSeeder::class,
-        ]);
+
     }
 }

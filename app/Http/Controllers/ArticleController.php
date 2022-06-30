@@ -5,17 +5,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
-
     public function index()
     {
         $articles = Article::orderBy('created_at', 'DESC')->simplePaginate(5);
 
         return view('articles.index', ['articles' => $articles]);
-
 
     }
 
