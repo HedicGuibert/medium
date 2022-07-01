@@ -5,6 +5,7 @@ use App\Http\Requests\ArticleStoreRequest;
 use App\Http\Requests\DemandeGroupArticleRequest;
 use App\Models\Article;
 use App\Models\ArticleGroup;
+use App\Models\ArticleGroupArticle;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -107,8 +108,10 @@ class ArticleController extends Controller
     
     public function send_demande(DemandeGroupArticleRequest $request, $id) {
       $params = $request->validated();
+      $article_groups = ArticleGroup::find($params['group']);
       $article = Article::find($id);
       $article->update(["status" => "waiting"]);
+      $article_groups->articles()->attach($article);
       return redirect()->route('articles');
     }
 
