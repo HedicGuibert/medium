@@ -31,7 +31,7 @@
                                     <td>{{ $article->status }}</td>
                                     <td>{{ $article->updated_at }}</td>
                                     <td>
-                                        <div class="d-flex" style="gap:2em">
+                                        <div class="d-flex justify-content-evenly" style="gap:2em">
                                             <a class="btn btn-sm btn-primary"
                                                 href={{ route('details_article', [$article->id]) }}><i
                                                     class="icon-eye"></i></a>
