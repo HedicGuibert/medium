@@ -29,4 +29,9 @@ class ArticleGroupController extends Controller
         return redirect()->route('article-groups.index', ['userId' => $userId])
             ->with('success', "Article Group '$articleGroupName' successfully deleted");
     }
+
+    public function show($id) {
+      $article_groups = ArticleGroup::find($id);
+      return view('article-group.details', ["article_groups"=> $article_groups]);
+    }
 }
