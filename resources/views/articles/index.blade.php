@@ -41,7 +41,7 @@
                                                 <button type="submit" class="btn btn-sm btn-danger"><i
                                                         class="icon-trash"></i></button>
                                             </form>
-                                            <a class="btn btn-sm btn-primary"
+                                            <a class="btn btn-sm btn-success"
                                                 href={{ route('write_demande', [$article->id]) }}><i
                                                     class="icon-mail"></i></a>
                                         </div>

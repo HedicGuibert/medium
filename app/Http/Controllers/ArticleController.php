@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ArticleStoreRequest;
+use App\Http\Requests\DemandeGroupArticleRequest;
 use App\Models\Article;
 use App\Models\ArticleGroup;
 use App\Models\Category;
@@ -100,13 +101,14 @@ class ArticleController extends Controller
 
     public function write_demande($id){
       $article = Article::find($id);
-      $article_group = ArticleGroup::all();
-      return view('articles.write_demande', ["article" => $article, "article_group" => $article_group]);
+      $article_groups = ArticleGroup::all();
+      return view('articles.write_demande', ["article" => $article, "article_groups" => $article_groups]);
     }
     
-    public function demande_post_in_group($article_id, $group_id) {
-      $article = Article::find($article_id, $group_id);
-      $article->update(["status" => "en attente"]);
+    public function send_demande(DemandeGroupArticleRequest $request, $id) {
+      $params = $request->validated();
+      $article = Article::find($id);
+      $article->update(["status" => "waiting"]);
       return redirect()->route('articles');
     }
 
