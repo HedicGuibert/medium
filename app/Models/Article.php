@@ -15,19 +15,21 @@ class Article extends Model
     }
 
     protected $fillable = [
-        'title',
-        'introduction',
-        'body',
-        'image',
-        'slug',
-        'like',
-        'user_id',
+      "title",
+      "introduction",
+      "body",
+      'image',
+      'slug',
+      "like",
+      "user_id",
+      "status",
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 
     /**
      * Get the categories for the article.
