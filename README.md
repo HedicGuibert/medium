@@ -22,5 +22,5 @@ Enfin vous pouvez lancer le serveur avec la commande `php artisan serve`
 
 ### Commentaires
 
-### Rédacation d'articles
+### Rédaction d'articles
 
