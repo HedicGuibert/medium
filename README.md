@@ -2,7 +2,7 @@
 
 ## Présentation du projet
 
-Medium est une application web qui a été créée en 4 jours par 4 étudiants dans le cadre d'un examen. Le but du projet est de réussir à créer une application fonctionnelle avec des tests sur la majeur partie des fonctionnalités et disponible en production dans le délai imparti.
+Medium est une application web qui a été créée en 4 jours par 4 étudiants dans le cadre d'un examen. Le but du projet est de réussir à créer une application fonctionnelle avec des **tests** sur la majeur partie des fonctionnalités et **disponible en production** dans le délai imparti.
 
 ## Installation
 
