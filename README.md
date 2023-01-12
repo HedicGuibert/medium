@@ -34,9 +34,12 @@ Chaque rôle possède les autorisations des rôles précédents en plus de celle
 ### Commentaires
 
 Les utilisateurs peuvent :
-- commenter les articles
-- liker les commentaires
-- répondre aux commentaires
+ - commenter les articles
+ - liker les commentaires
+ - répondre aux commentaires
 
 ### Rédaction d'articles
 
+Les auteurs peuvent :
+ - écrire, modifier et publier un article
+ - faire une demande pour rejoindre un groupe d'article
