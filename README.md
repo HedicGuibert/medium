@@ -22,5 +22,7 @@ Enfin vous pouvez lancer le serveur avec la commande `php artisan serve`
 
 ### Commentaires
 
+Les utilisateurs peuvent commenter les articles, liker les commentaires et répondre aux commentaires
+
 ### Rédaction d'articles
 
