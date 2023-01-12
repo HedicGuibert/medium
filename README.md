@@ -16,9 +16,20 @@ Enfin vous pouvez lancer le serveur avec la commande `php artisan serve`
 
 ## Présentation des fonctionnalités
 
+### Espace utilisateur
+
+ - Création de compte
+ - Edition du compte
+
 ### Rôles
 
-### Création de compte
+Il existe 4 rôles utilisateurs qui restreignent l'accès aux différentes parties du site :
+ - user
+ - author
+ - editor
+ - admin
+ 
+Chaque rôle possède les autorisations des rôles précédents en plus de celles qui lui sont propres. Ainsi, un admin a accès à toutes les fonctionnalités du site.
 
 ### Commentaires
 
